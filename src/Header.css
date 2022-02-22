@@ -1,0 +1,68 @@
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header_logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 15px;
+}
+
+.header_search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.header_searchInput {
+  height: 12px;
+  padding: 10px;
+  border: none;
+  width: 100%; /* 검색창 크기 */
+  border-radius: 2px;
+}
+
+.header_searchIcon {
+  background-color: #febd69;
+  padding: 5px;
+  height: 15px;
+  border-radius: 2px;
+}
+
+.header_option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px; /* 로고 폭 수정 부분 !!*/
+  margin-right: 10px;
+  color: white;
+}
+
+.header_nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header_optionLineOne {
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 3px;
+}
+
+.header_optionBasket {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header_optionLineOneheader_basketCount {
+  margin-right: 10px;
+  margin-left: 10px;
+}
