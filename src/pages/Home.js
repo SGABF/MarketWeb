@@ -1,10 +1,9 @@
 import React from "react";
 import "./Home.css";
-import Product from "./Product";
+import Product from "components/Product";
 import { Carousel, className } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./Footer";
-
+import Footer from "components/Footer";
 
 function Home() {
   return (

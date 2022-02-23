@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
-import Home from "./Home";
-import Checkout from "./Checkout";
+import Home from "pages/Home";
+import Checkout from "pages/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Login";
+import Login from "pages/Login";
 import { useStateValue } from "./StateProvider";
 
 function App() {
