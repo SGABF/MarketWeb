@@ -92,28 +92,28 @@ function Home() {
                         title='"turn on the lights."'
                         price={11000}
                         image="image/min5.jpg"
-                        code={"X616D4D1"}
+                        code={"X616D4D6"}
                     />
                     <Product
                         id="2324"
                         title="Easy returns"
                         price={11000}
                         image="image/min6.jpg"
-                        code={"X616D4D2"}
+                        code={"X616D4D7"}
                     />
                     <Product
                         id="2325"
                         title="Shop smartwatches"
                         price={200000}
                         image="image/min7.jpg"
-                        code={"X616D4D3"}
+                        code={"X616D4D8"}
                     />
                     <Product
                         id="2326"
                         title="Shop Pet supplies"
                         price={10000}
                         image="image/min8.jpg"
-                        code={"X616D4D4"}
+                        code={"X616D4D9"}
                     />
                 </div>
                 <div>

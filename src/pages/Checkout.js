@@ -1,6 +1,5 @@
 import React from "react";
 import "./Checkout.css";
-import Subtotal from "components/Subtotal";
 import CheckoutProduct from "components/CheckoutProduct";
 import { useStateValue } from "components/StateProvider";
 
@@ -26,7 +25,7 @@ function Checkout() {
         </div>
       </div>
       <div className="checkout_right">
-        <Subtotal />
+
       </div>
     </div>
   );

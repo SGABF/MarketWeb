@@ -37,29 +37,34 @@ function App() {
 
     <Router>
       <div className="App">
+        <Header />
         <Switch>
           <Route path="/login">
             <Login />
           </Route>
           <Route exact path="/">
-            <Header />
+
             <Home />
           </Route>
 
           <Route path="/checkout">
-            <Header />
+
             <Checkout />
           </Route>
+          <Route path="/Man" component={Man}/>
+          <Route path="/Girl" component={Girl}/>
+          <Route path="/grocery" component={Food}/>
+          <Route path="/Electronics" component={Electronics}/>
         </Switch>
       </div>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/Man" component={Man} />
-        <Route path="/Girl" component={Girl} />
-        <Route path="/grocery" component={Food} />
-        <Route path="/Electronics" component={Electronics} />
-      </Switch>
+      {/*<Navbar />*/}
+      {/*<Switch>*/}
+      {/*  <Route path="/" exact component={Home} />*/}
+      {/*  <Route path="/Man" component={Man} />*/}
+      {/*  <Route path="/Girl" component={Girl} />*/}
+      {/*  <Route path="/grocery" component={Food} />*/}
+      {/*  <Route path="/Electronics" component={Electronics} />*/}
+      {/*</Switch>*/}
     </Router>
 
 
