@@ -1,3 +1,5 @@
+
+
 .home {
   display: flex;
   justify-content: center;
@@ -35,6 +37,15 @@
 }
 
 /*
+.mb-2 {
+  width: 1300px;
+  height: 100px;
+  align-items: center;
+  margin:auto;
+  display: block;
+
+}
+
 .MainPage {
   width: 500px;
   height: 300px;
@@ -42,3 +53,14 @@
   margin-right: 5px;
 }
 */
+
+.home_buttons{
+  align-items: center;
+  margin:auto;
+  display: block;
+  font-family: 'Gowun Batang', serif;
+}
+
+.menubar{
+  display: flex;
+}

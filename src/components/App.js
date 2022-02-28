@@ -5,6 +5,11 @@ import Checkout from "pages/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "pages/Login";
 import { useStateValue } from "./StateProvider";
+import Navbar from './Navbar';
+import Girl from "../Category/Girl";
+import Man from "../Category/Man";
+import Electronics from "../Category/Electronics";
+import Food from "../Category/Food";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -46,7 +51,17 @@ function App() {
           </Route>
         </Switch>
       </div>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/Man" component={Man} />
+        <Route path="/Girl" component={Girl} />
+        <Route path="/grocery" component={Food} />
+        <Route path="/Electronics" component={Electronics} />
+      </Switch>
     </Router>
+
+
   );
 }
 

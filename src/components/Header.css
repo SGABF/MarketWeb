@@ -75,4 +75,15 @@
   font-weight: bold;
 }
 
+
+
 /* 버튼 투명하게 하기 */
+
+
+.carousel {
+  max-width: 800px;
+  max-height: 800px;
+  margin: 0px auto;
+  display: block;
+}
+

@@ -13,6 +13,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
+import {Category} from "@material-ui/icons";
 
 function Header() {
   const [{ basket }, dispatch] = useStateValue();
@@ -24,6 +25,7 @@ function Header() {
       </Link>
 
       <div className="header_search">
+
         <>
           {[DropdownButton].map((DropdownType, idx) => (
             <DropdownType
@@ -34,11 +36,11 @@ function Header() {
               variant="light"
               title="전체"
             >
-              <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-              <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+              <Dropdown.Item eventKey="1">제목</Dropdown.Item>
+              <Dropdown.Item eventKey="2">상품</Dropdown.Item>
+              <Dropdown.Item eventKey="3">제목+내용</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+              <Dropdown.Item eventKey="4">상품코드</Dropdown.Item>
             </DropdownType>
           ))}
         </>
@@ -52,24 +54,12 @@ function Header() {
         </div>
         <div className="header_option">
           <span className="header_optionLineOne">
+
             <Menu
               menuButton={
                 <MenuButton className="button">장터게시판</MenuButton>
               }
             >
-              <SubMenu label="구매글">
-                <MenuItem>검색</MenuItem>
-                <MenuItem>직거래</MenuItem>
-                <MenuItem>택배</MenuItem>
-                <MenuItem>메뉴</MenuItem>
-                <MenuItem>즐겨찾기</MenuItem>
-              </SubMenu>
-              <SubMenu label="판매글">
-                <MenuItem>판매 제품 업로드</MenuItem>
-                <MenuItem>직거래</MenuItem>
-                <MenuItem>택배</MenuItem>
-                <MenuItem>1:1대화</MenuItem>
-              </SubMenu>
               <SubMenu label="경매글">
                 <MenuItem>입찰하기</MenuItem>
                 <MenuItem>잔여시간</MenuItem>
@@ -77,6 +67,7 @@ function Header() {
                 <MenuItem>경매 시작가 조회</MenuItem>
               </SubMenu>
             </Menu>
+
           </span>
         </div>
         <div className="header_option">
