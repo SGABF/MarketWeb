@@ -6,4 +6,5 @@ function Food(props) {
     );
 }
 
+
 export default Food;

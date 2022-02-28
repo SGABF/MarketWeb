@@ -25,6 +25,7 @@ function Home() {
                                 src="image/logo1.jpg"
                                 alt="First slide"
                             />
+
                             <Carousel.Caption></Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>

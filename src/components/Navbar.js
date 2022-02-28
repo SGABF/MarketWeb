@@ -16,6 +16,7 @@ function Navbar() {
             {/* 아이콘 컬러 전체 변경 기능 */}
             <IconContext.Provider value={{ color: '#808080' }}>
                 {/* 네비게이션 토글 코드*/}
+
                 <div className="navbar">
                     <Link to="#" className="menu-bars">
                         <FaIcons.FaBars onClick={showSidebar} />

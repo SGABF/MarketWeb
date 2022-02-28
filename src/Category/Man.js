@@ -6,4 +6,5 @@ function Man(props) {
     );
 }
 
+
 export default Man;

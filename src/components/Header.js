@@ -36,6 +36,7 @@ function Header() {
               variant="light"
               title="전체"
             >
+
               <Dropdown.Item eventKey="1">제목</Dropdown.Item>
               <Dropdown.Item eventKey="2">상품</Dropdown.Item>
               <Dropdown.Item eventKey="3">제목+내용</Dropdown.Item>

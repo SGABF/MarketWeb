@@ -16,6 +16,7 @@ export const SidebarData = [
         path: '/Girl',
         cName: 'nav-text'
     },
+
     {
         title: '푸드',
         path: '/grocery',
