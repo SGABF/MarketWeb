@@ -115,6 +115,8 @@ function Home() {
                         image="image/min8.jpg"
                         code={"X616D4D9"}
                     />
+
+
                 </div>
                 <div>
                     <Footer/>
