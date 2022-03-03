@@ -109,6 +109,7 @@ function Tables() {
         setEditingStudent(null);
     };
     return (
+
         <div className="App">
             <h1>고객센터</h1>
             <header className="App-header">

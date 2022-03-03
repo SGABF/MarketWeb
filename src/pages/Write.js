@@ -12,6 +12,7 @@ export default function Write() {
     return (
         <>
             <h1>고객센터 입니다.</h1>
+
             <Editor
                 onInit={(evt, editor) => editorRef.current = editor}
                 initialValue="<p>고객센터 입니다. 문의사항을 남겨주세요.</p>"

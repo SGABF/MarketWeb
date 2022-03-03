@@ -40,6 +40,7 @@ function App() {
             title: "Actions",
             render: (record) => {
                 return (
+
                     <>
                         <EditOutlined
                             onClick={() => {
