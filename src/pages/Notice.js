@@ -35,28 +35,28 @@ function App() {
             title: "notice",
             dataIndex: "notice",
         },
-        {
-            key: "5",
-            title: "Actions",
-            render: (record) => {
-                return (
-
-                    <>
-                        <EditOutlined
-                            onClick={() => {
-                                onEditStudent(record);
-                            }}
-                        />
-                        <DeleteOutlined
-                            onClick={() => {
-                                onDeleteStudent(record);
-                            }}
-                            style={{ color: "red", marginLeft: 12 }}
-                        />
-                    </>
-                );
-            },
-        },
+        // {
+        //     key: "5",
+        //     title: "Actions",
+        //     render: (record) => {
+        //         return (
+        //
+        //             <>
+        //                 <EditOutlined
+        //                     onClick={() => {
+        //                         onEditStudent(record);
+        //                     }}
+        //                 />
+        //                 <DeleteOutlined
+        //                     onClick={() => {
+        //                         onDeleteStudent(record);
+        //                     }}
+        //                     style={{ color: "red", marginLeft: 12 }}
+        //                 />
+        //             </>
+        //         );
+        //     },
+        // },
     ];
 
     const onAddStudent = () => {

@@ -16,8 +16,11 @@ import "@szhsin/react-menu/dist/index.css";
 import {Category} from "@material-ui/icons";
 
 
+
+
 function Header() {
     const [{basket}, dispatch] = useStateValue();
+
 
     return (
         <div className="header">
@@ -26,8 +29,8 @@ function Header() {
             </Link>
 
             <div className="header_search">
-
                 <>
+
                     {[DropdownButton].map((DropdownType, idx) => (
                         <DropdownType
                             as={ButtonGroup}
@@ -47,6 +50,8 @@ function Header() {
                     ))}
                 </>
                 <input className="header_searchInput" type="search"/>
+
+                    <search />
                 <SearchIcon fontSize="large" className="header_searchIcon"/>
             </div>
 

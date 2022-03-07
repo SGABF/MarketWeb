@@ -1,4 +1,4 @@
-import React, { useEffect, useRef  } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Home from "pages/Home";
 import Checkout from "pages/Checkout";
@@ -17,9 +17,7 @@ import Notice from "../pages/Notice";
 
 
 
-
 function App() {
-  const [{}, dispatch] = useStateValue();
 
 
   return (
@@ -80,6 +78,14 @@ function App() {
 
 
   );
+
+  return(
+  <div className="App"><input type="text" placeholder="Search..." />
+  </div>
+  );
+
+
+
 }
 
 export default App;
