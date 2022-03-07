@@ -5,6 +5,7 @@
 </p>
 
 <a href="https://drive.google.com/drive/folders/1VgyBopWjM8lY_4dcSA6kFLCbfrkea-S4?usp=sharing">Docs_통합문서</a> <br>
+<a href="https://docs.google.com/presentation/d/19X7ETkY5-VJ88iWEbP1c2VH9nt3wLwIbrUCJu2Id6bU/edit?usp=sharing">Docs_개꿀마켓_프로젝트계획서</a> <br>
 <a href="https://docs.google.com/spreadsheets/d/1V4JNLWZiBxMLPLtpu9mBjPhwUIZ5XT5dIaFqhbDnIAo/edit#gid=1119771986">Docs_요구사항분석서</a> <br>
 <a href="https://docs.google.com/spreadsheets/d/1FAxnCE9a6kWKEflgONFWx1Tmj7Lh_pmYeHNMJik6eiY/edit?usp=sharing">Docs_테이블정의서</a> <br>
 
