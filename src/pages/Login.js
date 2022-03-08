@@ -64,9 +64,13 @@ function Login() {
         <Link to="/">
           <p>비밀번호 찾기</p>
         </Link>
-        <button onClick={register} className="login_registerButton">
-          회원가입
-        </button>
+        <Link to="/Agreement">
+          {/* '회원가입' 버튼 작동이 안되어 주석처리 후 onClick={register} 삭제 */}
+          {/* <button onClick={register} className="login_registerButton"> */} 
+          <button className="login_registerButton">
+            회원가입
+          </button>
+        </Link>
       </div>
     </div>
   );

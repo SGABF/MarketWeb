@@ -13,6 +13,7 @@ import Food from "../Category/Food";
 import Table from "../pages/Tables"
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
+import Agreement from "pages/Agreement";
 
 
 
@@ -48,8 +49,14 @@ function App() {
               <Notice />
 
             </Route>
-            <Route path="/Tables">
 
+            <Route path="/Agreement">
+              
+              <Agreement />
+
+              </Route>
+
+            <Route path="/Tables">
 
               <Table />
 
@@ -60,6 +67,8 @@ function App() {
 
               <Checkout />
             </Route>
+
+
 
             <Route path="/Man" component={Man}/>
             <Route path="/Girl" component={Girl}/>
