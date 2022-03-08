@@ -72,7 +72,7 @@ function Home() {
             price={11000}
             image="image/min2.jpg"
             code={"X616D4D2"}
-            location="../subpage/subpagetwo"
+            location="../subpage/Subpagetwo"
           />
 
           <Product

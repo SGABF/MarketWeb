@@ -2,6 +2,7 @@ import "antd/dist/antd.css";
 import { Button, Table, Modal, Input } from "antd";
 import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import Footer from "../components/Footer";
 
 function Tables() {
     const [isEditing, setIsEditing] = useState(false);
@@ -162,6 +163,7 @@ function Tables() {
                     />
                 </Modal>
             </header>
+            <Footer />
         </div>
     );
 }

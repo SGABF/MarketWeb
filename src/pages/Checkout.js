@@ -2,6 +2,7 @@ import React from "react";
 import "./Checkout.css";
 import CheckoutProduct from "components/CheckoutProduct";
 import { useStateValue } from "components/StateProvider";
+import Footer from "../components/Footer";
 
 function Checkout() {
   const [{ basket }, dispatch] = useStateValue();

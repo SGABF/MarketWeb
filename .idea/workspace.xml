@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.상세페이지 아이콘추가, 상세페이지 추가">
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Checkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Notice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/subpage/Subpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/subpage/Subpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +98,7 @@
       <workItem from="1646622937245" duration="5456000" />
       <workItem from="1646630434200" duration="9937000" />
       <workItem from="1646654102454" duration="5858000" />
-      <workItem from="1646738963912" duration="744000" />
+      <workItem from="1646738963912" duration="6207000" />
     </task>
     <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
       <created>1646058356199</created>
@@ -150,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646739569682</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="1.상세페이지 아이콘추가, 상세페이지 추가">
+      <created>1646739847738</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1646739847738</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

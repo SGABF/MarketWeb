@@ -5,7 +5,11 @@ import "./Subpage.css";
 function subpage(props) {
   return (
     <>
+      <div className="Subpage">
+          <div className="Subpage-container">
       <img src="../image/yes1.jpg" alt="" className="img1" />
+
+
       <h1>
         All-new Echo Dot (4th generation)
         <br />
@@ -14,10 +18,15 @@ function subpage(props) {
         with Alexa | Charcoal
       </h1>
 
-      <p>가격 : ₩</p>
-      <p className="price">11000</p>
+      <p>상품 상한가 : ₩10000</p>
 
-      <p>코드 : X616D4D1</p>
+
+          </div>
+
+
+
+</div>
+
     </>
   );
 }
