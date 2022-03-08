@@ -2,8 +2,10 @@ import React from "react";
 import "./Product.css";
 import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "./StateProvider";
+import { Link } from "react-router-dom";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
-function Product({ id, title, image, price, code }) {
+function Product({ id, title, image, price, code, location }) {
   const [{ basket }, dispatch] = useStateValue();
 
   const addToBasket = () => {
@@ -15,6 +17,7 @@ function Product({ id, title, image, price, code }) {
         image: image,
         price: price,
         code: code,
+        location: location,
       },
     });
   };
@@ -25,6 +28,7 @@ function Product({ id, title, image, price, code }) {
     <div className="product">
       <div className="product_info">
         <strong>{title}</strong>
+
         <p className="product_price">
           <small>가격</small>
           <strong>{price}</strong>
@@ -35,10 +39,20 @@ function Product({ id, title, image, price, code }) {
         </p>
       </div>
 
+      {/* <Link to={location}> */}
       <img src={image} alt="" />
-      <button className="bastket" onClick={addToBasket}>
-        <ShoppingBasket />
-      </button>
+      {/* </Link> */}
+
+      <div>
+        <button className="bastket" onClick={addToBasket}>
+          <ShoppingBasket />
+        </button>
+        <Link to={location}>
+          <button className="icon">
+            <ZoomInIcon />
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

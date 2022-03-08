@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.상세페이지 아이콘추가, 상세페이지 추가">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/yes8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search_bar/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpageeight.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpagefive.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpagefour.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpageseven.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpagesix.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpagethree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Subpagetwo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/search_bar/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Product.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Notice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Tables.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="25jh7rI50YuERrrv3apTEWywuYk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project\git\my-app\src\pages" />
+      <recent name="D:\Project\git\my-app\src\components" />
+      <recent name="D:\Project\git\my-app\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\git\my-app\src\pages" />
+      <recent name="D:\Project\git\my-app" />
+      <recent name="D:\Project\git\my-app\src" />
+      <recent name="D:\Project\git\my-app\src\components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/components/App.js" working-dir="$PROJECT_DIR$/src/components">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.App.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Y\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="" />
+      <created>1646046240535</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646046240535</updated>
+      <workItem from="1646046245874" duration="12346000" />
+      <workItem from="1646058708496" duration="3848000" />
+      <workItem from="1646197040994" duration="15833000" />
+      <workItem from="1646269653366" duration="12460000" />
+      <workItem from="1646306132646" duration="1978000" />
+      <workItem from="1646460518635" duration="53000" />
+      <workItem from="1646622937245" duration="5456000" />
+      <workItem from="1646630434200" duration="9937000" />
+      <workItem from="1646654102454" duration="5858000" />
+      <workItem from="1646738963912" duration="573000" />
+    </task>
+    <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
+      <created>1646058356199</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646058356199</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
+      <created>1646059346928</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646059346928</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1.카데고리 버그수정">
+      <created>1646062890415</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646062890415</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1.고객센터 테이블,글쓰기 추가 2.공지사항 테이블 추가">
+      <created>1646287697115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646287697115</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1.고객센터 테이블,글쓰기 추가 2.공지사항 테이블 추가">
+      <created>1646289833331</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646289833331</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1.고객센터,공지사항 테이블 수정">
+      <created>1646291022581</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646291022581</updated>
+    </task>
+    <task id="LOCAL-00007" summary="1.고객센터 글수정/삭제 삭제">
+      <created>1646639564837</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646639564837</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기" />
+    <MESSAGE value="1.카데고리 버그수정" />
+    <MESSAGE value="1.고객센터 테이블,글쓰기 추가 2.공지사항 테이블 추가" />
+    <MESSAGE value="1.고객센터,공지사항 테이블 수정" />
+    <MESSAGE value="1.고객센터 글수정/삭제 삭제" />
+    <MESSAGE value="1.상세페이지 아이콘추가, 상세페이지 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.상세페이지 아이콘추가, 상세페이지 추가" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/Tables.js</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/App.js</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/Home.js</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

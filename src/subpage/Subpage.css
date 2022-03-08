@@ -1,0 +1,18 @@
+h1 {
+  font-size: 25px;
+  text-align: left;
+  display: inline-block;
+}
+
+.price {
+  font-size: 15px;
+  text-align: left;
+  display: inline-block;
+  color: red;
+}
+
+.img1 {
+  margin: 50px;
+  width: 600px;
+  height: 600px;
+}

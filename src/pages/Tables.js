@@ -52,29 +52,29 @@ function Tables() {
             key: "4",
             title: "error",
             dataIndex: "error",
-        },]  /* <--기호 수정 필요 밑에는 Actions 란 필요시 주석해제*/
-    //     {
-    //         key: "5",
-    //         title: "Actions",
-    //         render: (record) => {
-    //             return (
-    //                 <>
-    //                     <EditOutlined
-    //                         onClick={() => {
-    //                             onEditStudent(record);
-    //                         }}
-    //                     />
-    //                     <DeleteOutlined
-    //                         onClick={() => {
-    //                             onDeleteStudent(record);
-    //                         }}
-    //                         style={{ color: "red", marginLeft: 12 }}
-    //                     />
-    //                 </>
-    //             );
-    //         },
-    //     },
-    // ];
+        },
+        {
+            key: "5",
+            title: "Actions",
+            render: (record) => {
+                return (
+                    <>
+                        <EditOutlined
+                            onClick={() => {
+                                onEditStudent(record);
+                            }}
+                        />
+                        <DeleteOutlined
+                            onClick={() => {
+                                onDeleteStudent(record);
+                            }}
+                            style={{ color: "red", marginLeft: 12 }}
+                        />
+                    </>
+                );
+            },
+        },
+    ];
 
     const onAddStudent = () => {
         const randomNumber = parseInt(Math.random() * 1000);
@@ -135,8 +135,6 @@ function Tables() {
                         resetEditing();
                     }}
                 >
-                    <div className="input-style">
-
                     <Input
                         value={editingStudent?.name}
                         onChange={(e) => {
@@ -158,11 +156,9 @@ function Tables() {
                         onChange={(e) => {
                             setEditingStudent((pre) => {
                                 return { ...pre, error: e.target.value };
-                                
                             });
                         }}
                     />
-                    </div>
                 </Modal>
             </header>
         </div>
