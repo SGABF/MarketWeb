@@ -24,6 +24,7 @@ function App() {
             notice: "공지사항",
         },
     ]);
+
     const columns = [
         {
             key: "1",

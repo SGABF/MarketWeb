@@ -57,6 +57,7 @@ function Login() {
             로그인 하기
           </button>
         </form>
+
         <p>아이디가 없으십니까?</p>
         <Link to="/">
           <p>아이디 찾기</p>

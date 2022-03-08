@@ -41,6 +41,7 @@ function Home() {
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+
         </div>
         <div className="menubar">
           <Navbar />

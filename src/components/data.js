@@ -3,3 +3,4 @@ export default [
   { id: 2, country: "Italy", city: "Venice", price: "2,000,000" },
   { id: 3, country: "Turkey", city: "Cappadocia", price: "3,560,000" },
 ];
+
