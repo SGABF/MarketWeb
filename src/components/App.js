@@ -14,6 +14,7 @@ import Table from "../pages/Tables"
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
 import Agreement from "pages/Agreement";
+import RegisterForm from "pages/RegisterForm";
 
 
 
@@ -54,7 +55,13 @@ function App() {
               
               <Agreement />
 
-              </Route>
+            </Route>
+
+            <Route path="/RegisterForm">
+              
+              <RegisterForm />
+
+            </Route>
 
             <Route path="/Tables">
 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Checkbox } from 'antd';
 import "./Agreement.css"
 // npm install --save axios 설치 우선 처리
 import axios from 'axios';
-import 'antd/dist/antd.css';
+import { Link } from "react-router-dom";
 
 function App() {
 
@@ -23,48 +22,53 @@ function App() {
       console.log(error);
     });
     
-    // const [isAllChecked, setIsAllChecked] = useState(false)
-    // const [checkedItems, setCheckedItems] = useState([])
+    window.onload = function() {
 
-    // const allAgreeHandler = (checked) => {
-    //     setIsAllChecked(!isAllChecked)
-    //     if (checked) {
-    //       setCheckedItems([...checkedItems, 'check1', 'check2'])
-    //     } else if ((!checked && checkedItems.includes('check1')) || (!checked && checkedItems.includes('check2'))) {
-    //       setCheckedItems([])
-    //     }
-    //   }
-    // const agreeHandler = (checked, value) => {
-    //     if (checked) {
-    //         setCheckedItems([...checkedItems, value])
-    //     } else if (!checked && checkedItems.includes(value)) {
-    //         setCheckedItems(checkedItems.filter((el) => el !== value))
-    //     }
-
-    // useEffect(() => {
-    //     if (checkedItems.length >= 2) {
-    //         setIsAllChecked(true)
-    //     } else {
-    //         setIsAllChecked(false)
-    //     }
-    //     }, [checkedItems])
-
+        const agreeChkAll = document.querySelector('input[name=agree_all]');
+        agreeChkAll.addEventListener('change', (e) => {
+        let agreeChk = document.querySelectorAll('input[name=agree1]');
+            for(let i = 0; i < agreeChk.length; i++){
+            agreeChk[i].checked = e.target.checked;
+            }
+        
+        let agreeChk2 = document.querySelectorAll('input[name=agree2]');
+            for(let i = 0; i < agreeChk2.length; i++){
+            agreeChk2[i].checked = e.target.checked;
+            }
+        });
+    
+        function CheckForm(Join){ 
+        
+           var chk1=document.querySelector('input[name=agree1]').checked;
+           var chk2=document.querySelector('input[name=agree2]').checked;
+           if(chk1==""){
+            alert('약관에 동의 해 주세요');
+            return false;
+           }
+           if(chk2==""){
+            alert('약관에 동의 해 주세요');
+            return false;
+           }
+        }
+    }
+   
     return(
         <div className="agreement">
             <div className="agreement_box">
+                <h1>개꿀마켓에 오신 것을 환영합니다.</h1><br/>
                 <h2>[필수] 이용약관 동의</h2>
                 <div id="terms" className="agreement_content"></div><br />
-                <Checkbox id="check1">이용약관에 동의합니다.</Checkbox>
+                <label for="agree1"><input type="checkbox" name="agree1" id="agree1" value="1"/>이용약관에 동의합니다.</label>
                 <br /><br />
                 <h2>[필수] 개인정보 수집 및 이용 동의</h2>
                 <div id="privacy" className="agreement_content"></div><br />
-                <Checkbox id="check2">개인정보 수집 및 이용약관에 동의합니다.</Checkbox><br /><br />
-                <Checkbox id="checkAll"><strong>전체 필수 항목에 동의합니다.</strong></Checkbox>
-                {/* <Link to="/RegisterForm"> */}
-                <button className="moveToRegisterBtn">
+                <label for="agree2"><input type="checkbox" name="agree2" id="agree2" value="1"/>개인정보 수집 및 이용약관에 동의합니다.</label><br /><br />
+                <label for="agree_all"><input type="checkbox" name="agree_all" id="agree_all"/><strong>전체 필수 항목에 동의합니다.</strong></label><br /><br />
+                <Link to="/RegisterForm">
+                <button className="moveToRegisterBtn" onSubmit="checkForm">
                     회원가입
                 </button>
-                {/* </Link> */}
+                </Link>
             </div>        
         </div>
     );
