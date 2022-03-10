@@ -29,7 +29,8 @@ h1 {
   width: 600px;
   height: 600px;
   display: block;
-  margin: 0 auto;
+  margin: 0
+  auto;
   text-align: center;
 
 }

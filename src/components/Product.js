@@ -45,9 +45,8 @@ function Product({ id, title, image, price, code, location }) {
       {/* </Link> */}
 
       <div>
-        <button className="bastket" onClick={addToBasket}>
-          <ShoppingBasket />
-        </button>
+
+
         <Link to={location}>
           <button className="icon">
             <ZoomInIcon />

@@ -29,6 +29,7 @@ function CheckoutProduct({ id, image, title, price, code }) {
         </p>
 
 
+
         <button onClick={remoceFromBasket}>장바구니에서 제거하기</button>
       </div>
     </div>

@@ -29,6 +29,7 @@ function Navbar() {
                                 <AiIcons.AiOutlineClose />
                             </Link>
 
+
                         </li>
                         {/* SidebarData를 순서대로 담기*/}
                         {SidebarData.map((item, index) => {

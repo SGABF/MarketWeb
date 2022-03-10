@@ -121,6 +121,7 @@ function App() {
                 >
                     <Input
                         value={editingStudent?.notice}
+
                         onChange={(e) => {
                             setEditingStudent((pre) => {
                                 return { ...pre, notice: e.target.value };

@@ -80,6 +80,7 @@ function Header() {
 
           </span>
                     </Link>
+
                 </div>
 
                 <div className="header_option">

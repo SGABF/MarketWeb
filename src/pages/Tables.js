@@ -164,6 +164,7 @@ function Tables() {
                 </Modal>
             </header>
             <Footer />
+
         </div>
     );
 }

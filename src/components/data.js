@@ -4,3 +4,4 @@ export default [
   { id: 3, country: "Turkey", city: "Cappadocia", price: "3,560,000" },
 ];
 
+
