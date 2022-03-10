@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.고객센터, 공지사항 푸터추가">
+    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/image/logo2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/image/logo2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/image/logo2.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/image/logo2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/image/logo4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/image/logo4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/subpage/Subpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/subpage/Subpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +96,7 @@
       <workItem from="1646738963912" duration="6508000" />
       <workItem from="1646748653665" duration="241000" />
       <workItem from="1646882007509" duration="372000" />
-      <workItem from="1646912775970" duration="7824000" />
+      <workItem from="1646912775970" duration="8245000" />
     </task>
     <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
       <created>1646058356199</created>
@@ -176,7 +168,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646748321138</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록">
+      <created>1646920984377</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1646920984377</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록">
+      <created>1646921210401</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1646921210401</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +207,8 @@
     <MESSAGE value="1.고객센터 글수정/삭제 삭제" />
     <MESSAGE value="1.상세페이지 아이콘추가, 상세페이지 추가" />
     <MESSAGE value="1.고객센터, 공지사항 푸터추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.고객센터, 공지사항 푸터추가" />
+    <MESSAGE value="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
