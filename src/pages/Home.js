@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Navbar from "../components/Navbar";
 import { Route, Link } from "react-router-dom";
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
 
 function Home() {
   return (
@@ -45,6 +47,7 @@ function Home() {
         </div>
         <div className="menubar">
           <Navbar />
+
           <ButtonGroup
             variant="outlined"
             aria-label="outlined button group"
@@ -55,6 +58,11 @@ function Home() {
             <Button>구매글</Button>
             <Button>경매글</Button>
           </ButtonGroup>
+<div>
+          <Button variant="contained" endIcon={<SendIcon />}>
+            제품등록
+          </Button>
+</div>
         </div>
         <div className="home_row">
           <Product

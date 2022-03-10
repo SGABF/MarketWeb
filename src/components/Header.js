@@ -61,22 +61,25 @@ function Header() {
                     </Link>
                 </div>
                 <div className="header_option">
-          <span className="header_optionLineOne">
 
-            <Menu
-                menuButton={
-                    <MenuButton className="button">장터게시판</MenuButton>
-                }
-            >
-              <SubMenu label="경매글">
-                <MenuItem>입찰하기</MenuItem>
-                <MenuItem>잔여시간</MenuItem>
-                <MenuItem>입찰 인원 조회</MenuItem>
-                <MenuItem>경매 시작가 조회</MenuItem>
-              </SubMenu>
-            </Menu>
+                    <Link to="/">
+                    <span className="header_optionLineOne"> 장터게시판
+
+            {/*<Menu*/}
+            {/*    menuButton={*/}
+            {/*        <MenuButton className="button">장터게시판</MenuButton>*/}
+            {/*    }*/}
+            {/*>*/}
+            {/*  <SubMenu label="경매글">*/}
+            {/*    <MenuItem>입찰하기</MenuItem>*/}
+            {/*    <MenuItem>잔여시간</MenuItem>*/}
+            {/*    <MenuItem>입찰 인원 조회</MenuItem>*/}
+            {/*    <MenuItem>경매 시작가 조회</MenuItem>*/}
+            {/*  </SubMenu>*/}
+            {/*</Menu>*/}
 
           </span>
+                    </Link>
                 </div>
 
                 <div className="header_option">
