@@ -13,8 +13,8 @@ import Food from "../Category/Food";
 import Table from "../pages/Tables"
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
-import Agreement from "pages/Agreement";
-import RegisterForm from "pages/RegisterForm";
+import Agreement from "../pages/Agreement";
+import SignUp from "../pages/SignUp"
 
 
 
@@ -57,9 +57,9 @@ function App() {
 
             </Route>
 
-            <Route path="/RegisterForm">
+            <Route path="/SignUp">
               
-              <RegisterForm />
+              <SignUp />
 
             </Route>
 

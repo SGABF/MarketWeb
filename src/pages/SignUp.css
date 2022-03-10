@@ -1,0 +1,58 @@
+.signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 180vh;
+    background-color: #f3f3f3;
+}
+
+.signUp_form {
+    margin: 150px;
+}
+
+.signUp_form > h1 {
+    font-weight: bold;
+    font-size: x-large;
+    text-align: left;
+}
+
+.box {
+    display: block;
+    width: 100%;
+    height: 51px;
+    border: solid 1px #dadada;
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+}
+
+.int {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+}
+
+.box.int_id {
+    padding-right: 110px;
+}
+
+#bir_yy {
+    display: table-cell;
+    width: 147px;
+}
+
+#bir_mm {
+    display: table-cell;
+    width: 147px;
+    vertical-align: middle;
+}
+
+#bir_dd {
+    display: table-cell;
+    width: 147px;
+}
