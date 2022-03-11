@@ -4,9 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록">
+    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1. 아이콘 수정">
+      <change afterPath="$PROJECT_DIR$/src/Category/Electronics.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Auction.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Auction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Buy.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Buy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Registration.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Sale.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/subpage/Sale.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category/Electronics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Electronics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category/Food.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SidebarData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SidebarData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/subpage/Subpagetwo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpagetwo.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +43,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="25jh7rI50YuERrrv3apTEWywuYk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -41,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/subpage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -52,6 +66,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project()\git\my-app\src\subpage" />
       <recent name="D:\Project\git\my-app\src\pages" />
       <recent name="D:\Project\git\my-app\src\components" />
       <recent name="D:\Project\git\my-app\src" />
@@ -96,7 +111,9 @@
       <workItem from="1646738963912" duration="6508000" />
       <workItem from="1646748653665" duration="241000" />
       <workItem from="1646882007509" duration="372000" />
-      <workItem from="1646912775970" duration="8245000" />
+      <workItem from="1646912775970" duration="8464000" />
+      <workItem from="1646975687620" duration="2039000" />
+      <workItem from="1646978144471" duration="3341000" />
     </task>
     <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
       <created>1646058356199</created>
@@ -182,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646921210401</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="1. 아이콘 수정">
+      <created>1646921340967</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1646921340967</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +232,8 @@
     <MESSAGE value="1.상세페이지 아이콘추가, 상세페이지 추가" />
     <MESSAGE value="1.고객센터, 공지사항 푸터추가" />
     <MESSAGE value="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.상세페이지 입찰하기, 상품설명 추가 2. 메인페이지 이미지 크기 조절 3. 제품등록 버튼 등록" />
+    <MESSAGE value="1. 아이콘 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. 아이콘 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

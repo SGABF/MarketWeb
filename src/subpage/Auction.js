@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Auction.css";
 import Product from "components/Product";
 import {Carousel, className, DropdownButton, Dropdown} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,7 +11,7 @@ import {Route, Link} from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 
-function Home() {
+function Auction() {
     return (
         <div className="home">
             <div className="home-container">
@@ -53,25 +53,23 @@ function Home() {
                         aria-label="outlined button group"
                         className="home_buttons">
                         <Link to="/">
-                        <Button>전체글</Button>
+                            <Button>전체글</Button>
                         </Link>
                         <Link to="../Sale">
-                        <Button>판매글</Button>
+                            <Button>판매글</Button>
                         </Link>
                         <Link to="../Buy">
-                        <Button>구매글</Button>
+                            <Button>구매글</Button>
                         </Link>
                         <Link to="../Auction">
-                        <Button>경매글</Button>
-                    </Link>
+                            <Button>경매글</Button>
+                        </Link>
 
                     </ButtonGroup>
                     <div>
-                        <Link to="../Registration">
                         <Button variant="contained" endIcon={<SendIcon/>}>
                             제품등록
                         </Button>
-                        </Link>
                     </div>
 
                 </div>
@@ -102,14 +100,7 @@ function Home() {
                         code={"X616D4D3"}
                         location="../subpagethree"
                     />
-                    <Product
-                        id="4"
-                        title="Laptops"
-                        price={1000000}
-                        image="image/min4.jpg"
-                        code={"X616D4D4"}
-                        location="../subpagefour"
-                    />
+
                 </div>
                 <div className="home_row">
                     <Product
@@ -153,4 +144,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Auction;

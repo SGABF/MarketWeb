@@ -18,11 +18,6 @@ export const SidebarData = [
     },
 
     {
-        title: '푸드',
-        path: '/grocery',
-        cName: 'nav-text'
-    },
-    {
         title: '전자기기',
         path: '/Electronics',
         cName: 'nav-text'

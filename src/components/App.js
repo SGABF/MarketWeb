@@ -9,12 +9,16 @@ import Navbar from "./Navbar";
 import Girl from "../Category/Girl";
 import Man from "../Category/Man";
 import Electronics from "../Category/Electronics";
-import Food from "../Category/Food";
+
 import Table from "../pages/Tables";
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
 import Subpage from "subpage/Subpage";
 import Subpagetwo from "subpage/Subpagetwo";
+import Buy from "subpage/Buy";
+import Sale from "subpage/Sale";
+import Auction from "subpage/Auction";
+import Registration from "subpage/Registration";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -43,6 +47,22 @@ function App() {
         </Route>
 
         {/* 서브페이지 목록 */}
+        <Route path="/Buy">
+          <Buy />
+        </Route>
+
+        <Route path="/Sale">
+          <Sale />
+        </Route>
+
+        <Route path="/Auction">
+          <Auction />
+        </Route>
+
+        <Route path="/Registration">
+          <Registration />
+        </Route>
+
         <Route path="/subpage">
           <Subpage />
         </Route>
@@ -54,7 +74,6 @@ function App() {
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />
-        <Route path="/grocery" component={Food} />
         <Route path="/Electronics" component={Electronics} />
       </div>
 
