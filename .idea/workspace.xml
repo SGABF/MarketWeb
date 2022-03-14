@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.공지사항, 고객센터 테이블변경">
+    <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1.공지사항, 고객센터 문구변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Notice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Tables.js" afterDir="false" />
@@ -103,7 +103,7 @@
       <workItem from="1646975687620" duration="2039000" />
       <workItem from="1646978144471" duration="3341000" />
       <workItem from="1647237328597" duration="2694000" />
-      <workItem from="1647256140445" duration="9611000" />
+      <workItem from="1647256140445" duration="9773000" />
     </task>
     <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
       <created>1646058356199</created>
@@ -210,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647268091532</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="1.공지사항, 고객센터 문구변경">
+      <created>1647270812000</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1647270812000</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +246,8 @@
     <MESSAGE value="1. 아이콘 수정" />
     <MESSAGE value="로고수정" />
     <MESSAGE value="1.공지사항, 고객센터 테이블변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.공지사항, 고객센터 테이블변경" />
+    <MESSAGE value="1.공지사항, 고객센터 문구변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.공지사항, 고객센터 문구변경" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -25,6 +25,7 @@ const columns = [
         align: 'right',
         format: (value) => value.toLocaleString('ko-KR'),
     },
+    
     {
         id: 'Question',
         label: 'Question',
