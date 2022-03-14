@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="effa57cb-224d-4e01-aa96-1e9fe6be0ff3" name="Changes" comment="1. 아이콘 수정">
-      <change afterPath="$PROJECT_DIR$/src/Category/Electronics.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Auction.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Auction.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Buy.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Buy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Registration.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Sale.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/subpage/Sale.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Category/Electronics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category/Electronics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Category/Food.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SidebarData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SidebarData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/subpage/Subpagetwo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/subpage/Subpagetwo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +100,7 @@
       <workItem from="1646912775970" duration="8464000" />
       <workItem from="1646975687620" duration="2039000" />
       <workItem from="1646978144471" duration="3341000" />
+      <workItem from="1647237328597" duration="731000" />
     </task>
     <task id="LOCAL-00001" summary="1.카데고리 추가(버그발생)2.전체창 나누기3.세부창나누기">
       <created>1646058356199</created>
