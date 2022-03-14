@@ -34,12 +34,6 @@ function App() {
                             확인
                         </button>
                     <br /><br />
-                    <Link to="/FindPwd">
-                        <button className="find_pwd_btn">
-                            비밀번호 찾기
-                        </button>
-                    <br /><br />
-                    </Link>
                     <Link to="/Login">
                         <button className="login_btn">
                             로그인
