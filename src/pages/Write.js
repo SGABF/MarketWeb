@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
+import TextField from '@mui/material/TextField';
 
 export default function Write() {
     const editorRef = useRef(null);
@@ -12,6 +12,7 @@ export default function Write() {
     return (
         <>
             <h1>고객센터 입니다.</h1>
+
 
             <Editor
                 onInit={(evt, editor) => editorRef.current = editor}
@@ -33,8 +34,19 @@ export default function Write() {
 
 
             />
-
-            <button onClick={log}>Log editor content</button>
+            <br />
+            <TextField
+                id="date"
+                label="오늘날짜"
+                type="date"
+                defaultValue="2022-03-14"
+                sx={{ width: 220 }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+            />
+            <br />
+            <button onClick={log}>글쓰기</button>
         </>
     );
 }

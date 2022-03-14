@@ -46,6 +46,10 @@ function App() {
           <Checkout />
         </Route>
 
+        <Route path="/Write">
+          <Write />
+        </Route>
+
         {/* 서브페이지 목록 */}
         <Route path="/Buy">
           <Buy />

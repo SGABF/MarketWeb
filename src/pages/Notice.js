@@ -1,138 +1,148 @@
 import "antd/dist/antd.css";
-import { Button, Table, Modal, Input } from "antd";
-import { useState } from "react";
+
+import React,{ useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Footer from "../components/Footer";
 
-function App() {
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingStudent, setEditingStudent] = useState(null);
-    const [dataSource, setDataSource] = useState([
-        {
-            id: 1,
-            notice: "금일 점검 시간 안내(오후 3시~4시)",
-        },
-        {
-            id: 2,
-            notice: "배송 지연 사항 안내",
-        },
-        {
-            id: 3,
-            notice: "오류 해결방법 안내",
-        },
-        {
-            id: 4,
-            notice: "공지사항",
-        },
-    ]);
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
 
-    const columns = [
-        {
-            key: "1",
-            title: "ID",
-            dataIndex: "id",
-        },
-        {
-            key: "2",
-            title: "notice",
-            dataIndex: "notice",
-        },
-        {
-            key: "5",
-            title: "Actions",
-            render: (record) => {
-                return (
+import { Link } from "react-router-dom";
 
-                    <>
-                        <EditOutlined
-                            onClick={() => {
-                                onEditStudent(record);
-                            }}
-                        />
-                        <DeleteOutlined
-                            onClick={() => {
-                                onDeleteStudent(record);
-                            }}
-                            style={{ color: "red", marginLeft: 12 }}
-                        />
-                    </>
-                );
-            },
-        },
-    ];
+const columns = [
+    { id: 'name', label: 'Name', minWidth: 170 },
 
-    const onAddStudent = () => {
-        const randomNumber = parseInt(Math.random() * 1000);
-        const newStudent = {
-            id: randomNumber,
-            name: "Name " + randomNumber,
-            email: randomNumber + "@gmail.com",
-            notice: "notice " + randomNumber,
-        };
-        setDataSource((pre) => {
-            return [...pre, newStudent];
-        });
+    {
+        id: 'Content',
+        label: 'Content',
+        minWidth: 170,
+        align: 'right',
+        format: (value) => value.toLocaleString('ko-KR'),
+    },
+    {
+        id: 'Question',
+        label: 'Question',
+        minWidth: 170,
+        align: 'right',
+        format: (value) => value.toLocaleString('ko-KR'),
+    },
+    {
+        id: 'RegDate',
+        label: 'RegDate',
+        minWidth: 170,
+        align: 'right',
+        format: (value) => value.toLocaleString('ko-KR'),
+    },
+];
+
+function createData(name, Content, Question, RegDate) {
+
+    return { name, Content, Question, RegDate  };
+}
+
+const rows = [
+    createData('India', 'IN', 1324171354, 3287263),
+    createData('China', 'CN', 1403500365, 9596961),
+    createData('Italy', 'IT', 60483973, 301340),
+    createData('United States', 'US', 327167434, 9833520),
+    createData('Canada', 'CA', 37602103, 9984670),
+    createData('Australia', 'AU', 25475400, 7692024),
+    createData('Germany', 'DE', 83019200, 357578),
+    createData('Ireland', 'IE', 4857000, 70273),
+    createData('Mexico', 'MX', 126577691, 1972550),
+    createData('Japan', 'JP', 126317000, 377973),
+    createData('France', 'FR', 67022000, 640679),
+    createData('United Kingdom', 'GB', 67545757, 242495),
+    createData('Russia', 'RU', 146793744, 17098246),
+    createData('Nigeria', 'NG', 200962417, 923768),
+    createData('Brazil', 'BR', 210147125, 8515767),
+];
+
+export default function ColumnGroupingTable() {
+    
+    
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
     };
-    const onDeleteStudent = (record) => {
-        Modal.confirm({
-            title: "지우시겠습니까?",
-            okText: "네",
-            okType: "아니요",
-            onOk: () => {
-                setDataSource((pre) => {
-                    return pre.filter((student) => student.id !== record.id);
-                });
-            },
-        });
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
     };
-    const onEditStudent = (record) => {
-        setIsEditing(true);
-        setEditingStudent({ ...record });
-    };
-    const resetEditing = () => {
-        setIsEditing(false);
-        setEditingStudent(null);
-    };
+
     return (
-        <div className="App">
-            <h1>공지사항</h1>
-            <header className="App-header">
-                <Button onClick={onAddStudent}>글 추가</Button>
-                <Table columns={columns} dataSource={dataSource}></Table>
-                <Modal
-                    title="Edit Student"
-                    visible={isEditing}
-                    okText="Save"
-                    onCancel={() => {
-                        resetEditing();
-                    }}
-                    onOk={() => {
-                        setDataSource((pre) => {
-                            return pre.map((student) => {
-                                if (student.id === editingStudent.id) {
-                                    return editingStudent;
-                                } else {
-                                    return student;
-                                }
-                            });
-                        });
-                        resetEditing();
-                    }}
-                >
-                    <Input
-                        value={editingStudent?.notice}
+        <div>
+        <h1>공지사항</h1>
 
-                        onChange={(e) => {
-                            setEditingStudent((pre) => {
-                                return { ...pre, notice: e.target.value };
-                            });
-                        }}
-                    />
-                </Modal>
-            </header>
-        <Footer />
+        <Paper sx={{ width: '100%' }}>
+            <TableContainer sx={{ maxHeight: 440 }}>
+                <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center" colSpan={2}>
+                                Notice
+                            </TableCell>
+                            <TableCell align="center" colSpan={3}>
+                                Details
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ top: 57, minWidth: column.minWidth }}
+                                >
+                                    {column.label}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row) => {
+                                return (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                        {columns.map((column) => {
+                                            const value = row[column.id];
+                                            return (
+                                                <TableCell key={column.id} align={column.align}>
+                                                    {column.format && typeof value === 'number'
+                                                        ? column.format(value)
+                                                        : value}
+                                                </TableCell>
+                                            );
+                                        })}
+                                    </TableRow>
+                                );
+                            })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+        </Paper>
+
+            <Link to="Write" alt="">
+                <button type="submit">글쓰기</button>
+            </Link>
         </div>
     );
 }
-
-export default App;
