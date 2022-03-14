@@ -65,7 +65,7 @@ function App() {
                 <label for="agree2"><input type="checkbox" name="agree2" id="agree2" value="1"/>개인정보 수집 및 이용약관에 동의합니다.</label><br /><br />
                 <label for="agree_all"><input type="checkbox" name="agree_all" id="agree_all"/><strong>전체 필수 항목에 동의합니다.</strong></label><br /><br />
                 <Link to="/SignUp">
-                <button className="moveToRegisterBtn" onSubmit="checkForm">
+                <button className="moveToRegisterBtn" onSubmit="return CheckForm()">
                     회원가입
                 </button>
                 </Link>

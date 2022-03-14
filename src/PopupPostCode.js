@@ -1,8 +1,9 @@
 import React from 'react';
 import DaumPostcode from "react-daum-postcode";
+import { FaDove } from 'react-icons/fa';
  
 const PopupPostCode = (props) => {
-	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
+	  // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
     const handlePostCode = (data) => {
         let fullAddress = data.address;
         let extraAddress = ''; 
@@ -16,27 +17,45 @@ const PopupPostCode = (props) => {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        console.log(data)
         console.log(fullAddress)
         console.log(data.zonecode)
+        document.getElementById("postcode").value = data.zonecode;
+        document.getElementById("address").value = fullAddress;
         props.onClose()
     }
  
     const postCodeStyle = {
         display: "block",
         position: "absolute",
-        top: "30%",
-        width: "400px",
+        top: "70%",
+        width: "500px",
         height: "600px",
         padding: "7px",
       };
+      const buttonStyle = {
+        position: "absolute",
+        display: "block",
+        top: "133.5%",
+        width:"500px",
+        height: "35px",
+        border: "1px solid",
+        borderRadius: "2px",
+        backgroundColor: "#61dafb",
+        borderColor: "#b6c3e2",      
+      }
+      const boxStyle = {
+        border: "2px solid",
+        backgroundColor : "red"
+      }
  
     return(
-        <div>
-            <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
-            <button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>
-        </div>
-    )
+        <>
+          <div style={boxStyle}>
+              <button type='button' onClick={() => {props.onClose()}} className='postCode_btn' style={buttonStyle}>닫기</button>
+              <DaumPostcode onComplete={handlePostCode} style={postCodeStyle}/>
+          </div>
+        </>
+    );
 }
  
 export default PopupPostCode;
