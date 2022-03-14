@@ -15,6 +15,9 @@ import Write from "../pages/Write";
 import Notice from "../pages/Notice";
 import Agreement from "../pages/Agreement";
 import SignUp from "../pages/SignUp"
+import SignUpOk from "../pages/SignUpOk"
+import FindMyID from "../pages/FindMyID"
+import FindPwd from "../pages/FindPwd"
 
 
 
@@ -33,6 +36,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+
+            <Route path="/FindMyID">
+              <FindMyID />
+            </Route>
+
+            <Route path="/FindPwd">
+              <FindPwd />
+            </Route>
+
             <Route exact path="/">
 
               <Home />
@@ -60,6 +72,12 @@ function App() {
             <Route path="/SignUp">
               
               <SignUp />
+
+            </Route>
+
+            <Route path="/SignUpOk">
+              
+              <SignUpOk />
 
             </Route>
 

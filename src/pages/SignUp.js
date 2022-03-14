@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PopupDom from '../PopupDom';
 import PopupPostCode from '../PopupPostCode';
+import { Link } from "react-router-dom";
 import "./SignUp.css"
 
 function App() {
@@ -20,39 +21,42 @@ function App() {
 
     return(
         <div className="signUp">
+            <Link to="/">
+                <img className="login_logo" src="image/logo2.png" alt="" />
+            </Link>
             <div className="signUp_form">
                 <h1>회원가입</h1> <br />
                 <form action="">
                     <p>아이디</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="text" className="int" maxLength="20" placeholder="아이디"/>
                         </span>
                     </div> <br/>
 
                     <p>비밀번호</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="password" className="int" maxLength="20" placeholder="비밀번호"/>
                         </span>
                     </div> <br/>
                     <p>비밀번호 확인</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="password" className="int" maxLength="20" placeholder="비밀번호 확인"/>
                         </span>
                     </div> <br/>
 
                     <p>이메일</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="text" className="int" maxLength="20" placeholder="이메일"/>
                         </span>
                     </div> <br/>
 
                     <p>이름</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="text" className="int" maxLength="20" placeholder="이름"/>
                         </span>
                     </div> <br/>
@@ -87,7 +91,7 @@ function App() {
                     </div> <br/>
                     <p>휴대폰 번호</p>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="tel" className="int" maxLength="11" placeholder="전화번호"/>
                         </span>
                     </div> <br/>
@@ -104,12 +108,12 @@ function App() {
                         </span>
                     </div>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="text" id="address" className="int" placeholder="주소"/>
                         </span>
                     </div>
                     <div id="stdd_input">
-                        <span className="box3">
+                        <span className="box">
                             <input type="text" id="detailAddress" className="int" placeholder="상세주소"/>
                         </span>
                     </div>
@@ -120,8 +124,9 @@ function App() {
                             </PopupDom>
                         )}
                     </div> <br />
-
-                    <p><input type="submit" className="complete_signUp" value="회원가입"/></p>
+                    <Link to="/SignUpOk">
+                        <input type="submit" className="complete_signUp" value="회원가입"/>
+                    </Link>
                 </form>
             </div>
         </div>

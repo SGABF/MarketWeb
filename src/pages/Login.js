@@ -58,10 +58,10 @@ function Login() {
           </button>
         </form>
         <p>아이디가 없으십니까?</p>
-        <Link to="/">
+        <Link to="/FindMyID">
           <p>아이디 찾기</p>
         </Link>
-        <Link to="/">
+        <Link to="/FindPwd">
           <p>비밀번호 찾기</p>
         </Link>
         <Link to="/Agreement">

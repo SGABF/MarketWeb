@@ -1,9 +1,13 @@
-.signUp {
+.find_myID {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150vh;
+    height: 93.5vh;
     background-color: #f3f3f3;
+}
+
+.input_form {
+    margin: 30px;
 }
 
 .login_logo {
@@ -15,39 +19,13 @@
     margin-left: auto;
 }
 
-.signUp_form {
-    margin: 30px;
-}
-
-.signUp_form > h1 {
+.input_form > h1 {
     font-weight: bold;
     font-size: x-large;
     text-align: left;
 }
 
 .box {
-    display: block;
-    width: 100%;
-    height: 51px;
-    border: solid 1px #dadada;
-    padding: 10px 14px 10px 14px;
-    box-sizing: border-box;
-    background: #fff;
-    position: relative;
-}
-
-.box2 {
-    display: block;
-    width: 50%;
-    height: 51px;
-    border: solid 1px #dadada;
-    padding: 10px 14px 10px 14px;
-    box-sizing: border-box;
-    background: #fff;
-    position: relative;
-}
-
-.box3 {
     display: block;
     width: 100%;
     height: 51px;
@@ -72,41 +50,26 @@
     padding-right: 110px;
 }
 
-#bir_yy {
-    display: table-cell;
-    width: 147px;
-}
-
-#bir_mm {
-    display: table-cell;
-    width: 147px;
-    vertical-align: middle;
-}
-
-#bir_dd {
-    display: table-cell;
-    width: 147px;
-}
-
-.pcode_input {
-    display: table-cell;
-    width: 236px;
-}
-
 .stdd_input {
     display: table-cell;
     width: 472px;
 }
 
-.srch_postcode {
-    align-items: center;
-    border: none;
-}
-
-.complete_signUp {
+.find_pwd_btn {
     position: absolute;
     border-radius: 2px;
-    width: 472px;
+    width: 250px;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    background: #61dafb;
+    border-color: #b6c3e2;
+}
+
+.login_btn {
+    position: absolute;
+    border-radius: 2px;
+    width: 250px;
     height: 30px;
     border: 1px solid;
     margin-top: 10px;

@@ -1,0 +1,28 @@
+.thx_signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.thx_msg {
+    margin: 120px;
+}
+
+.thx_msg > h1 {
+    font-size: large;
+    font-weight: bold;
+    flex-grow: initial;
+}
+
+.moveToHome {
+    position: relative;
+    border-radius: 2px;
+    width: 150;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    background: #61dafb;
+    border-color: #b6c3e2;
+}
