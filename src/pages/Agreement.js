@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Agreement.css";
-// npm install --save axios 설치 우선 처리
-import axios from "axios";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import privacy from "!!raw-loader!./privacy.html";
+import terms from "!!raw-loader!./terms.html";
 
 function Agreement() {
-  axios
-    .get("terms.html")
-    .then(function (response) {
-      document.getElementById("terms").innerHTML = response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  axios
-    .get("privacy.html")
-    .then(function (response) {
-      document.getElementById("privacy").innerHTML = response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
   window.onload = function () {
     const agreeChkAll = document.querySelector("input[name=agree_all]");
     agreeChkAll.addEventListener("change", (e) => {
@@ -55,9 +38,13 @@ function Agreement() {
     <div className="agreement">
       <div className="agreement_box">
         <h1>개꿀마켓에 오신 것을 환영합니다.</h1>
+
         <br />
         <h2>[필수] 이용약관 동의</h2>
-        <div id="terms" className="agreement_content"></div>
+        <div
+          className="agreement_content"
+          dangerouslySetInnerHTML={{ __html: terms }}
+        ></div>
         <br />
         <label for="agree1">
           <input type="checkbox" name="agree1" id="agree1" value="1" />
@@ -66,7 +53,10 @@ function Agreement() {
         <br />
         <br />
         <h2>[필수] 개인정보 수집 및 이용 동의</h2>
-        <div id="privacy" className="agreement_content"></div>
+        <div
+          className="agreement_content"
+          dangerouslySetInnerHTML={{ __html: privacy }}
+        ></div>
         <br />
         <label for="agree2">
           <input type="checkbox" name="agree2" id="agree2" value="1" />
@@ -81,12 +71,13 @@ function Agreement() {
         <br />
         <br />
         <Link to="/register">
-          <button
+          <Button
+            variant="outline-dark"
+            type="submit"
             className="loginRegister_button"
-            onSubmit="return CheckForm()"
           >
             회원가입
-          </button>
+          </Button>
         </Link>
       </div>
     </div>
