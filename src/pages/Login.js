@@ -43,7 +43,6 @@ function Login() {
 
       <div className="login_container">
         <h1>로그인</h1>
-
         <form>
           <h5>아이디</h5>
           <input value={id} onChange={(e) => setId(e.target.value)} type="id" />
@@ -58,9 +57,13 @@ function Login() {
             로그인 하기
           </button>
         </form>
-
         <p>아이디가 없으십니까?</p>
-
+        <Link to="/">
+          <p>아이디 찾기</p>
+        </Link>
+        <Link to="/">
+          <p>비밀번호 찾기</p>
+        </Link>
         <button onClick={register} className="login_registerButton">
           회원가입
         </button>

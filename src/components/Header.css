@@ -23,8 +23,8 @@
 }
 
 .header_searchInput {
-  height: 12px;
-  padding: 10px;
+  height: 15px;
+  padding: 15px;
   border: none;
   width: 100%; /* 검색창 크기 */
   border-radius: 2px;
@@ -32,8 +32,7 @@
 
 .header_searchIcon {
   background-color: #febd69;
-  padding: 5px;
-  height: 15px;
+  padding: 2px;
   border-radius: 2px;
 }
 
@@ -47,7 +46,7 @@
 
 .header_nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .header_optionLineOne {
@@ -66,3 +65,26 @@
   margin-right: 10px;
   margin-left: 10px;
 }
+
+
+.button {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+
+
+/* 버튼 투명하게 하기 */
+
+
+.carousel {
+  max-width: 800px;
+  max-height: 800px;
+  margin: 0px auto;
+  display: block;
+}
+
