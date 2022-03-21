@@ -28,6 +28,7 @@ function Post(props) {
         <br />
         <br />
 
+
         <div className="white_button">
           <Button variant="outlined" size="large">
             네 3일 후 배송 예정입니다.

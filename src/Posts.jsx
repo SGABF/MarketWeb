@@ -11,6 +11,7 @@ function Posts() {
       .then((data) => setPosts(data));
   }, []);
 
+
   return (
     <Layout>
       <header>

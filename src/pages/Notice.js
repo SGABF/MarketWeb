@@ -30,6 +30,7 @@ const columns = [
     format: (value) => value.toLocaleString("ko-KR"),
   },
 
+
   {
     id: "RegDate",
     label: "RegDate",

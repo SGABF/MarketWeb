@@ -24,6 +24,7 @@ function Buy() {
                 alt="First slide"
               />
 
+
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>

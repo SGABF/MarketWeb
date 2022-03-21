@@ -9,7 +9,6 @@ import Navbar from "./Navbar";
 import Girl from "../Category/Girl";
 import Man from "../Category/Man";
 import Electronics from "../Category/Electronics";
-
 import Table from "../pages/Tables";
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";

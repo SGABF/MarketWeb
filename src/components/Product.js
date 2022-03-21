@@ -23,6 +23,7 @@ function Product({ id, title, image, price, code, location }) {
   };
 
 
+
   console.log("장바구니 확인");
 
   return (

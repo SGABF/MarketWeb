@@ -27,6 +27,7 @@ function ChildModal() {
     px: 4,
     pb: 3,
   };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
