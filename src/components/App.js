@@ -1,62 +1,95 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Home from "pages/Home";
 import Checkout from "pages/Checkout";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "pages/Login";
 import { useStateValue } from "./StateProvider";
-import Navbar from './Navbar';
+import Navbar from "./Navbar";
 import Girl from "../Category/Girl";
 import Man from "../Category/Man";
 import Electronics from "../Category/Electronics";
-import Food from "../Category/Food";
+
+import Table from "../pages/Tables";
+import Write from "../pages/Write";
+import Notice from "../pages/Notice";
+import Subpage from "subpage/Subpage";
+import Subpagetwo from "subpage/Subpagetwo";
+import Buy from "subpage/Buy";
+import Sale from "subpage/Sale";
+import Auction from "subpage/Auction";
+import Registration from "subpage/Registration";
+import Posttwo from "pages/Posttwo";
+import Post from "pages/Post";
 
 function App() {
   const [{}, dispatch] = useStateValue();
-  /*  useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      console.log("사용자는 다음과 같습니다", authUser);
-      if (authUser) {
-        //유저가 방금 로그인하거나 이미 한상태
-        dispatch({
-          type: "SET_USER",
-          user: authUser,
-        });
-      } else {
-        //사용자가 로그아웃 되었을때
-        dispatch({
-          type: "SET_USER",
-          user: null,
-        });
-      }
-      
-    });
-  }, []); 
-} */
-  return (
 
+  return (
     <Router>
       <div className="App">
         <Header />
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/">
 
-            <Home />
-          </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
 
-          <Route path="/checkout">
+        <Route path="/Notice">
+          <Notice />
+        </Route>
+        <Route path="/Tables">
+          <Table />
+        </Route>
 
-            <Checkout />
-          </Route>
-          <Route path="/Man" component={Man}/>
-          <Route path="/Girl" component={Girl}/>
-          <Route path="/grocery" component={Food}/>
-          <Route path="/Electronics" component={Electronics}/>
-        </Switch>
+        <Route path="/checkout">
+          <Checkout />
+        </Route>
+
+        <Route path="/Write">
+          <Write />
+        </Route>
+
+        <Route path="/Posttwo">
+          <Posttwo />
+        </Route>
+
+        <Route path="/Post">
+          <Post />
+        </Route>
+
+        {/* 서브페이지 목록 */}
+        <Route path="/Buy">
+          <Buy />
+        </Route>
+
+        <Route path="/Sale">
+          <Sale />
+        </Route>
+
+        <Route path="/Auction">
+          <Auction />
+        </Route>
+
+        <Route path="/Registration">
+          <Registration />
+        </Route>
+
+        <Route path="/subpage">
+          <Subpage />
+        </Route>
+
+        <Route path="/subpagetwo">
+          <Subpagetwo />
+        </Route>
+
+        <Route path="/Man" component={Man} />
+        <Route path="/Girl" component={Girl} />
+        <Route path="/Electronics" component={Electronics} />
       </div>
+
       {/*<Navbar />*/}
       {/*<Switch>*/}
       {/*  <Route path="/" exact component={Home} />*/}
@@ -66,8 +99,6 @@ function App() {
       {/*  <Route path="/Electronics" component={Electronics} />*/}
       {/*</Switch>*/}
     </Router>
-
-
   );
 }
 

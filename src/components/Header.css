@@ -44,6 +44,8 @@
   color: white;
 }
 
+
+
 .header_nav {
   display: flex;
   justify-content: space-between;
@@ -53,6 +55,13 @@
   font-size: 15px;
   font-weight: 800;
   margin-top: 3px;
+  color: white;
+  text-decoration:none !important;
+  text-decoration:none;
+}
+
+Link{
+  text-decoration:none !important;
 }
 
 .header_optionBasket {
