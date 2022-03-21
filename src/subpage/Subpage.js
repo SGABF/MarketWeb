@@ -46,9 +46,13 @@ function ChildModal() {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={{ ...style, width: 200 }}>
-          <h2 id="child-modal-title">입찰 성공 했습니다!</h2>
-          <p id="child-modal-description">감사합니다.</p>
+        <Box sx={{ ...style, width: 800, height: 900}}>
+            <img src="../image/dog.png"/>
+          <br/>
+            <img src="../image/hunny.jpg"/>
+          <h2 id="child-modal-title">
+          </h2>
+          <p id="child-modal-description">개꿀!</p>
           <Button onClick={handleClose}>닫기</Button>
         </Box>
       </Modal>
