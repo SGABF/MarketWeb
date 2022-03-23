@@ -186,7 +186,7 @@ function Home() {
             );
           });
         })}
-
+        console.log("음....")
         <div className="home_row">
           <Product
             id="1"
