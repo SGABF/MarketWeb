@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Product from "components/Product";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
@@ -10,8 +10,93 @@ import Navbar from "../components/Navbar";
 import { Route, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
 
 function Home() {
+  const [banner, setBanner] = useState([]);
+
+  const getBannerAPI = () => {
+    axios.get("http://192.168.0.124:8080/MainView/getList").then((res) => {
+      setBanner(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getBannerAPI();
+  }, []);
+
+  const products = [
+    [
+      {
+        id: "1",
+        title: '"Alexa, play music."',
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+      {
+        id: "2",
+        title: "AmazonBasics",
+        price: 11000,
+        image: "image/min2.jpg",
+        code: "X616D4D2",
+        location: "../subpage",
+      },
+    ],
+    [
+      {
+        id: "3",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+      {
+        id: "4",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+    ],
+    [
+      {
+        id: "5",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+      {
+        id: "5",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+      {
+        id: "5",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+      {
+        id: "5",
+        title: "Alexa, play music.",
+        price: 11000,
+        image: "image/min1.jpg",
+        code: "X616D4D1",
+        location: "../subpage",
+      },
+    ],
+  ];
   return (
     <div className="home">
       <div className="home-container">
@@ -23,7 +108,6 @@ function Home() {
                 src="image/logo1.jpg"
                 alt="First slide"
               />
-
 
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
@@ -43,6 +127,23 @@ function Home() {
               />
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
+            {banner.map((item) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={
+                      "http://192.168.0.124:8080/imagePath/" +
+                      item.banner_saveName
+                    }
+                    alt="Third slide"
+                    width="1000px"
+                    height="250px"
+                  />
+                  <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
           </Carousel>
         </div>
         <div className="menubar">
@@ -74,6 +175,18 @@ function Home() {
             </Link>
           </div>
         </div>
+        {products.map((item) => {
+          return item.map((item2) => {
+            return (
+              <div className="home_row">
+                {item2.id} <br /> {item2.title} <br /> 가격{item2.price} <br />
+                {item2.image} <br />
+                코드{item2.code}
+              </div>
+            );
+          });
+        })}
+
         <div className="home_row">
           <Product
             id="1"
