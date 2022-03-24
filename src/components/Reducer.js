@@ -24,6 +24,8 @@ const reducer = (state, action) => {
 
       let newBasket = [...state.basket];
 
+
+
       if (index >= 0) {
         newBasket.splice(index, 1);
       } else {
