@@ -12,30 +12,17 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 
-
-
-
 function Home() {
   const [banner, setBanner] = useState([]);
 
-  const getBannerAPI = async () => {
-    await axios
-      .get("http://192.168.0.124:8080/MainView/getList")
-      .then((res) => {
-        setBanner(res.data);
-      });
-  };
-
-<<<<<<< HEAD
-  const getboardList = async () => {
-    await axios.get("http://192.168.0.76:8080/board/selectList").then((res) => {
+  const getBannerAPI = () => {
+    axios.get("http://192.168.0.124:8080/MainView/getList").then((res) => {
       setBanner(res.data);
     });
   };
 
   useEffect(() => {
     getBannerAPI();
-    getboardList();
   }, []);
 
   const products = [
@@ -44,7 +31,6 @@ function Home() {
         id: "1",
         title: '"Alexa, play music."',
         price: 11000,
-        src: "./image/min1.jpg",
         image: "image/min1.jpg",
         code: "X616D4D1",
         location: "../subpage",
@@ -79,7 +65,7 @@ function Home() {
     [
       {
         id: "5",
-        title: "Alexa, play music.",
+        title: "Alexa, play music...",
         price: 11000,
         image: "image/min1.jpg",
         code: "X616D4D1",
@@ -102,7 +88,7 @@ function Home() {
         location: "../subpage",
       },
       {
-        id: "5",
+        id: "6",
         title: "Alexa, play music.",
         price: 11000,
         image: "image/min1.jpg",
@@ -159,76 +145,6 @@ function Home() {
               );
             })}
           </Carousel>
-=======
-                </ButtonGroup>
-                </div>
-                <div className="home_row">
-                    <Product
-                        id="2323"
-                        title='"Alexa, play music."'
-                        price={11000}
-                        image="image/min1.jpg"
-                        code={"X616D4D1"}
-                    />
-                    <Product
-                        id="2324"
-                        title="AmazonBasics"
-                        price={11000}
-                        image="image/min2.jpg"
-                        code={"X616D4D2"}
-                    />
-                    <Product
-                        id="2325"
-                        title="TV & Furniture"
-                        price={1100000}
-                        image="image/min3.jpg"
-                        code={"X616D4D3"}
-                    />
-                    <Product
-                        id="2326"
-                        title="Laptops"
-                        price={1000000}
-                        image="image/min4.jpg"
-                        code={"X616D4D4"}
-                    />
-                </div>
-                <div className="home_row">
-                    <Product
-                        id="2323"
-                        title='"turn on the lights."'
-                        price={11000}
-                        image="image/min5.jpg"
-                        code={"X616D4D6"}
-                    />
-                    <Product
-                        id="2324"
-                        title="Easy returns"
-                        price={11000}
-                        image="image/min6.jpg"
-                        code={"X616D4D7"}
-                    />
-                    <Product
-                        id="2325"
-                        title="Shop smartwatches"
-                        price={200000}
-                        image="image/min7.jpg"
-                        code={"X616D4D8"}
-                    />
-                    <Product
-                        id="2326"
-                        title="Shop Pet supplies"
-                        price={10000}
-                        image="image/min8.jpg"
-                        code={"X616D4D9"}
-                    />
-
-
-                </div>
-                <div>
-                    <Footer/>
-                </div>
-            </div>
->>>>>>> d49f371af1902cc21cc279c8e61dc4a1ed485f26
         </div>
         <div className="menubar">
           <Navbar />
@@ -247,6 +163,7 @@ function Home() {
             <Link to="../Buy">
               <Button>구매글</Button>
             </Link>
+
             <Link to="../Auction">
               <Button>경매글</Button>
             </Link>
