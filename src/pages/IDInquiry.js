@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import "./LoginRegister.css";
 
 function IDInquiry() {
@@ -14,16 +14,23 @@ function IDInquiry() {
 
   const onSubmit = (data) => {
     console.log(data);
-
-    // axios.post("/", data);
+    axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/notToken/findId",
+      data: {
+        user_name: data.name,
+        user_email: data.email,
+      },
+    }).then((res) => {
+      if (res.data !== "") {
+        window.alert("고객님의 아이디는 " + res.data + "입니다.");
+      } else {
+        window.alert("아이디가 존재하지 않습니다.");
+      }
+    }).catch((error) => {
+      window.alert("서버 통신 에러");
+    });
   };
-
-  // const onSubmit = (event) => {
-  //     event.preventDefault();
-  //     if () {
-  //     alert("존재하지 않는 정보입니다.");
-  //     }
-  // };
 
   return (
     <div className="loginRegister">

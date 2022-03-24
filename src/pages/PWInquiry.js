@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
@@ -14,16 +15,22 @@ function PWInquiry() {
 
   const onSubmit = (data) => {
     console.log(data);
-
-    // axios.post("/", data);
+    axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/notToken/findPw",
+      data: {
+        user_id: data.username,
+        user_email: data.email,
+        user_name: data.name,
+      },
+    }).then((res) => {
+      if (res.data !== "") {
+        window.alert("고객님의 임시비밀번호는 " + res.data + "입니다.");
+      } else {
+        window.alert("정보가 존재하지 않습니다.");
+      }
+    });
   };
-
-  // const onSubmit = (event) => {
-  //     event.preventDefault();
-  //     if () {
-  //     alert("존재하지 않는 정보입니다.");
-  //     }
-  // };
 
   return (
     <div className="loginRegister">
