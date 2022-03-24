@@ -23,6 +23,8 @@
   margin-bottom: 15px;
 }
 
+
+
 .bastket {
   background-color: transparent !important;
   background-image: none !important;
@@ -43,4 +45,12 @@
   height: 100px;
   margin-bottom: 5px;
   font-size: 20px;
+}
+
+.icon {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent;
+  color: #000000;
+  border: none;
 }

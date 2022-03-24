@@ -1,5 +1,3 @@
-
-
 .home {
   display: flex;
   justify-content: center;
@@ -24,13 +22,14 @@
 }
 */
 
-
 .home_row {
   display: flex;
   z-index: -1;
   margin-left: 15px;
   margin-right: 15px;
+
 }
+
 
 .homelogin {
   text-decoration: none;
@@ -55,13 +54,13 @@
 }
 */
 
-.home_buttons{
+.home_buttons {
   align-items: center;
-  margin:auto;
+  margin: auto;
   display: block;
-  font-family: 'Gowun Batang', serif;
+  font-family: "Gowun Batang", serif;
 }
 
-.menubar{
+.menubar {
   display: flex;
 }

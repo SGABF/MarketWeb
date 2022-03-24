@@ -16,6 +16,8 @@ import "@szhsin/react-menu/dist/index.css";
 import {Category} from "@material-ui/icons";
 
 
+
+
 function Header() {
     const [{basket}, dispatch] = useStateValue();
 
@@ -38,6 +40,7 @@ function Header() {
                             title="전체"
                         >
 
+
                             <Dropdown.Item eventKey="1">제목</Dropdown.Item>
                             <Dropdown.Item eventKey="2">상품</Dropdown.Item>
                             <Dropdown.Item eventKey="3">제목+내용</Dropdown.Item>
@@ -58,22 +61,26 @@ function Header() {
                     </Link>
                 </div>
                 <div className="header_option">
-          <span className="header_optionLineOne">
 
-            <Menu
-                menuButton={
-                    <MenuButton className="button">장터게시판</MenuButton>
-                }
-            >
-              <SubMenu label="경매글">
-                <MenuItem>입찰하기</MenuItem>
-                <MenuItem>잔여시간</MenuItem>
-                <MenuItem>입찰 인원 조회</MenuItem>
-                <MenuItem>경매 시작가 조회</MenuItem>
-              </SubMenu>
-            </Menu>
+                    <Link to="/">
+                    <span className="header_optionLineOne"> 장터게시판
+
+            {/*<Menu*/}
+            {/*    menuButton={*/}
+            {/*        <MenuButton className="button">장터게시판</MenuButton>*/}
+            {/*    }*/}
+            {/*>*/}
+            {/*  <SubMenu label="경매글">*/}
+            {/*    <MenuItem>입찰하기</MenuItem>*/}
+            {/*    <MenuItem>잔여시간</MenuItem>*/}
+            {/*    <MenuItem>입찰 인원 조회</MenuItem>*/}
+            {/*    <MenuItem>경매 시작가 조회</MenuItem>*/}
+            {/*  </SubMenu>*/}
+            {/*</Menu>*/}
 
           </span>
+                    </Link>
+
                 </div>
 
                 <div className="header_option">
@@ -96,6 +103,7 @@ function Header() {
             </span>
                     </div>
                 </Link>
+
 
             </div>
         </div>
