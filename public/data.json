@@ -1,0 +1,12 @@
+{
+    "user" : [
+        {
+            "username" : "testid",
+            "password" : "123456",
+            "user_name" : "개꾸르",
+            "user_birth" : "19900415",
+            "user_email" : "gaekkul@gmail.com",
+            "user_phone" : "01012345678"
+        }
+    ]
+}
