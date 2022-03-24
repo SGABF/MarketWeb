@@ -1,0 +1,42 @@
+.agreement {
+  display: flex;
+  align-items: center;
+  height: 160vh;
+  background-color: #f3f3f3;
+}
+
+.agreement_box {
+  position: absolute;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.agreement_box > h1 {
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.agreement_box > h2 {
+  font-weight: bold;
+  font-size: large;
+  text-align: left;
+}
+
+.agreement_box > div {
+  width: 100%;
+  height: 300px;
+  overflow-x: hidden;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.loginRegister_button {
+  background-color: #febd69;
+  color: #000000;
+  font-weight: 700;
+  width: 100%;
+  border-radius: 10px;
+  border-color: #000000;
+  height: 48px;
+  margin-top: 10px;
+}
