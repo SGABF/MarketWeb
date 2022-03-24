@@ -11,9 +11,17 @@ import { Route, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
+import { Token } from "@mui/icons-material";
 
 function Home() {
   const [banner, setBanner] = useState([]);
+  const [home, setHome] = useState([]);
+
+  useEffect(() => {
+    getBannerAPI();
+    getTest();
+    getHome();
+  }, []);
 
   const getBannerAPI = () => {
     axios.get("http://192.168.0.124:8080/MainView/getList").then((res) => {
@@ -21,9 +29,31 @@ function Home() {
     });
   };
 
-  useEffect(() => {
-    getBannerAPI();
-  }, []);
+  const getHome = async () => {
+    const token = localStorage.getItem("token");
+    const { data: response } = await axios
+      .post("http://192.168.0.76:8080/home/main", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        console.log("가져온값 : " + res.data.length);
+        console.log("가져온값 : " + JSON.stringify(res.data));
+        setHome(res.data);
+      })
+      .catch((error) => {
+        console.log(`getHome 에러 :  ${error.message}`);
+      });
+  };
+
+  const getTest = () => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("http://192.168.0.76:8080/test", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => console.log(res));
+  };
 
   const products = [
     [
@@ -187,7 +217,13 @@ function Home() {
             );
           });
         })}
-        console.log("음....")
+        {home.map((item) => {
+          return (
+            <div className="home_row">
+              {item.board_name} {item.board_content} {item.board_price}( )
+            </div>
+          );
+        })}
         <div className="home_row">
           <Product
             id="1"

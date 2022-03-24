@@ -14,12 +14,9 @@ function Login() {
 
   /* 로그인 db연결 이쪽에 */
 
-  //example (!!history 있어야 로그인 넘어감!!) */
-  // useEffect(() => {
-  //   fetch("http://192.168.0.76:8080/authenticate/login")
-  //     .then((res) => res.json())
-  //     .then((data) => setPosts(data));
-  // }, []);
+  useEffect(() => {
+    loginService.registerSuccessfulLoginForJwt(id, token);
+  });
 
   // POST 요청 전송
 
@@ -31,9 +28,8 @@ function Login() {
       .then((response) => {
         console.log(response);
         setToken(response.data.token);
-        loginService.registerSuccessfulLoginForJwt(id, token);
         window.alert("로그인 성공");
-        // history.push("/");
+        history.push("/");
       });
   };
 
@@ -84,7 +80,7 @@ function Login() {
           </main>
 
           <button onClick={signIn} className="login_signInButton" id="loginBtn">
-            로그인 하기.
+            로그인 하기
           </button>
         </form>
 

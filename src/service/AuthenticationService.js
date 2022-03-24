@@ -21,28 +21,28 @@ export const registerSuccessfulLoginForJwt = (username, token) => {
   localStorage.setItem("authenticatedUser", username);
   // sessionStorage.setItem('authenticatedUser', username)
   //this.setupAxiosInterceptors(this.createJWTToken(token))
-  setupAxiosInterceptors();
+  // setupAxiosInterceptors();
 };
 
 const createJWTToken = (token) => {
   return "Bearer " + token;
 };
 
-export const setupAxiosInterceptors = () => {
-  axios.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        config.headers["Authorization"] = "Bearer " + token;
-      }
-      // config.headers['Content-Type'] = 'application/json';
-      return config;
-    },
-    (error) => {
-      Promise.reject(error);
-    }
-  );
-};
+// export const setupAxiosInterceptors = () => {
+//   axios.interceptors.request.use(
+//     (config) => {
+//       const token = localStorage.getItem("token");
+//       if (token) {
+//         config.headers["Authorization"] = "Bearer " + token;
+//       }
+//       // config.headers['Content-Type'] = 'application/json';
+//       return config;
+//     },
+//     (error) => {
+//       Promise.reject(error);
+//     }
+//   );
+// };
 
 export const logout = () => {
   //sessionStorage.removeItem('authenticatedUser');
