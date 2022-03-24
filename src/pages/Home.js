@@ -12,20 +12,26 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 
-
-
-
 function Home() {
   const [banner, setBanner] = useState([]);
 
-  const getBannerAPI = () => {
-    axios.get("http://192.168.0.124:8080/MainView/getList").then((res) => {
+  const getBannerAPI = async () => {
+    await axios
+      .get("http://192.168.0.124:8080/MainView/getList")
+      .then((res) => {
+        setBanner(res.data);
+      });
+  };
+
+  const getboardList = async () => {
+    await axios.get("http://192.168.0.76:8080/board/selectList").then((res) => {
       setBanner(res.data);
     });
   };
 
   useEffect(() => {
     getBannerAPI();
+    getboardList();
   }, []);
 
   const products = [
@@ -34,6 +40,7 @@ function Home() {
         id: "1",
         title: '"Alexa, play music."',
         price: 11000,
+        src: "./image/min1.jpg",
         image: "image/min1.jpg",
         code: "X616D4D1",
         location: "../subpage",

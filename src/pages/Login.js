@@ -5,9 +5,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as loginService from "../service/AuthenticationService.js";
 import axios from "axios";
 
-
-
-
 function Login() {
   const [id, setId] = useState("");
   const [posts, setPosts] = useState([]);
@@ -26,17 +23,21 @@ function Login() {
 
   // POST 요청 전송
 
+  useEffect(() => {
+    loginService.registerSuccessfulLoginForJwt(id, token);
+  });
+
   const signIn = (e) => {
     e.preventDefault();
     console.log(id, password);
     loginService
       .executeJwtAuthenticationService(id, password)
       .then((response) => {
-        console.log(response);
+        console.log(response.data.token);
         setToken(response.data.token);
-        loginService.registerSuccessfulLoginForJwt(id, token);
+        console.log(token);
         window.alert("로그인 성공");
-        // history.push("/");
+        history.push("/");
       });
   };
 
