@@ -75,7 +75,11 @@ function RegisterPage() {
         <img className="login_logo" src="image/logo2.png" alt="" />
       </Link>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box" autoComplete="off">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="loginRegister_box"
+        autoComplete="off"
+      >
         <input
           type="text"
           {...register("username", {
@@ -147,11 +151,17 @@ function RegisterPage() {
 
         <input
           type="text"
-          {...register("name", { required: "필수 입력 항목입니다.", maxLength: { value: 10, message: "이름을 10자 이내로 작성해주세요." } })}
+          {...register("name", {
+            required: "필수 입력 항목입니다.",
+            maxLength: {
+              value: 10,
+              message: "이름을 10자 이내로 작성해주세요.",
+            },
+          })}
           placeholder="이름"
         />
         {/* {errors.name && errors.name.type === "required" && ( */}
-          <p>{errors.name?.message}</p>
+        <p>{errors.name?.message}</p>
         {/* )}
         {errors.name && errors.name.type === "maxLength" && (
           <p>이름을 10자 이내로 작성해주세요.</p>
@@ -162,9 +172,10 @@ function RegisterPage() {
           {...register("email", {
             required: "필수 입력 항목입니다.",
             pattern: {
-              value: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-              message: "이메일 양식을 지켜주세요."
-            }
+              value:
+                /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+              message: "이메일 양식을 지켜주세요.",
+            },
           })}
           placeholder="이메일"
         />
