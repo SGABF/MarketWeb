@@ -8,48 +8,66 @@ function RegisterPage() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
   const password = useRef();
 
-  console.log(watch("username"));
-  console.log(watch("password"));
-  console.log(watch("passwordConfirm"));
-  console.log(watch("email"));
+  // console.log(watch("username"));
+  // console.log(watch("password"));
+  // console.log(watch("passwordConfirm"));
+  // console.log(watch("email"));
 
   const checkId = (e) => {
-    alert("아이디 중복체크입니다.");
+    const username = document.querySelector("#username").value;
+    if (username.length < 5) {
+      window.alert("5자 이상이어야 합니다.");
+      return;
+    }
+    axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/notToken/idCheck",
+      data: { user_id: username },
+    })
+      .then((res) => {
+        window.alert(
+          res.data === 0
+            ? "사용가능한 아이디입니다."
+            : "사용불가한 아이디입니다."
+        );
+        if (res.data === 1) {
+          document.querySelector("#username").value = "";
+          document.querySelector("#username").focus();
+        }
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   };
 
-  const onSubmit = (data) => console.log(data);
-
-  // const onSubmit = (username, password) => {
-  //   return function (dispatch, getState, { history }) {
-  //     axios({
-  //       method: "post",
-  //       url: "http://192.168.0.76:8080/",
-  //       data: {
-  //         username: this.state.username,
-  //         password: password,
-  //         nickname: nickname,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         window.alert(res.data.result);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
-  // };
-
-  // const checkId = (e) => {
-  //   const data = {username:username.value}
-  //   axios.post('http://192.168.0.76:8080/', data)
-
-
-  // }
+  const onSubmit = (data) => {
+    console.log(data);
+    axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/notToken/insertUser",
+      data: {
+        user_id: data.username,
+        user_password: data.password,
+        user_name: data.name,
+        user_birth: data.birth,
+        user_email: data.email,
+        user_phone: data.phone,
+      },
+    })
+      .then((res) => {
+        window.alert(
+          "개꿀마켓 회원가입을 축하드립니다. 로그인 페이지로 이동합니다."
+        );
+      })
+      .catch((error) => {
+        window.alert("가입실패");
+      });
+  };
 
   return (
     <div className="loginRegister">
@@ -57,7 +75,11 @@ function RegisterPage() {
         <img className="login_logo" src="image/logo2.png" alt="" />
       </Link>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="loginRegister_box"
+        autoComplete="off"
+      >
         <input
           type="text"
           {...register("username", {
@@ -66,10 +88,14 @@ function RegisterPage() {
           })}
           placeholder="아이디"
           className="loginRegister_input"
+          id="username"
         />
-        <button className="idCheck" onClick={checkId}>
-          중복확인
-        </button>
+        <input
+          type="button"
+          className="idCheck"
+          onClick={checkId}
+          value="중복확인"
+        />
         {errors.username && errors.username.type === "required" && (
           <p>필수 입력 항목입니다.</p>
         )}
@@ -86,6 +112,7 @@ function RegisterPage() {
           })}
           placeholder="비밀번호"
           className="loginRegister_input"
+          id="password"
         />
         {errors.password && errors.password.type === "required" && (
           <p>필수 입력 항목입니다.</p>
@@ -124,31 +151,41 @@ function RegisterPage() {
 
         <input
           type="text"
-          {...register("name", { required: true, maxLength: 10 })}
+          {...register("name", {
+            required: "필수 입력 항목입니다.",
+            maxLength: {
+              value: 10,
+              message: "이름을 10자 이내로 작성해주세요.",
+            },
+          })}
           placeholder="이름"
         />
-        {errors.name && errors.name.type === "required" && (
-          <p>필수 입력 항목입니다.</p>
-        )}
+        {/* {errors.name && errors.name.type === "required" && ( */}
+        <p>{errors.name?.message}</p>
+        {/* )}
         {errors.name && errors.name.type === "maxLength" && (
           <p>이름을 10자 이내로 작성해주세요.</p>
-        )}
+        )} */}
 
         <input
           type="text"
           {...register("email", {
-            required: true,
-            pattern:
-              /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+            required: "필수 입력 항목입니다.",
+            pattern: {
+              value:
+                /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+              message: "이메일 양식을 지켜주세요.",
+            },
           })}
           placeholder="이메일"
         />
-        {errors.email && errors.email.type === "required" && (
+        <p>{errors.email?.message}</p>
+        {/* {errors.email && errors.email.type === "required" && (
           <p>필수 입력 항목입니다.</p>
         )}
         {errors.email && errors.email.type === "pattern" && (
           <p>이메일 양식을 지켜주세요.</p>
-        )}
+        )} */}
 
         <input
           type="text"

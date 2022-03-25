@@ -20,6 +20,12 @@ import Auction from "subpage/Auction";
 import Registration from "subpage/Registration";
 import Posttwo from "pages/Posttwo";
 import Post from "pages/Post";
+import LoginPage from "pages/LoginPage";
+import Agreement from "pages/Agreement";
+import RegisterPage from "pages/RegisterPage";
+import IDInquiry from "pages/IDInquiry";
+import PWInquiry from "pages/PWInquiry";
+import RegisteredOk from "pages/RegisteredOk";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -28,10 +34,6 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-
-        <Route path="/login">
-          <Login />
-        </Route>
         <Route exact path="/">
           <Home />
         </Route>
@@ -83,6 +85,14 @@ function App() {
         <Route path="/subpagetwo">
           <Subpagetwo />
         </Route>
+
+        {/* 유저 관련 */}
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/agreement" component={Agreement} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/idinquiry" component={IDInquiry} />
+        <Route exact path="/pwinquiry" component={PWInquiry} />
+        <Route exact path="/regok" component={RegisteredOk} />
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />

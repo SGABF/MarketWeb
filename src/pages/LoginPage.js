@@ -1,66 +1,60 @@
 import React, { useState } from "react";
-import "./LoginRegister.css";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import * as loginService from "../service/AuthenticationService.js";
+import Button from "react-bootstrap/Button";
+import "./LoginRegister.css";
 
-function LoginPage(props) {
+function LoginPage() {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
+  const history = useHistory();
+
+  /* 로그인 db연결 이쪽에 */
+
+  //example (!!history 있어야 로그인 넘어감!!) */
+  // useEffect(() => {
+  //   fetch("http://192.168.0.76:8080/authenticate/login")
+  //     .then((res) => res.json())
+  //     .then((data) => setPosts(data));
+  // }, []);
+
+  // POST 요청 전송
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const signIn = (data) => {
+    // e.preventDefault();
+    console.log(data.username, data.password);
 
-    // axios.post("/", data);
+    loginService
+      .executeJwtAuthenticationService(id, password)
+      .then((response) => {
+        setToken(response.data.token);
+        loginService.registerSuccessfulLoginForJwt(id, token);
+        window.alert("로그인 성공");
+        // history.push("/");
+      });
   };
 
-  // const onSubmitHandler = (e) => {
+  const onSubmit = (data) => signIn(data);
+
+  // const registerPage = (e) => {
   //   e.preventDefault();
-  //   console.log(Username);
-  //   console.log(Password);
-
-  //   let body = {
-  //     username: Username,
-  //     user_password: Password,
-  //   };
-
-  //   axios
-  //     .post("http://localhost:8888/user", body)
-  //     .then((res) => console.log(res));
-  // };
-
-  // /* 로그인 db연결 이쪽에 */
-
-  // /* example (!!history 있어야 로그인 넘어감!!) */
-
-  // const signIn = (e) => {
-  //   e.preventDefault();
-
-  //   auth.signInWithEmailAndPassword(Username, Password)
-  //           .then(auth => {
-  //               history.push('/')
-  //           })
-  //           .catch(error => alert(error.message))
-  //   }
-  // };
-
-  // const register = (e) => {
-  //   e.preventDefault();
-  //   /*
-  //   auth.createUserWithEmailAndPassword(email, password)
-  //           .then((auth) => {
-  //               if (auth){
-  //                   history.push('/')
-  //               }
-  //           })
-  //           .catch(error => alert(error.message)) */
+  //   auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then((auth) => {
+  //       if (auth) {
+  //         history.push("/");
+  //       }
+  //     })
+  //     .catch((error) => alert(error.message));
   // };
 
   return (
@@ -71,10 +65,12 @@ function LoginPage(props) {
 
       <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
         <input
-          type="text"
+          type="id"
           {...register("username", {
             required: true,
           })}
+          value={id}
+          onChange={(e) => setId(e.target.value)}
           placeholder="아이디"
           className="loginRegister_input"
         />
@@ -86,22 +82,23 @@ function LoginPage(props) {
           {...register("password", {
             required: true,
           })}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호"
           className="loginRegister_input"
         />
         {errors.password && errors.password.type === "required" && (
           <p>비밀번호를 입력해주세요.</p>
         )}
+        <input type="submit" value="로그인" />
 
         <Link to="/idinquiry">
           <span className="find">아이디 찾기</span>
         </Link>
-
         <Link to="/pwinquiry">
           <span className="find">비밀번호 찾기</span>
         </Link>
         <br />
-        <input type="submit" value="로그인" />
         <Link to="/agreement">
           <Button
             variant="outline-dark"
@@ -110,11 +107,10 @@ function LoginPage(props) {
           >
             회원가입
           </Button>
-          {/* <button className="loginRegister_button">회원가입</button> */}
         </Link>
       </form>
     </div>
   );
 }
 
-export default withRouter(LoginPage);
+export default LoginPage;
