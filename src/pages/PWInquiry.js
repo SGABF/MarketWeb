@@ -37,7 +37,7 @@ function PWInquiry() {
       <Link to="/">
         <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
-      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
+      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box" autoComplete="off">
         <input
           type="text"
           {...register("username", {

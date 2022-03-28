@@ -9,9 +9,11 @@ function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const password = useRef();
+  password.current = watch("password");
 
   // console.log(watch("username"));
   // console.log(watch("password"));
@@ -20,8 +22,8 @@ function RegisterPage() {
 
   const checkId = (e) => {
     const username = document.querySelector("#username").value;
-    if (username.length < 5) {
-      window.alert("5자 이상이어야 합니다.");
+    if (username.length < 5 && username.length >10) {
+      window.alert("영문(소문),숫자 혼합 5~10자리로 입력해주세요.");
       return;
     }
     axios({
@@ -85,24 +87,28 @@ function RegisterPage() {
           type="text"
           {...register("username", {
             required: true,
-            pattern: /^[a-z0-9]+[a-z0-9]{5,10}$/i,
+            pattern: /^[a-z0-9]+[a-z0-9-_]{4,9}$/i,
+            maxLength: 10,
           })}
           placeholder="아이디 (영문소문자,숫자 조합 5~10자리)"
           className="loginRegister_input"
           id="username"
         />
+          {errors.username && errors.username.type === "required" && (
+            <p>필수 입력 항목입니다.</p>
+          )}
+          {errors.username && errors.username.type === "pattern" && (
+            <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
+          )}
+          {errors.username && errors.username.type === "maxLength" && (
+            <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
+          )}
         <input
           type="button"
           className="idCheck"
           onClick={checkId}
           value="중복확인"
         />
-        {errors.username && errors.username.type === "required" && (
-          <p>필수 입력 항목입니다.</p>
-        )}
-        {errors.username && errors.username.type === "pattern" && (
-          <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
-        )}
 
         <input
           type="password"
@@ -128,9 +134,9 @@ function RegisterPage() {
           type="password"
           {...register("passwordConfirm", {
             required: true,
-            pattern:
-              /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/i,
-            validate: (value) => value !== password.current,
+            // pattern:
+            //   /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/i,
+            validate: (value) => value === password.current,
           })}
           placeholder="비밀번호 확인"
         />
@@ -138,13 +144,13 @@ function RegisterPage() {
           errors.passwordConfirm.type === "required" && (
             <p>필수 입력 항목입니다.</p>
           )}
-        {errors.passwordConfirm &&
+        {/* {errors.passwordConfirm &&
           errors.passwordConfirm.type === "pattern" && (
             <p>
               영문,숫자,특수문자를 최소 한 가지씩 조합하여 8~16자로
               입력해주세요.
             </p>
-          )}
+          )} */}
         {errors.passwordConfirm &&
           errors.passwordConfirm.type === "validate" && (
             <p>비밀번호와 동일해야 합니다.</p>
@@ -184,10 +190,12 @@ function RegisterPage() {
 
         <input
           type="text"
-          {...register("birth", { required: true })}
+          {...register("birth", { required: true, minLength: 8, maxLength: 8 })}
           placeholder="생년월일 (예: 19901021)"
         />
-        {errors.birth && <p>필수 입력 항목입니다.</p>}
+        {errors.birth && errors.birth.type === "required" && (<p>필수 입력 항목입니다.</p>)}
+        {errors.birth && errors.birth.type === "minLength" && (<p>생년월일을 다시 확인해주세요.</p>)}
+        {errors.birth && errors.birth.type === "maxLength" && (<p>생년월일을 다시 확인해주세요.</p>)}
 
         <input
           type="text"

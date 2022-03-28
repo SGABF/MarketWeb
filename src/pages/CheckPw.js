@@ -65,7 +65,7 @@ function LoginPage() {
         <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
+      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box" autoComplete="off">
         <h2>
           고객님의 소중한 정보 보호를 위해 비밀번호를 다시 입력해주시기
           바랍니다.
