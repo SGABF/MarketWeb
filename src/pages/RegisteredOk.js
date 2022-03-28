@@ -7,7 +7,7 @@ function RegisteredOk() {
   return (
     <div className="loginRegister">
       <Link to="/">
-        <img className="login_logo" src="image/logo2.png" alt="" />
+        <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
       <div className="reg_box">
         <p className="reg_msg">
@@ -17,13 +17,13 @@ function RegisteredOk() {
           또는, 판매하고 싶은 물품을 개꿀마켓에 등록해보세요.
           <br />
         </p>
-        <Link to="/">
+        <Link to="/login">
           <Button
             variant="outline-dark"
             type="submit"
             className="loginRegister_button"
           >
-            홈으로
+            로그인
           </Button>
         </Link>
       </div>

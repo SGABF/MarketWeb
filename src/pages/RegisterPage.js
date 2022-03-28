@@ -61,8 +61,9 @@ function RegisterPage() {
     })
       .then((res) => {
         window.alert(
-          "개꿀마켓 회원가입을 축하드립니다. 로그인 페이지로 이동합니다."
+          "개꿀마켓 회원가입을 축하드립니다. 가입이 완료되었습니다."
         );
+        window.location.href = "/regok";
       })
       .catch((error) => {
         window.alert("가입실패");
@@ -72,7 +73,7 @@ function RegisterPage() {
   return (
     <div className="loginRegister">
       <Link to="/">
-        <img className="login_logo" src="image/logo2.png" alt="" />
+        <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
 
       <form
@@ -86,7 +87,7 @@ function RegisterPage() {
             required: true,
             pattern: /^[a-z0-9]+[a-z0-9]{5,10}$/i,
           })}
-          placeholder="아이디"
+          placeholder="아이디 (영문소문자,숫자 조합 5~10자리)"
           className="loginRegister_input"
           id="username"
         />
@@ -110,7 +111,7 @@ function RegisterPage() {
             pattern:
               /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/i,
           })}
-          placeholder="비밀번호"
+          placeholder="비밀번호 (영문,숫자,특수문자 최소 한 가지 조합 8~16자)"
           className="loginRegister_input"
           id="password"
         />
@@ -129,7 +130,7 @@ function RegisterPage() {
             required: true,
             pattern:
               /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/i,
-            validate: (value) => value === password.current,
+            validate: (value) => value !== password.current,
           })}
           placeholder="비밀번호 확인"
         />
@@ -152,45 +153,39 @@ function RegisterPage() {
         <input
           type="text"
           {...register("name", {
-            required: "필수 입력 항목입니다.",
-            maxLength: {
-              value: 10,
-              message: "이름을 10자 이내로 작성해주세요.",
-            },
+            required: true,
+            maxLength: 10,
           })}
           placeholder="이름"
         />
-        {/* {errors.name && errors.name.type === "required" && ( */}
-        <p>{errors.name?.message}</p>
-        {/* )}
+        {errors.name && errors.name.type === "required" && (
+          <p>필수 입력 항목입니다.</p>
+        )}
         {errors.name && errors.name.type === "maxLength" && (
           <p>이름을 10자 이내로 작성해주세요.</p>
-        )} */}
+        )}
 
         <input
           type="text"
           {...register("email", {
-            required: "필수 입력 항목입니다.",
-            pattern: {
-              value:
-                /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-              message: "이메일 양식을 지켜주세요.",
-            },
+            required: true,
+            pattern:
+              /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
           })}
           placeholder="이메일"
         />
-        <p>{errors.email?.message}</p>
-        {/* {errors.email && errors.email.type === "required" && (
+        {/* <p>{errors.email?.message}</p> */}
+        {errors.email && errors.email.type === "required" && (
           <p>필수 입력 항목입니다.</p>
         )}
         {errors.email && errors.email.type === "pattern" && (
           <p>이메일 양식을 지켜주세요.</p>
-        )} */}
+        )}
 
         <input
           type="text"
           {...register("birth", { required: true })}
-          placeholder="생년월일"
+          placeholder="생년월일 (예: 19901021)"
         />
         {errors.birth && <p>필수 입력 항목입니다.</p>}
 
@@ -200,7 +195,7 @@ function RegisterPage() {
             required: true,
             pattern: /^01([0-9]{9})$/i,
           })}
-          placeholder="휴대폰 번호"
+          placeholder="휴대폰 번호 ('-'없이 예: 01012345678)"
         />
         {errors.phone && errors.phone.type === "required" && (
           <p>필수 입력 항목입니다.</p>

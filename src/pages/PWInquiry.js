@@ -35,7 +35,7 @@ function PWInquiry() {
   return (
     <div className="loginRegister">
       <Link to="/">
-        <img className="login_logo" src="image/logo2.png" alt="" />
+        <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
       <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
         <input

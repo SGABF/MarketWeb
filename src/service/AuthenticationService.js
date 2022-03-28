@@ -21,7 +21,7 @@ export const registerSuccessfulLoginForJwt = (username, token) => {
   localStorage.setItem("authenticatedUser", username);
   // sessionStorage.setItem('authenticatedUser', username)
   //this.setupAxiosInterceptors(this.createJWTToken(token))
-  setupAxiosInterceptors();
+  // setupAxiosInterceptors();
 };
 
 const createJWTToken = (token) => {

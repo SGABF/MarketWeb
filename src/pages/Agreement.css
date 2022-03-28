@@ -1,5 +1,5 @@
 .agreement {
-  display: flex;
+  display: block;
   align-items: center;
   height: 160vh;
   background-color: #f3f3f3;
@@ -7,8 +7,9 @@
 
 .agreement_box {
   position: absolute;
-  padding-left: 20%;
-  padding-right: 20%;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .agreement_box > h1 {
@@ -18,7 +19,7 @@
 
 .agreement_box > h2 {
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
   text-align: left;
 }
 
@@ -30,13 +31,43 @@
   padding: 10px;
 }
 
-.loginRegister_button {
+.agreeStatement {
+  font-size: medium;
+  font-weight: 550;
+}
+
+/* .loginRegister_button {
   background-color: #febd69;
   color: #000000;
   font-weight: 700;
   width: 100%;
   border-radius: 10px;
-  border-color: #000000;
   height: 48px;
   margin-top: 10px;
+  pointer-events: all;
+} */
+
+button[type="submit"],
+input[type="submit"] {
+  background: rgb(167, 165, 165);
+  color: #000000;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  border-radius: 10px;
+  pointer-events: all;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #febd69;
+  color: #000000;
+}
+
+.disabled-link {
+  pointer-events: none;
 }

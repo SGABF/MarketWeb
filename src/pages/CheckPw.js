@@ -14,29 +14,36 @@ function LoginPage() {
 
   // POST 요청 전송
 
+  const checkPw = (e) => {
+    const username = document.querySelector("#username").value;
+    if (username.length < 5) {
+      window.alert("5자 이상이어야 합니다.");
+      return;
+    }
+    axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/notToken//checkPassword",
+      data: { user_password: password },
+    })
+      .then((res) => {
+        if (res.data === 1) {
+          window.location.href = "/editmyinfo";
+        } else {
+          window.alert("비밀번호를 다시 확인해주세요.");
+          document.querySelector("#password").value = "";
+          document.querySelector("#password").focus();
+        }
+      })
+      .catch((error) => {
+        window.alert("서버통신에러 - 잠시 후 다시 시도해주세요.");
+      });
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    loginService.registerSuccessfulLoginForJwt(id, token);
-  });
-
-  const signIn = (data) => {
-    // e.preventDefault();
-    console.log(data.username, data.password);
-
-    loginService
-      .executeJwtAuthenticationService(data.username, data.password)
-      .then((response) => {
-        setToken(response.data.token);
-        window.alert("로그인 성공");
-        console.log(token);
-        history.push("/");
-      });
-  };
 
   const onSubmit = (data) => signIn(data);
 
@@ -59,19 +66,10 @@ function LoginPage() {
       </Link>
 
       <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
-        <input
-          type="id"
-          {...register("username", {
-            required: true,
-          })}
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          placeholder="아이디"
-          className="loginRegister_input"
-        />
-        {errors.username && errors.username.type === "required" && (
-          <p>아이디를 입력해주세요.</p>
-        )}
+        <h2>
+          고객님의 소중한 정보 보호를 위해 비밀번호를 다시 입력해주시기
+          바랍니다.
+        </h2>
         <input
           type="password"
           {...register("password", {
@@ -85,11 +83,7 @@ function LoginPage() {
         {errors.password && errors.password.type === "required" && (
           <p>비밀번호를 입력해주세요.</p>
         )}
-        <input type="submit" value="로그인" />
-
-        <Link to="/idinquiry">
-          <span className="find">아이디 찾기</span>
-        </Link>
+        <input type="submit" value="회원정보변경" />
         <Link to="/pwinquiry">
           <span className="find">비밀번호 찾기</span>
         </Link>

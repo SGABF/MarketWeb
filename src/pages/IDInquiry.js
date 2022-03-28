@@ -21,21 +21,23 @@ function IDInquiry() {
         user_name: data.name,
         user_email: data.email,
       },
-    }).then((res) => {
-      if (res.data !== "") {
-        window.alert("고객님의 아이디는 " + res.data + "입니다.");
-      } else {
-        window.alert("아이디가 존재하지 않습니다.");
-      }
-    }).catch((error) => {
-      window.alert("서버 통신 에러");
-    });
+    })
+      .then((res) => {
+        if (res.data !== "") {
+          window.alert("고객님의 아이디는 " + res.data + "입니다.");
+        } else {
+          window.alert("아이디가 존재하지 않습니다.");
+        }
+      })
+      .catch((error) => {
+        window.alert("서버 통신 에러");
+      });
   };
 
   return (
     <div className="loginRegister">
       <Link to="/">
-        <img className="login_logo" src="image/logo2.png" alt="" />
+        <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
       <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box">
         <input
