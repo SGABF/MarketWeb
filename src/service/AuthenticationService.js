@@ -48,6 +48,7 @@ export const logout = () => {
   //sessionStorage.removeItem('authenticatedUser');
   localStorage.removeItem("authenticatedUser");
   localStorage.removeItem("token");
+
 };
 
 export const isUserLoggedIn = () => {

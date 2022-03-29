@@ -35,22 +35,9 @@ function LoginPage() {
         window.alert("로그인 성공");
         console.log(token);
         history.push("/");
+        window.location.reload();
       });
   };
-
-  const onSubmit = (data) => signIn(data);
-
-  // const registerPage = (e) => {
-  //   e.preventDefault();
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((auth) => {
-  //       if (auth) {
-  //         history.push("/");
-  //       }
-  //     })
-  //     .catch((error) => alert(error.message));
-  // };
 
   return (
     <div className="loginRegister">
@@ -58,7 +45,7 @@ function LoginPage() {
         <img className="login_logo" src="image/logotwo.png" alt="" />
       </Link>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="loginRegister_box" autoComplete="off">
+      <form onSubmit={handleSubmit(signIn)} className="loginRegister_box" autoComplete="off">
         <input
           type="id"
           {...register("username", {

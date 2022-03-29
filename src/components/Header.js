@@ -16,30 +16,42 @@ import "@szhsin/react-menu/dist/index.css";
 import { Category } from "@material-ui/icons";
 import * as loginService from "../service/AuthenticationService";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  let [loginCheck, setloginCheck] = useState("");
   const [{ basket }, dispatch] = useStateValue();
-  const loginCheck = loginService.isUserLoggedIn();
+  loginCheck = loginService.isUserLoggedIn();
   const loggedInUser = loginService.getLoggedInUserName();
+  let history = useHistory();
 
-  const callUserVO = (e) => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    console.log(loggedInUser);
-    axios
-      .post("http://192.168.0.76:8080/updateUserPage", {
-        headers: {
-          Authorization: "Bearer " + token,
-          user_id: loggedInUser,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        window.location.href = "/editmyinfo";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // const callUserVO = (e) => {
+  //   const token = localStorage.getItem("token");
+  //   console.log(token);
+  //   console.log(loggedInUser);
+  //   axios
+  //     .post("http://192.168.0.76:8080/updateUserPage", {
+  //       headers: {
+  //         Authorization: "Bearer " + token,
+  //         user_id: loggedInUser,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       window.location.href = "/editmyinfo";
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  const logOut = () => {
+    const removeUser = localStorage.removeItem("authenticatedUser");
+    const removeToken = localStorage.removeItem("token");
+    console.log(removeUser + "아이디 제거");
+    console.log(removeToken + "토큰 제거");
+    window.alert('로그아웃이 성공적으로 완료되었습니다.');
+    setloginCheck(false);
   };
 
   return (
@@ -115,14 +127,14 @@ function Header() {
                 <MenuButton className="button">{loggedInUser}님</MenuButton>
               }
             >
-              <Link to="/editmyinfo">
-                <MenuItem onClick={callUserVO}>회원정보수정</MenuItem>
+              <Link to="/checkpw">
+                <MenuItem>회원정보수정</MenuItem>
               </Link>
               <MenuItem>나의 거래</MenuItem>
               <MenuItem>나의 문의</MenuItem>
-              <Link to="/login">
-                <MenuItem>로그아웃</MenuItem>
-              </Link>
+              {/* <Link to="/"> */}
+                <MenuItem onClick={logOut} >로그아웃</MenuItem>
+              {/* </Link> */}
             </Menu>
           )}
         </div>

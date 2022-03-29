@@ -27,6 +27,7 @@ import IDInquiry from "pages/IDInquiry";
 import PWInquiry from "pages/PWInquiry";
 import RegisteredOk from "pages/RegisteredOk";
 import EditMyinfo from "pages/EditMyInfo";
+import CheckPw from "pages/CheckPw";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -95,6 +96,7 @@ function App() {
         <Route exact path="/pwinquiry" component={PWInquiry} />
         <Route exact path="/regok" component={RegisteredOk} />
         <Route exact path="/editmyinfo" component={EditMyinfo} />
+        <Route exact path="/checkpw" component={CheckPw} />
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />

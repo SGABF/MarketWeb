@@ -31,7 +31,7 @@ function Home() {
 
   const getHome = async () => {
     const token = localStorage.getItem("token");
-    const { data: response } = await axios
+    await axios
       .post("http://192.168.0.76:8080/home/main", {
         headers: { Authorization: "Bearer " + token },
       })
