@@ -12,6 +12,7 @@ function LoginPage() {
   const [token, setToken] = useState("");
   let history = useHistory();
 
+
   // POST 요청 전송
 
   const {
@@ -36,6 +37,11 @@ function LoginPage() {
         console.log(token);
         history.push("/");
         window.location.reload();
+      })
+      .catch((error) => {
+        alert('로그인 에러: 입력하신 정보를 다시 확인해주세요.');
+        setPassword('');
+        setId('');
       });
   };
 

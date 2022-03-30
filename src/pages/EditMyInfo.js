@@ -6,17 +6,21 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import "./LoginRegister.css";
 import * as loginService from "../service/AuthenticationService";
+import { Hidden } from "@material-ui/core";
 
 function EditMyInfo() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
   
   const password = useRef();
+  password.current = watch("password");
   const [userInfo, setUserInfo] = useState([]);
-
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("authenticatedUser");
   let history = useHistory();
 
   useEffect(() => {
@@ -24,8 +28,8 @@ function EditMyInfo() {
   }, []);
 
   const getUserInfo = async () => {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("authenticatedUser");
+    // const token = localStorage.getItem("token");
+    // const username = localStorage.getItem("authenticatedUser");
     await axios({
       method: "post",
       url: "http://192.168.0.76:8080/updateUserPage",
@@ -37,11 +41,12 @@ function EditMyInfo() {
       })
       .catch((error) => {
         console.log(`getUserInfo 에러 :  ${error.message}`);
+        window.location.href("/login");
       });
   };
 
   const onSubmit = (data) => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     console.log(data);
     axios({
       method: "post",
@@ -58,6 +63,7 @@ function EditMyInfo() {
     })
       .then((res) => {
         if(res.data === 1) {
+          console.log(res.data);
           window.alert("회원정보수정이 완료되었습니다.");
           history.push("/editmyinfo");
         }else{
@@ -67,6 +73,39 @@ function EditMyInfo() {
       .catch((error) => {
         window.alert("정보수정오류");
       });
+  };
+
+  const reloadPage = () => {
+      window.location.reload();
+  }
+
+  const deleteAccount = () => {
+    if(window.confirm("회원탈퇴를 하시면 회원님의 모든 정보, 거래내역이 모두 삭제되며 되돌릴 수 없습니다. 그래도 삭제하시겠습니까?")) {
+      
+      axios({
+        method: "post",
+        url: "http://192.168.0.76:8080/deleteUser",
+        headers: { Authorization: "Bearer " + token, user_id: username, },
+      })
+        .then((res) => {
+          if(res.data===1){
+            console.log(res.data);
+            const removeUser = localStorage.removeItem("authenticatedUser");
+            const removeToken = localStorage.removeItem("token");
+            console.log(removeUser + "아이디 제거");
+            console.log(removeToken + "토큰 제거");
+           
+            
+          }else{
+            alert("회원탈퇴 실패: 관리자에게 문의하세요.");
+          }
+        })
+        .catch((error) => {
+          console.log("서버통신에러: 다시 시도해주세요.");
+        });
+
+        reloadPage();
+    }
   };
 
   return (
@@ -84,7 +123,7 @@ function EditMyInfo() {
           type="text"
           {...register("username",{ required: true, })}
           value={userInfo.user_id}
-          disabled={true}
+          readOnly={true}
           name="username"
           id="username"
         />
@@ -114,7 +153,7 @@ function EditMyInfo() {
             required: true,
             pattern:
               /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/i,
-            validate: (value) => value !== password.current,
+            validate: (value) => value === password.current,
           })}
           placeholder="새 비밀번호 확인"
         />
@@ -138,7 +177,7 @@ function EditMyInfo() {
           type="text"
           {...register("name",{ required: true, })}
           value={userInfo.user_name}
-          disabled={true}
+          readOnly={true}
           name="name"
           id="name"
         />
@@ -150,8 +189,9 @@ function EditMyInfo() {
             pattern:
               /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
           })}
-          placeholder={userInfo.user_email}
+          placeholder="이메일"
           id="email"
+          defaultValue={userInfo.user_email}
         />
         {errors.email && errors.email.type === "required" && (
           <p>필수 입력 항목입니다.</p>
@@ -165,8 +205,8 @@ function EditMyInfo() {
           {...register("birth",{
             required: true,
           })} 
-          value={userInfo.user_birth} 
-          disabled={true} 
+          value={userInfo.user_birth}
+          readOnly={true}
           name="birth" 
           id="birth" />
 
@@ -176,9 +216,10 @@ function EditMyInfo() {
             required: true,
             pattern: /^01([0-9]{9})$/i,
           })}
-          placeholder={userInfo.user_phone}
+          placeholder="휴대폰 번호 (예: 01012345678)"
           id="phone"
           name="phone"
+          defaultValue={userInfo.user_phone}
         />
         {errors.phone && errors.phone.type === "required" && (
           <p>필수 입력 항목입니다.</p>
@@ -188,6 +229,7 @@ function EditMyInfo() {
         )}
 
         <input type="submit" value="회원정보수정" />
+        <span className="delete_account" onClick={deleteAccount}>회원탈퇴</span>
       </form>
     </div>
   );

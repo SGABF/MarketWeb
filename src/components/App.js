@@ -28,6 +28,7 @@ import PWInquiry from "pages/PWInquiry";
 import RegisteredOk from "pages/RegisteredOk";
 import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
+import DeleteOk from "pages/DeleteOk";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -35,7 +36,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header>
+        </Header>
         <Route exact path="/">
           <Home />
         </Route>
@@ -89,14 +91,16 @@ function App() {
         </Route>
 
         {/* 유저 관련 */}
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/agreement" component={Agreement} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/idinquiry" component={IDInquiry} />
-        <Route exact path="/pwinquiry" component={PWInquiry} />
-        <Route exact path="/regok" component={RegisteredOk} />
-        <Route exact path="/editmyinfo" component={EditMyinfo} />
-        <Route exact path="/checkpw" component={CheckPw} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/agreement" component={Agreement} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/idinquiry" component={IDInquiry} />
+        <Route path="/pwinquiry" component={PWInquiry} />
+        <Route path="/regok" component={RegisteredOk} />
+        <Route path="/editmyinfo" component={EditMyinfo} />
+        <Route path="/checkpw" component={CheckPw} />
+        <Route path="/deleteok" component={DeleteOk} />
+        {/* <Route path="/">Not Found</Route> */}
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />

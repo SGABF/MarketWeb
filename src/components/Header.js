@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
@@ -24,6 +24,7 @@ function Header() {
   loginCheck = loginService.isUserLoggedIn();
   const loggedInUser = loginService.getLoggedInUserName();
   let history = useHistory();
+
 
   // const callUserVO = (e) => {
   //   const token = localStorage.getItem("token");
@@ -52,6 +53,7 @@ function Header() {
     console.log(removeToken + "토큰 제거");
     window.alert('로그아웃이 성공적으로 완료되었습니다.');
     setloginCheck(false);
+    history.push("/login");
   };
 
   return (
@@ -132,9 +134,7 @@ function Header() {
               </Link>
               <MenuItem>나의 거래</MenuItem>
               <MenuItem>나의 문의</MenuItem>
-              {/* <Link to="/"> */}
-                <MenuItem onClick={logOut} >로그아웃</MenuItem>
-              {/* </Link> */}
+              <MenuItem onClick={logOut} >로그아웃</MenuItem>
             </Menu>
           )}
         </div>

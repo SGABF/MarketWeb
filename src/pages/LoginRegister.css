@@ -94,3 +94,10 @@ input[type="submit"]:active {
   padding-left: 11.5%;
   padding-right: 11.5%;
 }
+
+.delete_account {
+  margin-left: 85%;
+  font-size: small;
+  text-decoration: none;
+  color: #febd69;
+}
