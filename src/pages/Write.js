@@ -3,6 +3,9 @@ import { Editor } from "@tinymce/tinymce-react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { styled } from "@mui/material/styles";
 
 export default function Write() {
   const editorRef = useRef(null);
@@ -12,6 +15,10 @@ export default function Write() {
     }
   };
   let history = useHistory();
+
+  const Input = styled("input")({
+    display: "none",
+  });
 
   return (
     <>
@@ -49,6 +56,18 @@ export default function Write() {
           shrink: true,
         }}
       />
+      <label htmlFor="contained-button-file">
+        <Input
+          accept="image/*"
+          id="contained-button-file"
+          multiple
+          type="file"
+        />
+        <Button variant="contained" component="span">
+          Upload
+        </Button>
+      </label>
+
       <br />
       <br />
       <Button variant="outlined" onClick={log}>

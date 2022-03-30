@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
 import "./Subpage.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -12,6 +13,36 @@ import ModalUnstyled from "@mui/base/ModalUnstyled";
 import Moment from "react-moment";
 import Button from "@mui/material/Button";
 import Footer from "components/Footer";
+
+import InputAdornment from "@mui/material/InputAdornment";
+
+import TextField from "@mui/material/TextField";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import axios from "axios";
+
+// function comment() {
+//   const [comment, setComment] = useState([]);
+
+//   useEffect(() => {
+//     getComment();
+//   }, []);
+
+//   const getComment = async () => {
+//     const token = localStorage.getItem("token");
+//     await axios
+//       .post("http://192.168.0.76:8080/home/selectByIdxBoard", {
+//         headers: { Authorization: "Bearer " + token },
+//       })
+//       .then((res) => {
+//         // console.log("가져온값 : " + res.data.length);
+//         // console.log("가져온값 : " + JSON.stringify(res.data));
+//         setComment(res.data);
+//       })
+//       .catch((error) => {
+//         console.log(`getHome 에러 :  ${error.message}`);
+//       });
+//   };
+// }
 
 function ChildModal() {
   const style = {
@@ -60,7 +91,36 @@ function ChildModal() {
 }
 
 function Subpage(props) {
+  let history = useHistory();
+
+  const getHome = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post("http://192.168.0.76:8080/home/main", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        // console.log("가져온값 : " + res.data.length);
+        // console.log("가져온값 : " + JSON.stringify(res.data));
+        setHome(res.data);
+      })
+      .catch((error) => {
+        console.log(`getHome 에러 :  ${error.message}`);
+      });
+  };
+  const [banner, setBanner] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [home, setHome] = useState([]);
+
+  useEffect(() => {
+    getBannerAPI();
+  }, []);
+
+  const getBannerAPI = () => {
+    axios.get("http://192.168.0.124:8080/main/selectByIdx").then((res) => {
+      setBanner(res.data);
+    });
+  };
 
   const togglePopup = (event) => {
     setShowPopup(event.target.value);
@@ -92,7 +152,33 @@ function Subpage(props) {
     <>
       <div className="Subpage">
         <div className="Subpage-container">
-          <img src="../image/yes2.jpg" alt="" className="img1" />
+          <Carousel variant="dark">
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../image/yes2.jpg"
+                alt="First slide"
+              />
+
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../image/yes5.jpg"
+                alt="Second slide"
+              />
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../image/yes6.jpg"
+                alt="Third slide"
+              />
+              <Carousel.Caption></Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
 
           <div className="title">
             <CheckBoxIcon /> 직거래 물품
@@ -104,11 +190,7 @@ function Subpage(props) {
               speaker with Alexa | Charcoal
             </h1>
             <p>
-              상품 상한가 : ₩50000
-              <br />
-              상품 현재가 : ₩10000
-              <br />
-              상품 최소가격 : ₩10000
+              상품 가격 : ₩50000
               <br />
               입찰 잔여시간 :{" "}
               <Moment
@@ -179,7 +261,40 @@ function Subpage(props) {
               </div>
             ) : null}
             <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <TextField
+              id="input-with-icon-textfield"
+              label="comment"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+            />
+            <Button>댓글 남기기</Button>
+            <br />
+            <br />
+            comment : 예를들어 댓글남기기
+            <Button>수정</Button>
+            <Button>삭제</Button>
+            <br />
+            comment : 예를들어 댓글남기기
+            <Button>수정</Button>
+            <Button>삭제</Button>
+            <br />
+            comment : 예를들어 댓글남기기
+            <Button>수정</Button>
+            <Button>삭제</Button>
+            <br />
           </div>
+          <comment />
         </div>
       </div>
       <br /> <br /> <br /> <br /> <br />

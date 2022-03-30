@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Auction.css";
 import Product from "components/Product";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
@@ -10,8 +10,44 @@ import Navbar from "../components/Navbar";
 import { Route, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
+import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
+
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
 function Auction() {
+  const [home, setHome] = useState([]);
+  const [banner, setBanner] = useState([]);
+
+  useEffect(() => {
+    getBannerAPI();
+    getHome();
+  }, []);
+
+  const getBannerAPI = () => {
+    axios
+      .get("http://192.168.0.124:8080/MainView/getCanUseList")
+      .then((res) => {
+        setBanner(res.data);
+      });
+  };
+
+  const getHome = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post("http://192.168.0.76:8080/home/auctionBoard", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        // console.log("가져온값 : " + res.data.length);
+        // console.log("가져온값 : " + JSON.stringify(res.data));
+        setHome(res.data);
+      })
+      .catch((error) => {
+        console.log(`getHome 에러 :  ${error.message}`);
+      });
+  };
+
   return (
     <div className="home">
       <div className="home-container">
@@ -23,7 +59,6 @@ function Auction() {
                 src="image/logo1.jpg"
                 alt="First slide"
               />
-
 
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
@@ -43,6 +78,23 @@ function Auction() {
               />
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
+            {banner.map((item) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={
+                      "http://192.168.0.124:8080/imagePath/" +
+                      item.banner_saveName
+                    }
+                    alt="Third slide"
+                    width="1000px"
+                    height="250px"
+                  />
+                  <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
           </Carousel>
         </div>
         <div className="menubar">
@@ -75,66 +127,46 @@ function Auction() {
           </div>
         </div>
         <div className="home_row">
-          <Product
-            id="1"
-            title='"Alexa, play music."'
-            price={11000}
-            image="image/min1.jpg"
-            code={"X616D4D1"}
-            location="../subpage"
-          />
+          {home &&
+            home.map((item) => {
+              return (
+                <div className="home">
+                  <div className="home-container">
+                    <div className="home_row">
+                      <div className="product">
+                        <div className="product_info">
+                          {item.board_name} <br />
+                          <p className="product_price">
+                            가격 : {item.board_price}원 <br />
+                          </p>
+                          <div>
+                            <button className="bastket">
+                              <ShoppingBasket />
+                            </button>
 
-          <Product
-            id="2"
-            title="AmazonBasics"
-            price={11000}
-            image="image/min2.jpg"
-            code={"X616D4D2"}
-            location="../Subpagetwo"
-          />
+                            {/* <img
+                            src={
+                              "http://192.168.0.76:8080/imagePath/" +
+                              item.boardImageList[0].boardImage_saveName
+                            }
+                            alt="Third slide"
+                            width="1000px"
+                            height="250px"
+                          /> */}
 
-          <Product
-            id="3"
-            title="TV & Furniture"
-            price={1100000}
-            image="image/min3.jpg"
-            code={"X616D4D3"}
-            location="../subpagethree"
-          />
-        </div>
-        <div className="home_row">
-          <Product
-            id="5"
-            title='"turn on the lights."'
-            price={11000}
-            image="image/min5.jpg"
-            code={"X616D4D6"}
-            location="../subpagefive"
-          />
-          <Product
-            id="6"
-            title="Easy returns"
-            price={11000}
-            image="image/min6.jpg"
-            code={"X616D4D7"}
-            location="../subpagesix"
-          />
-          <Product
-            id="7"
-            title="Shop smartwatches"
-            price={200000}
-            image="image/min7.jpg"
-            code={"X616D4D8"}
-            location="../subpageseven"
-          />
-          <Product
-            id="8"
-            title="Shop Pet supplies"
-            price={10000}
-            image="image/min8.jpg"
-            code={"X616D4D9"}
-            location="../subpagesix"
-          />
+                            <Link to="subpage/Subpage" alt="">
+                              <button className="icon_buttons">
+                                <ZoomInIcon />
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
         <div>
           <Footer />

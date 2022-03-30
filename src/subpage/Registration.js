@@ -23,7 +23,6 @@ const Input = styled("input")({
   display: "none",
 });
 
-
 function ChildModal() {
   const style = {
     position: "absolute",

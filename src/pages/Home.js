@@ -12,6 +12,10 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 import { Token } from "@mui/icons-material";
+import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
+import { useStateValue } from "components/StateProvider";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import { getImageListItemBarUtilityClass } from "@mui/material";
 
 function Home() {
   const [banner, setBanner] = useState([]);
@@ -24,20 +28,22 @@ function Home() {
   }, []);
 
   const getBannerAPI = () => {
-    axios.get("http://192.168.0.124:8080/MainView/getList").then((res) => {
-      setBanner(res.data);
-    });
+    axios
+      .get("http://192.168.0.124:8080/MainView/getCanUseList")
+      .then((res) => {
+        setBanner(res.data);
+      });
   };
 
   const getHome = async () => {
     const token = localStorage.getItem("token");
-    const { data: response } = await axios
+    await axios
       .post("http://192.168.0.76:8080/home/main", {
         headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
-        console.log("가져온값 : " + res.data.length);
-        console.log("가져온값 : " + JSON.stringify(res.data));
+        // console.log("가져온값 : " + res.data.length);
+        // console.log("가져온값 : " + JSON.stringify(res.data));
         setHome(res.data);
       })
       .catch((error) => {
@@ -55,78 +61,77 @@ function Home() {
       .then((res) => console.log(res));
   };
 
-  const products = [
-    [
-      {
-        id: "1",
-        title: '"Alexa, play music."',
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-      {
-        id: "2",
-        title: "AmazonBasics",
-        price: 11000,
-        image: "image/min2.jpg",
-        code: "X616D4D2",
-        location: "../subpage",
-      },
-    ],
-    [
-      {
-        id: "3",
-        title: "Alexa, play music.",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-      {
-        id: "4",
-        title: "Alexa, play music.",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-    ],
-    [
-      {
-        id: "5",
-        title: "Alexa, play music...",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-      {
-        id: "5",
-        title: "Alexa, play music.",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-      {
-        id: "5",
-        title: "Alexa, play music.",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-      {
-        id: "6",
-        title: "Alexa, play music.",
-        price: 11000,
-        image: "image/min1.jpg",
-        code: "X616D4D1",
-        location: "../subpage",
-      },
-    ],
-  ];
+  // const products = [
+  //   [
+  //     {
+  //       id: "1",
+  //       title: '"Alexa, play music."',
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //     {
+  //       id: "2",
+  //       title: "AmazonBasics",
+  //       price: 11000,
+  //       image: "image/min2.jpg",
+  //       code: "X616D4D2",
+  //       location: "../subpage",
+  //     },
+
+  //     {
+  //       id: "3",
+  //       title: "Alexa, play music.",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //     {
+  //       id: "4",
+  //       title: "Alexa, play music.",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //   ],
+  //   [
+  //     {
+  //       id: "5",
+  //       title: "Alexa, play music...",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //     {
+  //       id: "5",
+  //       title: "Alexa, play music.",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //     {
+  //       id: "5",
+  //       title: "Alexa, play music.",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //     {
+  //       id: "6",
+  //       title: "Alexa, play music.",
+  //       price: 11000,
+  //       image: "image/min1.jpg",
+  //       code: "X616D4D1",
+  //       location: "../subpage",
+  //     },
+  //   ],
+  // ];
   return (
     <div className="home">
       <div className="home-container">
@@ -206,7 +211,7 @@ function Home() {
             </Link>
           </div>
         </div>
-        {products.map((item) => {
+        {/* {products.map((item) => {
           return item.map((item2) => {
             return (
               <div className="home_row">
@@ -216,16 +221,57 @@ function Home() {
               </div>
             );
           });
-        })}
-        {home.map((item) => {
-          return (
-            <div className="home_row">
-              {item.board_name} {item.board_content} {item.board_price}( )
-            </div>
-          );
-        })}
-        <div className="home_row">
-          <Product
+        })} */}
+
+        {home &&
+          home.map((item) => {
+            return (
+              <div className="home">
+                <div className="home-container">
+                  <div className="home_row">
+                    <div className="product">
+                      <img
+                        className="image_max"
+                        src={
+                          "http://192.168.0.76:8080/imagePath/" +
+                          item.board_profile
+                        }
+                        alt=""
+                        width="1000px"
+                        height="250px"
+                      />
+                      <div className="product_info">{item.board_name}</div>
+                      <p className="product_price">
+                        가격 : {item.board_price}원
+                      </p>
+                      <div>
+                        <button className="bastket">
+                          <ShoppingBasket />
+                        </button>
+                        {/* <img
+                            src={
+                              "http://192.168.0.76:8080/imagePath/" +
+                              item.boardImageList[0].boardImage_saveName
+                            }
+                            alt="Third slide"
+                            width="1000px"
+                            height="250px"
+                          /> */}
+
+                        <Link to="subpage/Subpage" alt="">
+                          <button className="icon_buttons">
+                            <ZoomInIcon />
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        {/* <div className="home_row"> */}
+        {/* <Product
             id="1"
             title='"Alexa, play music."'
             price={11000}
@@ -293,7 +339,7 @@ function Home() {
             code={"X616D4D9"}
             location="../subpagesix"
           />
-        </div>
+        </div> */}
         <div>
           <Footer />
         </div>

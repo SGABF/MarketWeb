@@ -39,17 +39,15 @@ const columns = [
   },
 ];
 
-function createData(name, Subname, Content, RegDate) {
-  return { name, Subname, Content, RegDate };
+function createData(name, Subname, Content, RegDate, location) {
+  return { name, Subname, Content, RegDate, location };
 }
 
 const rows = [
   createData(
     "운영자",
     "15일 배송건에 대해서 공지사항 드립니다.",
-
     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
     "2022-03-15"
   ),
   createData(

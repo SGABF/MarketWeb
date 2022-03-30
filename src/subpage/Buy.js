@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Buy.css";
 import Product from "components/Product";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
@@ -10,8 +10,44 @@ import Navbar from "../components/Navbar";
 import { Route, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
+import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
+
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
 function Buy() {
+  const [banner, setBanner] = useState([]);
+  const [home, setHome] = useState([]);
+
+  useEffect(() => {
+    getBannerAPI();
+    getHome();
+  }, []);
+
+  const getBannerAPI = () => {
+    axios
+      .get("http://192.168.0.124:8080/MainView/getCanUseList")
+      .then((res) => {
+        setBanner(res.data);
+      });
+  };
+
+  const getHome = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post("http://192.168.0.76:8080/home/buyBoard", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        // console.log("가져온값 : " + res.data.length);
+        // console.log("가져온값 : " + JSON.stringify(res.data));
+        setHome(res.data);
+      })
+      .catch((error) => {
+        console.log(`getHome 에러 :  ${error.message}`);
+      });
+  };
+
   return (
     <div className="home">
       <div className="home-container">
@@ -23,7 +59,6 @@ function Buy() {
                 src="image/logo1.jpg"
                 alt="First slide"
               />
-
 
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
@@ -43,6 +78,23 @@ function Buy() {
               />
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
+            {banner.map((item) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={
+                      "http://192.168.0.124:8080/imagePath/" +
+                      item.banner_saveName
+                    }
+                    alt="Third slide"
+                    width="1000px"
+                    height="250px"
+                  />
+                  <Carousel.Caption></Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
           </Carousel>
         </div>
         <div className="menubar">
@@ -75,7 +127,48 @@ function Buy() {
           </div>
         </div>
         <div className="home_row">
-          <Product
+          {home &&
+            home.map((item) => {
+              return (
+                <div className="home">
+                  <div className="home-container">
+                    <div className="home_row">
+                      <div className="product">
+                        <div className="product_info">
+                          {item.board_name} <br />
+                          <p className="product_price">
+                            가격 : {item.board_price}원 <br />
+                          </p>
+                          <div>
+                            <button className="bastket">
+                              <ShoppingBasket />
+                            </button>
+
+                            {/* <img
+                            src={
+                              "http://192.168.0.76:8080/imagePath/" +
+                              item.boardImageList[0].boardImage_saveName
+                            }
+                            alt="Third slide"
+                            width="1000px"
+                            height="250px"
+                          /> */}
+
+                            <Link to="subpage/Subpage" alt="">
+                              <button className="icon_buttons">
+                                <ZoomInIcon />
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+          {/* <Product
             id="3"
             title="TV & Furniture"
             price={1100000}
@@ -90,7 +183,7 @@ function Buy() {
             image="image/min4.jpg"
             code={"X616D4D4"}
             location="../subpagefour"
-          />
+          /> */}
         </div>
 
         <div></div>
