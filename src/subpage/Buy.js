@@ -31,7 +31,7 @@ function Buy() {
         setBanner(res.data);
       });
   };
-
+  console.log(힝);
   const getHome = async () => {
     const token = localStorage.getItem("token");
     await axios

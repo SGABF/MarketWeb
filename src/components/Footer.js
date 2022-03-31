@@ -24,8 +24,6 @@ function Footer() {
           <div class="footer-link-items">
             <Link to="/">회사 소개</Link>
           </div>
-
-
         </div>
         <div className="footer-link-wrapper">
           <div class="footer-link-items">
