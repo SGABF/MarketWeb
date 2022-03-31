@@ -95,7 +95,6 @@ function App() {
           <Subpage />
         </Route>
 
-<<<<<<< HEAD
         <Route path="/subpagetwo">
           <Subpagetwo />
         </Route>
@@ -103,8 +102,6 @@ function App() {
           <NoticeDetail />
         </Route>
 
-=======
->>>>>>> 76fa5d3cb826dcb8c786e0b2a44f05d013f5b0af
         {/* 유저 관련 */}
         <Route path="/login" component={LoginPage} />
         <Route path="/agreement" component={Agreement} />
