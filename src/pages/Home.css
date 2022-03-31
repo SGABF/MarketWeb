@@ -5,6 +5,7 @@
   margin-right: auto;
   max-width: 1500px;
   background-color: rgb(243, 243, 239);
+  float: left;
 }
 
 /*
@@ -20,7 +21,7 @@
     rgba(0, 0, 0, 0) 60%
   );
 }
-*/
+ */
 
 .home_row {
   display: flex;
@@ -34,14 +35,12 @@
   color: white;
 }
 
-/*
-.mb-2 {
+/* .mb-2 {
   width: 1300px;
   height: 100px;
   align-items: center;
-  margin:auto;
+  margin: auto;
   display: block;
-
 }
 
 .MainPage {
@@ -49,8 +48,7 @@
   height: 300px;
   margin-left: 5px;
   margin-right: 5px;
-}
-*/
+} */
 
 .home_buttons {
   align-items: center;

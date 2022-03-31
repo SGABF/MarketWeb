@@ -19,7 +19,10 @@ import { Link } from "react-router-dom";
 
 import "./Notice.css";
 
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Redirect,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ColumnGroupingTable() {
   const [notice, setNotice] = useState([]);
