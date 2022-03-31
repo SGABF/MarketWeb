@@ -42,7 +42,7 @@ const columns = [
 function createData(name, Subname, Content, RegDate, location) {
   return { name, Subname, Content, RegDate, location };
 }
-console.log(힝);
+
 const rows = [
   createData(
     "운영자",

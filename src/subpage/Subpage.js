@@ -23,7 +23,7 @@ import { Item } from "semantic-ui-react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function comment() {}
-console.log(힝);
+
 function ChildModal() {
   const style = {
     position: "absolute",

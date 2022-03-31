@@ -25,7 +25,7 @@ import RegisteredOk from "pages/RegisteredOk";
 
 function App() {
   const [{}, dispatch] = useStateValue();
-  console.log(힝);
+
   return (
     <Router>
       <div className="App">

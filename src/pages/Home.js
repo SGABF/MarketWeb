@@ -16,7 +16,7 @@ import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "components/StateProvider";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import { getImageListItemBarUtilityClass } from "@mui/material";
-console.log(힝);
+
 function Home() {
   const [banner, setBanner] = useState([]);
   const [home, setHome] = useState([]);

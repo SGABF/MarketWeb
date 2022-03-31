@@ -15,7 +15,7 @@ function CheckoutProduct({ id, image, title, price, code }) {
       code: code,
     });
   };
-  console.log(힝);
+
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct_image" src={image} alt="" />
