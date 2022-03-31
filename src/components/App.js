@@ -13,7 +13,7 @@ import Table from "../pages/Tables";
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
 import Subpage from "subpage/Subpage";
-import Subpagetwo from "subpage/Subpagetwo";
+
 import Buy from "subpage/Buy";
 import Sale from "subpage/Sale";
 import Auction from "subpage/Auction";
@@ -26,15 +26,20 @@ import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
 
+import LoginPage from "pages/LoginPage";
+import Agreement from "pages/Agreement";
+import RegisterPage from "pages/RegisterPage";
+import IDInquiry from "pages/IDInquiry";
+import PWInquiry from "pages/PWInquiry";
+
 function App() {
   const [{}, dispatch] = useStateValue();
-  const isLoggedIn = localStorage.getItem('token');
+  const isLoggedIn = localStorage.getItem("token");
 
   return (
     <Router>
       <div className="App">
-        <Header>
-        </Header>
+        <Header></Header>
         <Route exact path="/">
           <Home />
         </Route>
@@ -83,10 +88,6 @@ function App() {
           <Subpage />
         </Route>
 
-        <Route path="/subpagetwo">
-          <Subpagetwo />
-        </Route>
-
         {/* 유저 관련 */}
         <Route path="/login" component={LoginPage} />
         <Route path="/agreement" component={Agreement} />
@@ -94,8 +95,11 @@ function App() {
         <Route path="/idinquiry" component={IDInquiry} />
         <Route path="/pwinquiry" component={PWInquiry} />
         <Route path="/regok" component={RegisteredOk} />
-        <Route path="/editmyinfo" component={isLoggedIn ? EditMyinfo : LoginPage } />
-        <Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage } />
+        <Route
+          path="/editmyinfo"
+          component={isLoggedIn ? EditMyinfo : LoginPage}
+        />
+        <Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
         <Route path="/deleteok" component={DeleteOk} />
         {/* <Route path="/">Not Found</Route> */}
 

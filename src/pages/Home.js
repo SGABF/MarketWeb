@@ -241,7 +241,6 @@ function Home() {
             );
           });
         })} */}
-
         {home &&
           home.map((item) => {
             return (
@@ -364,7 +363,11 @@ function Home() {
             location="../subpagesix"
           />
         </div> */}
-        <div>
+        <div
+          style={{
+            clear: "both",
+          }}
+        >
           <Footer />
         </div>
       </div>
