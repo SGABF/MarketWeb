@@ -22,7 +22,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Input = styled("input")({
   display: "none",
 });
-
+console.log(힝);
 function ChildModal() {
   const style = {
     position: "absolute",

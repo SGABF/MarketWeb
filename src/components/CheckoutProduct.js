@@ -15,7 +15,7 @@ function CheckoutProduct({ id, image, title, price, code }) {
       code: code,
     });
   };
-
+  console.log(힝);
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct_image" src={image} alt="" />
@@ -27,8 +27,6 @@ function CheckoutProduct({ id, image, title, price, code }) {
           <strong>{price}</strong>
           <small>원</small>
         </p>
-
-
 
         <button onClick={remoceFromBasket}>장바구니에서 제거하기</button>
       </div>
