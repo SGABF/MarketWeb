@@ -27,6 +27,7 @@
     "react-bootstrap": "^2.2.1",
     "react-currency-format": "^1.1.0",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.28.1",
     "react-icons": "^4.3.1",
     "react-moment": "^1.1.1",
     "react-native-sound": "^0.11.2",
@@ -52,7 +53,14 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {
+      "import/no-webpack-loader-syntax": "off",
+      "no-mixed-spaces-and-tabs": 0
+    }
   },
   "browserslist": {
     "production": [
@@ -67,6 +75,7 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "raw-loader": "^4.0.2"
   }
 }

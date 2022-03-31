@@ -20,11 +20,13 @@ import { getImageListItemBarUtilityClass } from "@mui/material";
 function Home() {
   const [banner, setBanner] = useState([]);
   const [home, setHome] = useState([]);
+  const [house, setHouse] = useState([]);
 
   useEffect(() => {
     getBannerAPI();
     getTest();
     getHome();
+    getHouse();
   }, []);
 
   const getBannerAPI = () => {
@@ -45,6 +47,22 @@ function Home() {
         // console.log("가져온값 : " + res.data.length);
         // console.log("가져온값 : " + JSON.stringify(res.data));
         setHome(res.data);
+      })
+      .catch((error) => {
+        console.log(`getHome 에러 :  ${error.message}`);
+      });
+  };
+
+  const getHouse = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post("http://192.168.0.76:8080/home/boardList", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((res) => {
+        // console.log("가져온값 : " + res.data.length);
+        console.log("가져온값 : " + JSON.stringify(res.data));
+        setHouse(res.data);
       })
       .catch((error) => {
         console.log(`getHome 에러 :  ${error.message}`);
@@ -162,6 +180,7 @@ function Home() {
               />
               <Carousel.Caption></Carousel.Caption>
             </Carousel.Item>
+
             {banner.map((item) => {
               return (
                 <Carousel.Item>
@@ -258,7 +277,12 @@ function Home() {
                             height="250px"
                           /> */}
 
-                        <Link to="subpage/Subpage" alt="">
+                        <Link
+                          to={{
+                            pathname: "subpage/Subpage",
+                            state: item.board_idx,
+                          }}
+                        >
                           <button className="icon_buttons">
                             <ZoomInIcon />
                           </button>

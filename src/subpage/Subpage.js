@@ -19,30 +19,10 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import axios from "axios";
+import { Item } from "semantic-ui-react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-// function comment() {
-//   const [comment, setComment] = useState([]);
-
-//   useEffect(() => {
-//     getComment();
-//   }, []);
-
-//   const getComment = async () => {
-//     const token = localStorage.getItem("token");
-//     await axios
-//       .post("http://192.168.0.76:8080/home/selectByIdxBoard", {
-//         headers: { Authorization: "Bearer " + token },
-//       })
-//       .then((res) => {
-//         // console.log("가져온값 : " + res.data.length);
-//         // console.log("가져온값 : " + JSON.stringify(res.data));
-//         setComment(res.data);
-//       })
-//       .catch((error) => {
-//         console.log(`getHome 에러 :  ${error.message}`);
-//       });
-//   };
-// }
+function comment() {}
 
 function ChildModal() {
   const style = {
@@ -91,35 +71,36 @@ function ChildModal() {
 }
 
 function Subpage(props) {
-  let history = useHistory();
-
-  const getHome = async () => {
-    const token = localStorage.getItem("token");
-    await axios
-      .post("http://192.168.0.76:8080/home/main", {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((res) => {
-        // console.log("가져온값 : " + res.data.length);
-        // console.log("가져온값 : " + JSON.stringify(res.data));
-        setHome(res.data);
-      })
-      .catch((error) => {
-        console.log(`getHome 에러 :  ${error.message}`);
-      });
-  };
-  const [banner, setBanner] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [home, setHome] = useState([]);
+  const [comment, setComment] = useState([]);
+  const location = useLocation();
+  const id_data = location.state;
 
   useEffect(() => {
-    getBannerAPI();
+    console.log(id_data);
+    getComment(id_data);
   }, []);
 
-  const getBannerAPI = () => {
-    axios.get("http://192.168.0.124:8080/main/selectByIdx").then((res) => {
-      setBanner(res.data);
-    });
+  const getComment = async (idx) => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://192.168.0.76:8080/home/selectByIdxBoard",
+        {
+          headers: { Authorization: "Bearer " + token },
+        },
+        {
+          params: { board_idx: idx },
+        }
+      )
+      .then((res) => {
+        console.log("가져온값 : " + res.data.length);
+        console.log("가져온값 : " + JSON.stringify(res.data));
+        setComment(res.data);
+      })
+      .catch((error) => {
+        console.log(`getComment 에러 :  ${error.message}`);
+      });
   };
 
   const togglePopup = (event) => {
@@ -148,55 +129,41 @@ function Subpage(props) {
     setOpen(false);
   };
 
+  // getComment();
+
+  const imageList =
+    comment.boardImageList &&
+    comment.boardImageList.map((item) => (
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={"http://192.168.0.76:8080/imagePath/" + item.boardImage_saveName}
+          alt="First slide"
+        />
+        <Carousel.Caption></Carousel.Caption>
+      </Carousel.Item>
+    ));
   return (
     <>
       <div className="Subpage">
         <div className="Subpage-container">
-          <Carousel variant="dark">
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="../image/yes2.jpg"
-                alt="First slide"
-              />
-
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="../image/yes5.jpg"
-                alt="Second slide"
-              />
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="../image/yes6.jpg"
-                alt="Third slide"
-              />
-              <Carousel.Caption></Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
+          <Carousel variant="dark">{imageList}</Carousel>
 
           <div className="title">
             <CheckBoxIcon /> 직거래 물품
             <CheckBoxOutlineBlankIcon /> 택배 물품
             <br />
             <br />
-            <h1>
-              All-new Echo Dot (4th generation) International Version | Smart
-              speaker with Alexa | Charcoal
-            </h1>
+            <h1>{comment.board_name}</h1>
             <p>
-              상품 가격 : ₩50000
+              상품 가격 : ₩ {comment.board_price}원
               <br />
-              입찰 잔여시간 :{" "}
-              <Moment
+              입찰 잔여시간 :
+              {/* <Moment
                 duration="2022-03-10T10:59-0500"
                 date="2022-03-15T12:59-0500"
-              />
+              /> */}
+              {comment.board_regDate}
             </p>
             {/*<Button variant="contained" endIcon={<SendIcon/>}>*/}
             {/*    입찰하기*/}
@@ -211,12 +178,9 @@ function Subpage(props) {
               <Box sx={{ ...style, width: 400 }}>
                 <h2 id="parent-modal-title">입찰하기</h2>
                 <p id="parent-modal-description">
-                  상품 이름 : All-new Echo Dot (4th generation) International
-                  Version | Smart speaker with Alexa | Charcoal
+                  상품 이름 : {comment.board_name}
                   <br />
-                  상품 상한가 : ₩50000
-                  <br />
-                  상품 현재가 : ₩10000
+                  상품 가격 : ₩ {comment.board_price}원
                   <br />
                   희망 가격 : <input type="text" />
                 </p>
@@ -229,30 +193,10 @@ function Subpage(props) {
             {showPopup ? (
               <div className="popup">
                 <div className="popup_inner">
-                  <h2>상품설명</h2>
-                  Meet Echo Dot — Echo Dot (4th generation) connects to Alexa, a
-                  cloud-based voice service, to play music, set timers and
-                  alarms, control compatible smart home devices, and more.
-                  Recommended language — English United States or Español
-                  Estados Unidos is the recommended language to access Skills,
-                  Features and an optimal music experience. Voice control your
-                  entertainment — stream songs from Amazon Music Unlimited
-                  (unavailable in ID and KR) , Spotify (Free Tier not available
-                  in KR) and TuneIn. Pair with another Echo Dot (4th gen) for
-                  stereo sound or stream music from other popular audio services
-                  via Bluetooth with your smartphone or tablet (requires a
-                  Bluetooth connection from a compatible device, voice control
-                  not supported). Ready to help — ask Alexa to play music,
-                  answer questions, play the news, check the weather, set alarms
-                  and more. Control your smart home — use your voice to turn on
-                  lights and plugs with compatible devices. Designed to protect
-                  your privacy — built with multiple layers of privacy
-                  protection and control, including a Microphone Off button that
-                  disables the microphones. Listen to the news- Ask "Alexa,
-                  what’s in the news" and she will provide access to local and
-                  international news. Feature availability – some Alexa features
-                  may not be supported in your country including Alexa Guard,
-                  Amazon Kids, and In-skill Purchases.
+                  <h2>
+                    {comment.board_content} <br />
+                  </h2>
+
                   <br />
                   <button className="close" onClick={togglePopup}>
                     닫기

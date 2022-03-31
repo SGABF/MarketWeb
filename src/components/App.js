@@ -21,6 +21,8 @@ import Registration from "subpage/Registration";
 import Posttwo from "pages/Posttwo";
 import Post from "pages/Post";
 
+import RegisteredOk from "pages/RegisteredOk";
+
 function App() {
   const [{}, dispatch] = useStateValue();
 
@@ -28,10 +30,6 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-
-        <Route path="/login">
-          <Login />
-        </Route>
         <Route exact path="/">
           <Home />
         </Route>
@@ -83,6 +81,8 @@ function App() {
         <Route path="/subpagetwo">
           <Subpagetwo />
         </Route>
+
+        {/* 유저 관련 */}
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />
