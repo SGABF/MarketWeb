@@ -32,6 +32,7 @@ import DeleteOk from "pages/DeleteOk";
 
 function App() {
   const [{}, dispatch] = useStateValue();
+  const isLoggedIn = localStorage.getItem('token');
 
   return (
     <Router>
@@ -97,8 +98,8 @@ function App() {
         <Route path="/idinquiry" component={IDInquiry} />
         <Route path="/pwinquiry" component={PWInquiry} />
         <Route path="/regok" component={RegisteredOk} />
-        <Route path="/editmyinfo" component={EditMyinfo} />
-        <Route path="/checkpw" component={CheckPw} />
+        <Route path="/editmyinfo" component={isLoggedIn ? EditMyinfo : LoginPage } />
+        <Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage } />
         <Route path="/deleteok" component={DeleteOk} />
         {/* <Route path="/">Not Found</Route> */}
 

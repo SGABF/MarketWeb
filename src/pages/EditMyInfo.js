@@ -93,8 +93,7 @@ function EditMyInfo() {
             const removeUser = localStorage.removeItem("authenticatedUser");
             const removeToken = localStorage.removeItem("token");
             console.log(removeUser + "아이디 제거");
-            console.log(removeToken + "토큰 제거");
-           
+            console.log(removeToken + "토큰 제거");          
             
           }else{
             alert("회원탈퇴 실패: 관리자에게 문의하세요.");
