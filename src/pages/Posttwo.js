@@ -4,6 +4,8 @@ import "./Post.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import { useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Footer from "components/Footer";
 
@@ -50,7 +52,6 @@ function Post(props) {
           </Button>
           <br />
           <br />
-
           <Button href="Write">수정</Button>
           <Button href="Notice">목록</Button>
         </div>

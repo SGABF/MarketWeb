@@ -1,9 +1,8 @@
 .Post_container {
 }
 
-.blue_button {
-  float: left;
-  margin: 5px;
+.notice_detail {
+  margin: 20%;
 }
 
 .white_button {
@@ -15,4 +14,3 @@
   float: right;
   margin: 5px;
 }
-

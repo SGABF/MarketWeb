@@ -22,9 +22,16 @@ import Posttwo from "pages/Posttwo";
 import Post from "pages/Post";
 
 import RegisteredOk from "pages/RegisteredOk";
+import LoginPage from "pages/LoginPage";
+import Agreement from "pages/Agreement";
+import RegisterPage from "pages/RegisterPage";
+import IDInquiry from "pages/IDInquiry";
+import PWInquiry from "pages/PWInquiry";
 import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
+import NoticeDetail from "pages/NoticeDetail";
+
 
 import LoginPage from "pages/LoginPage";
 import Agreement from "pages/Agreement";
@@ -86,6 +93,13 @@ function App() {
 
         <Route path="/subpage">
           <Subpage />
+        </Route>
+
+        <Route path="/subpagetwo">
+          <Subpagetwo />
+        </Route>
+        <Route path="/noticedetail">
+          <NoticeDetail />
         </Route>
 
         {/* 유저 관련 */}
