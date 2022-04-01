@@ -32,13 +32,6 @@ import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
 import NoticeDetail from "pages/NoticeDetail";
 
-
-import LoginPage from "pages/LoginPage";
-import Agreement from "pages/Agreement";
-import RegisterPage from "pages/RegisterPage";
-import IDInquiry from "pages/IDInquiry";
-import PWInquiry from "pages/PWInquiry";
-
 function App() {
   const [{}, dispatch] = useStateValue();
   const isLoggedIn = localStorage.getItem("token");
@@ -95,9 +88,6 @@ function App() {
           <Subpage />
         </Route>
 
-        <Route path="/subpagetwo">
-          <Subpagetwo />
-        </Route>
         <Route path="/noticedetail">
           <NoticeDetail />
         </Route>
@@ -108,7 +98,7 @@ function App() {
         <Route path="/register" component={RegisterPage} />
         <Route path="/idinquiry" component={IDInquiry} />
         <Route path="/pwinquiry" component={PWInquiry} />
-        <Route path="/regok" component={RegisteredOk} />
+        <Route path="/RegisteredOk" component={RegisteredOk} />
         <Route
           path="/editmyinfo"
           component={isLoggedIn ? EditMyinfo : LoginPage}

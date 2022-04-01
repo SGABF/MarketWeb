@@ -59,7 +59,7 @@ export default function ColumnGroupingTable() {
 
   const getNotice = async () => {
     await axios
-      .get("http://192.168.0.119:8080/MainView/noticeList")
+      .get("http://192.168.0.150:8080/MainView/noticeList")
       .then((res) => {
         console.log("가져온값 : " + res.data.length);
         console.log("가져온값 : " + JSON.stringify(res.data));
@@ -144,6 +144,7 @@ export default function ColumnGroupingTable() {
       <Button variant="outlined" href="Write">
         글쓰기
       </Button>
+      <Footer />
     </div>
   );
 }

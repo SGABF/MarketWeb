@@ -24,15 +24,18 @@ function Footer() {
           <div class="footer-link-items">
             <Link to="/">회사 소개</Link>
           </div>
-
-
         </div>
         <div className="footer-link-wrapper">
           <div class="footer-link-items">
-            <Link to="/">이용약관</Link>
+            <Link to="/Agreement">이용약관</Link>
           </div>
           <div class="footer-link-items">
-            <Link to="https://github.com/SGABF/SGAFirstProject/">githube</Link>
+            <Link
+              to={{ pathname: "https://github.com/SGABF/MarketWeb" }}
+              target="_blank"
+            >
+              github
+            </Link>
           </div>
         </div>
       </div>

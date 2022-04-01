@@ -26,7 +26,7 @@ function Sale() {
 
   const getBannerAPI = () => {
     axios
-      .get("http://192.168.0.124:8080/MainView/getCanUseList")
+      .get("http://192.168.0.150:8080/MainView/getCanUseList")
       .then((res) => {
         setBanner(res.data);
       });
@@ -84,7 +84,7 @@ function Sale() {
                   <img
                     className="d-block w-100"
                     src={
-                      "http://192.168.0.124:8080/imagePath/" +
+                      "http://192.168.0.150:8080/imagePath/" +
                       item.banner_saveName
                     }
                     alt="Third slide"
@@ -126,49 +126,37 @@ function Sale() {
             </Link>
           </div>
         </div>
-        <div className="home_row">
+        <div>
           {home &&
-            home.map((item) => {
+            home.map((item, index) => {
               return (
-                <div className="home">
-                  <div className="home-container">
-                    <div className="home_row">
-                      <div className="product">
-                        <div className="product_info">
-                          {item.board_name} <br />
-                          <p className="product_price">
-                            가격 : {item.board_price}원 <br />
-                          </p>
-                          <div>
-                            <button className="bastket">
-                              <ShoppingBasket />
-                            </button>
-
-                            {/* <img
-                            src={
-                              "http://192.168.0.76:8080/imagePath/" +
-                              item.boardImageList[0].boardImage_saveName
-                            }
-                            alt="Third slide"
-                            width="1000px"
-                            height="250px"
-                          /> */}
-
-                            <Link to="subpage/Subpage" alt="">
-                              <button className="icon_buttons">
-                                <ZoomInIcon />
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div className="product">
+                  <div className="product-head">
+                    {item.board_name} <br />
+                    <p className="product_price">
+                      가격 : {item.board_price}원 <br />
+                    </p>
+                  </div>
+                  <div>
+                    <button>
+                      <ShoppingBasket />
+                    </button>
+                    <Link to="subpage/Subpage" alt="">
+                      <button className="icon_buttons">
+                        <ZoomInIcon />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               );
             })}
+          ;
         </div>
-        <div>
+        <div
+          style={{
+            clear: "both",
+          }}
+        >
           <Footer />
         </div>
       </div>

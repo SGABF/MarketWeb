@@ -38,7 +38,7 @@ export default function ColumnGroupingTable() {
 
   const getNotice = async () => {
     await axios
-      .get("http://192.168.0.119:8080/MainView/noticeList")
+      .get("http://192.168.0.150:8080/MainView/noticeList")
       .then((res) => {
         console.log("가져온값 : " + res.data.length);
         console.log("가져온값 : " + JSON.stringify(res.data));
@@ -77,12 +77,12 @@ export default function ColumnGroupingTable() {
               <TableRow>
                 {columns.map((column) => (
                   <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ top: 57, minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
+                    key={column.id}
+                    align={column.align}
+                    style={{ top: 57, minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
@@ -96,11 +96,13 @@ export default function ColumnGroupingTable() {
                       console.log("너는 누구냐? : " + row.back_Notice_Idx);
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          <Link to={{
-                            pathname: "/Posttwo",
-                            id_value: row.back_Notice_Idx,
-                           }}
-                            className="TableBody">
+                          <Link
+                            to={{
+                              pathname: "/Posttwo",
+                              id_value: row.back_Notice_Idx,
+                            }}
+                            className="TableBody"
+                          >
                             {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}
@@ -128,6 +130,8 @@ export default function ColumnGroupingTable() {
       <Button variant="outlined" href="Write">
         글쓰기
       </Button>
+      <br />
+      <Footer />
     </div>
   );
 }
