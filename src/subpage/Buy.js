@@ -26,7 +26,7 @@ function Buy() {
 
   const getBannerAPI = () => {
     axios
-      .get("http://192.168.0.124:8080/MainView/getCanUseList")
+      .get("http://192.168.0.150:8080/MainView/getCanUseList")
       .then((res) => {
         setBanner(res.data);
       });
@@ -84,7 +84,7 @@ function Buy() {
                   <img
                     className="d-block w-100"
                     src={
-                      "http://192.168.0.124:8080/imagePath/" +
+                      "http://192.168.0.150:8080/imagePath/" +
                       item.banner_saveName
                     }
                     alt="Third slide"

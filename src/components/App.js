@@ -94,7 +94,7 @@ function App() {
         <Route path="/register" component={RegisterPage} />
         <Route path="/idinquiry" component={IDInquiry} />
         <Route path="/pwinquiry" component={PWInquiry} />
-        <Route path="/regok" component={RegisteredOk} />
+        <Route path="/RegisteredOk" component={RegisteredOk} />
         <Route
           path="/editmyinfo"
           component={isLoggedIn ? EditMyinfo : LoginPage}

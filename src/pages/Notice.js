@@ -34,32 +34,11 @@ export default function ColumnGroupingTable() {
 
   useEffect(() => {
     getNotice();
-    getComment(id_data);
   }, []);
-
-  const getComment = async (idx) => {
-    const token = localStorage.getItem("token");
-    await axios
-      .get(
-        "http://192.168.0.119:8080/MainView/noticeDetail",
-
-        {
-          params: { board_idx: idx },
-        }
-      )
-      .then((res) => {
-        console.log("가져온값 : " + res.data.length);
-        console.log("가져온값 : " + JSON.stringify(res.data));
-        setComment(res.data);
-      })
-      .catch((error) => {
-        console.log(`getComment 에러 :  ${error.message}`);
-      });
-  };
 
   const getNotice = async () => {
     await axios
-      .get("http://192.168.0.119:8080/MainView/noticeList")
+      .get("http://192.168.0.150:8080/MainView/noticeList")
       .then((res) => {
         console.log("가져온값 : " + res.data.length);
         console.log("가져온값 : " + JSON.stringify(res.data));
@@ -114,9 +93,16 @@ export default function ColumnGroupingTable() {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
+                      console.log("너는 누구냐? : " + row.back_Notice_Idx);
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          <Link to="Posttwo" className="TableBody">
+                          <Link
+                            to={{
+                              pathname: "/Posttwo",
+                              id_value: row.back_Notice_Idx,
+                            }}
+                            className="TableBody"
+                          >
                             {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}
@@ -144,6 +130,8 @@ export default function ColumnGroupingTable() {
       <Button variant="outlined" href="Write">
         글쓰기
       </Button>
+      <br />
+      <Footer />
     </div>
   );
 }
