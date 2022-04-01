@@ -4,8 +4,6 @@ import "./Post.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "axios";
 import Footer from "components/Footer";
 
