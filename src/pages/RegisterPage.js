@@ -22,7 +22,7 @@ function RegisterPage() {
 
   const checkId = (e) => {
     const username = document.querySelector("#username").value;
-    if (username.length < 5 && username.length >10) {
+    if (username.length < 5 && username.length > 10) {
       window.alert("영문(소문),숫자 혼합 5~10자리로 입력해주세요.");
       return;
     }
@@ -65,7 +65,7 @@ function RegisterPage() {
         window.alert(
           "개꿀마켓 회원가입을 축하드립니다. 가입이 완료되었습니다."
         );
-        window.location.href = "/regok";
+        window.location.href = "/RegisteredOk";
       })
       .catch((error) => {
         window.alert("가입실패");
@@ -94,15 +94,15 @@ function RegisterPage() {
           className="loginRegister_input"
           id="username"
         />
-          {errors.username && errors.username.type === "required" && (
-            <p>필수 입력 항목입니다.</p>
-          )}
-          {errors.username && errors.username.type === "pattern" && (
-            <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
-          )}
-          {errors.username && errors.username.type === "maxLength" && (
-            <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
-          )}
+        {errors.username && errors.username.type === "required" && (
+          <p>필수 입력 항목입니다.</p>
+        )}
+        {errors.username && errors.username.type === "pattern" && (
+          <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
+        )}
+        {errors.username && errors.username.type === "maxLength" && (
+          <p>영문(소문),숫자 혼합 5~10자리로 입력해주세요.</p>
+        )}
         <input
           type="button"
           className="idCheck"
@@ -193,9 +193,15 @@ function RegisterPage() {
           {...register("birth", { required: true, minLength: 8, maxLength: 8 })}
           placeholder="생년월일 (예: 19901021)"
         />
-        {errors.birth && errors.birth.type === "required" && (<p>필수 입력 항목입니다.</p>)}
-        {errors.birth && errors.birth.type === "minLength" && (<p>생년월일을 다시 확인해주세요.</p>)}
-        {errors.birth && errors.birth.type === "maxLength" && (<p>생년월일을 다시 확인해주세요.</p>)}
+        {errors.birth && errors.birth.type === "required" && (
+          <p>필수 입력 항목입니다.</p>
+        )}
+        {errors.birth && errors.birth.type === "minLength" && (
+          <p>생년월일을 다시 확인해주세요.</p>
+        )}
+        {errors.birth && errors.birth.type === "maxLength" && (
+          <p>생년월일을 다시 확인해주세요.</p>
+        )}
 
         <input
           type="text"
@@ -211,8 +217,9 @@ function RegisterPage() {
         {errors.phone && errors.phone.type === "pattern" && (
           <p>휴대폰 번호를 확인해주세요.</p>
         )}
-
+        {/* <Link to="/RegisteredOk"> */}
         <input type="submit" value="회원가입" />
+        {/* </Link> */}
       </form>
     </div>
   );
