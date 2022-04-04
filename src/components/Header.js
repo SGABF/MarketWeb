@@ -13,48 +13,41 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
-import { Category } from "@material-ui/icons";
+import { Category, SettingsOverscanOutlined, SettingsSystemDaydreamSharp } from "@material-ui/icons";
 import * as loginService from "../service/AuthenticationService";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function Header() {
   let [loginCheck, setloginCheck] = useState("");
+  let [keyword, setKeyword] = useState("");
+  let [value, setValue] = useState("");
   const [{ basket }, dispatch] = useStateValue();
   loginCheck = loginService.isUserLoggedIn();
   const loggedInUser = loginService.getLoggedInUserName();
   let history = useHistory();
 
+  const handleSelect = (e) => {
+    console.log(e);
+    setValue(e)
+  };
 
-  // const callUserVO = (e) => {
-  //   const token = localStorage.getItem("token");
-  //   console.log(token);
-  //   console.log(loggedInUser);
-  //   axios
-  //     .post("http://192.168.0.76:8080/updateUserPage", {
-  //       headers: {
-  //         Authorization: "Bearer " + token,
-  //         user_id: loggedInUser,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       window.location.href = "/editmyinfo";
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+  // const showResult = (props) => {
+  //   console.log(value);
+  //   console.log(keyword);
+  //   console.log({ value, keyword });
+    
+  //   history.push('/searchresult');
   // };
 
   const logOut = () => {
-    const removeUser = localStorage.removeItem("authenticatedUser");
-    const removeToken = localStorage.removeItem("token");
-    console.log(removeUser + "아이디 제거");
-    console.log(removeToken + "토큰 제거");
+    localStorage.removeItem("authenticatedUser");
+    localStorage.removeItem("token");
     window.alert('로그아웃이 성공적으로 완료되었습니다.');
     setloginCheck(false);
     history.push("/login");
   };
+
 
   return (
     <div className="header">
@@ -66,23 +59,27 @@ function Header() {
         <>
           {[DropdownButton].map((DropdownType, idx) => (
             <DropdownType
-              as={ButtonGroup}
-              key={idx}
-              id={`dropdown-button-drop-${idx}`}
-              size="sm"
-              variant="light"
-              title="전체"
+            onSelect={handleSelect}
+            as={ButtonGroup}
+            key={idx}
+            id={`dropdown-button-drop-${idx}`}
+            size="sm"
+            variant="light"
+            title="전체"
             >
-              <Dropdown.Item eventKey="1">제목</Dropdown.Item>
-              <Dropdown.Item eventKey="2">상품</Dropdown.Item>
-              <Dropdown.Item eventKey="3">제목+내용</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">상품코드</Dropdown.Item>
+              <Dropdown.Item eventKey="board_name" >상품명</Dropdown.Item>
+              <Dropdown.Item eventKey="board_content">내용</Dropdown.Item>
+              <Dropdown.Item eventKey="board_all">전체</Dropdown.Item>
             </DropdownType>
           ))}
         </>
-        <input className="header_searchInput" type="search" />
-        <SearchIcon fontSize="large" className="header_searchIcon" />
+        <input className="header_searchInput" type="search" onChange={(e) => setKeyword(e.target.value)}/>
+        <Link to={{
+            pathname: "/searchresult",
+            state: keyword,
+          }}>
+          <SearchIcon type="button" fontSize="large" className="header_searchIcon" />
+        </Link>
       </div>
 
       <div className="header_nav">

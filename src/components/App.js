@@ -20,6 +20,7 @@ import Auction from "subpage/Auction";
 import Registration from "subpage/Registration";
 import Posttwo from "pages/Posttwo";
 import Post from "pages/Post";
+import SearchResult from "subpage/SearchResult";
 
 import RegisteredOk from "pages/RegisteredOk";
 import LoginPage from "pages/LoginPage";
@@ -86,6 +87,10 @@ function App() {
 
         <Route path="/subpage">
           <Subpage />
+        </Route>
+
+        <Route path="/searchresult">
+          <SearchResult />
         </Route>
 
         <Route path="/noticedetail">

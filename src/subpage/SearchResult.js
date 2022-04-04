@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
-import Product from "components/Product";
+import "./SearchResult.css";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "components/Footer";
@@ -11,21 +10,26 @@ import { Route, Link } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
-import { Token } from "@mui/icons-material";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import { useStateValue } from "components/StateProvider";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import { getImageListItemBarUtilityClass } from "@mui/material";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-function Home() {
+
+import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
+
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+
+
+function SearchResult(props) {
   const [banner, setBanner] = useState([]);
-  const [home, setHome] = useState([]);
-  // const [house, setHouse] = useState([]);
+//   const [home, setHome] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
+  const location = useLocation();
+  const keyword_data = location.state;
 
   useEffect(() => {
     getBannerAPI();
-    getHome();
-    // getHouse();
+    // getHome();
+    console.log(keyword_data);
+    getSearchResult(keyword_data);
   }, []);
 
   const getBannerAPI = () => {
@@ -36,106 +40,41 @@ function Home() {
       });
   };
 
-  const getHome = async () => {
+//   const getHome = async () => {
+//     const token = localStorage.getItem("token");
+//     await axios
+//       .post("http://192.168.0.76:8080/home/main", {
+//         headers: { Authorization: "Bearer " + token },
+//       })
+//       .then((res) => {
+//         // console.log("가져온값 : " + res.data.length);
+//         // console.log("가져온값 : " + JSON.stringify(res.data));
+//         setHome(res.data);
+//       })
+//       .catch((error) => {
+//         console.log(`getHome 에러 :  ${error.message}`);
+//       });
+//   };
+
+  const getSearchResult = async (keyword) => {
+    console.log(keyword);
     await axios
-      .post("http://192.168.0.76:8080/home/main")
+      .get("http://192.168.0.76:8080/home/searchBoardList",
+        // headers: { Authorization: "Bearer " + token },
+       {
+         params: { keyword: keyword },
+       },
+      )
       .then((res) => {
         // console.log("가져온값 : " + res.data.length);
-        // console.log("가져온값 : " + JSON.stringify(res.data));
-        setHome(res.data);
+        console.log("가져온값 : " + JSON.stringify(res.data));
+        setSearchResult(res.data);
       })
       .catch((error) => {
-        console.log(`getHome 에러 :  ${error.message}`);
+        console.log(`getSearchResult 에러 :  ${error.message}`);
       });
   };
 
-  // const getHouse = async () => {
-  //   const token = localStorage.getItem("token");
-  //   await axios
-  //     .post("http://192.168.0.76:8080/home/boardList", {
-  //       headers: { Authorization: "Bearer " + token },
-  //     })
-  //     .then((res) => {
-  //       // console.log("가져온값 : " + res.data.length);
-  //       console.log("가져온값 : " + JSON.stringify(res.data));
-  //       setHouse(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(`getHome 에러 :  ${error.message}`);
-  //     });
-  // };
-
-  // const products = [
-  //   [
-  //     {
-  //       id: "1",
-  //       title: '"Alexa, play music."',
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //     {
-  //       id: "2",
-  //       title: "AmazonBasics",
-  //       price: 11000,
-  //       image: "image/min2.jpg",
-  //       code: "X616D4D2",
-  //       location: "../subpage",
-  //     },
-
-  //     {
-  //       id: "3",
-  //       title: "Alexa, play music.",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //     {
-  //       id: "4",
-  //       title: "Alexa, play music.",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //   ],
-  //   [
-  //     {
-  //       id: "5",
-  //       title: "Alexa, play music...",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //     {
-  //       id: "5",
-  //       title: "Alexa, play music.",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //     {
-  //       id: "5",
-  //       title: "Alexa, play music.",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //     {
-  //       id: "6",
-  //       title: "Alexa, play music.",
-  //       price: 11000,
-  //       image: "image/min1.jpg",
-  //       code: "X616D4D1",
-  //       location: "../subpage",
-  //     },
-  //   ],
-  // ];
   return (
     <div className="home">
       <div className="home-container">
@@ -194,9 +133,9 @@ function Home() {
             aria-label="outlined button group"
             className="home_buttons"
           >
-            {/* <Link to="/">
+            <Link to="/">
               <Button>전체글</Button>
-            </Link> */}
+            </Link>
             <Link to="../Sale">
               <Button>판매글</Button>
             </Link>
@@ -216,7 +155,6 @@ function Home() {
             </Link>
           </div>
         </div>
-        <h3>최근 등록된 상품</h3>
         {/* {products.map((item) => {
           return item.map((item2) => {
             return (
@@ -228,8 +166,8 @@ function Home() {
             );
           });
         })} */}
-        {home &&
-          home.map((item) => {
+        {searchResult &&
+          searchResult.map((item) => {
             return (
               <div className="home">
                 <div className="home-container">
@@ -280,76 +218,6 @@ function Home() {
               </div>
             );
           })}
-        {/* <div className="home_row"> */}
-        {/* <Product
-            id="1"
-            title='"Alexa, play music."'
-            price={11000}
-            image="image/min1.jpg"
-            code={"X616D4D1"}
-            location="../subpage"
-          />
-
-          <Product
-            id="2"
-            title="AmazonBasics"
-            price={11000}
-            image="image/min2.jpg"
-            code={"X616D4D2"}
-            location="../Subpagetwo"
-          />
-
-          <Product
-            id="3"
-            title="TV & Furniture"
-            price={1100000}
-            image="image/min3.jpg"
-            code={"X616D4D3"}
-            location="../subpagethree"
-          />
-          <Product
-            id="4"
-            title="Laptops"
-            price={1000000}
-            image="image/min4.jpg"
-            code={"X616D4D4"}
-            location="../subpagefour"
-          />
-        </div>
-        <div className="home_row">
-          <Product
-            id="5"
-            title='"turn on the lights."'
-            price={11000}
-            image="image/min5.jpg"
-            code={"X616D4D6"}
-            location="../subpagefive"
-          />
-          <Product
-            id="6"
-            title="Easy returns"
-            price={11000}
-            image="image/min6.jpg"
-            code={"X616D4D7"}
-            location="../subpagesix"
-          />
-          <Product
-            id="7"
-            title="Shop smartwatches"
-            price={200000}
-            image="image/min7.jpg"
-            code={"X616D4D8"}
-            location="../subpageseven"
-          />
-          <Product
-            id="8"
-            title="Shop Pet supplies"
-            price={10000}
-            image="image/min8.jpg"
-            code={"X616D4D9"}
-            location="../subpagesix"
-          />
-        </div> */}
         <div
           style={{
             clear: "both",
@@ -362,4 +230,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SearchResult;
