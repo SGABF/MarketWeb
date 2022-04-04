@@ -86,24 +86,10 @@ function EditMyInfo() {
         method: "post",
         url: "http://192.168.0.76:8080/deleteUser",
         headers: { Authorization: "Bearer " + token, user_id: username, },
-      })
-        .then((res) => {
-          if(res.data===1){
-            console.log(res.data);
-            const removeUser = localStorage.removeItem("authenticatedUser");
-            const removeToken = localStorage.removeItem("token");
-            console.log(removeUser + "아이디 제거");
-            console.log(removeToken + "토큰 제거");          
-            
-          }else{
-            alert("회원탈퇴 실패: 관리자에게 문의하세요.");
-          }
-        })
-        .catch((error) => {
-          console.log("서버통신에러: 다시 시도해주세요.");
-        });
-
-        reloadPage();
+      })    
+      localStorage.removeItem("authenticatedUser");
+      localStorage.removeItem("token");
+      reloadPage();
     }
   };
 
