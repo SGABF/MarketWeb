@@ -154,7 +154,12 @@ function Buy() {
                             height="250px"
                           /> */}
 
-                            <Link to="subpage/Subpage" alt="">
+                            <Link
+                              to={{
+                                pathname: "subpage/subpagethree",
+                                state: item.board_idx,
+                              }}
+                            >
                               <button className="icon_buttons">
                                 <ZoomInIcon />
                               </button>

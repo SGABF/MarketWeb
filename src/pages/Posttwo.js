@@ -17,6 +17,7 @@ function Post(props) {
   const getNotice = async () => {
     await axios
       .get("http://192.168.0.150:8080/MainView/noticeList")
+
       .then((res) => {
         console.log("가져온값 : " + res.data.length);
         console.log("가져온값 : " + JSON.stringify(res.data));
@@ -28,12 +29,12 @@ function Post(props) {
   };
 
   const imageList =
-    notice.back_Noticefile_OriName &&
-    notice.back_Noticefile_OriName.map((item) => (
+    notice &&
+    notice.map((item) => (
       <img
-        className="d-block w-100"
+        className="image"
         src={
-          "http://192.168.0.150:8080/imagePath/" + item.back_Noticefile_OriName
+          "http://192.168.0.150:8080/imagePath/" + item.back_Noticefile_SaveName
         }
         alt="First slide"
       />
@@ -43,12 +44,24 @@ function Post(props) {
     <>
       <div className="Post_container">
         <div className="blue_button">
-          <Button variant="contained" size="large">
-            {notice.back_Notice_Subject}
-            {notice.back_Notice_Content}
-            {notice.back_Notice_RegDate}
-          </Button>
           <br />
+          <div>{imageList}</div>
+          <br />
+          <Button variant="contained" size="large">
+            {notice &&
+              notice.map((item) => (
+                <p>
+                  comment : {item.back_Notice_Subject}
+                  <br />
+                  comment : {item.back_Notice_Content}
+                  <br />
+                  comment : {item.back_Notice_RegDate}
+                </p>
+              ))}
+          </Button>
+
+          <br />
+
           <br />
           <Button href="Write">수정</Button>
           <Button href="Notice">목록</Button>

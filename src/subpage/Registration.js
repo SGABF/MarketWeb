@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
 import "./Registration.css";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Checkbox from "@mui/material/Checkbox";
+import axios from "axios";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -87,11 +88,33 @@ function Registration(props) {
   };
 
   const [open, setOpen] = React.useState(false);
+  const [post, setPost] = useState([]);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  useEffect(() => {
+    getPost();
+  }, []);
+
+  const getPost = async () => {
+    const token = localStorage.getItem("token");
+    await axios({
+      method: "post",
+      url: "http://192.168.0.76:8080/board/insertBoard",
+      headers: { Authorization: "Bearer " + token },
+    })
+      .then((res) => {
+        console.log("가져온값 : " + res.data.length);
+        console.log("가져온값 : " + JSON.stringify(res.data));
+        setPost(res.data);
+      })
+      .catch((error) => {
+        console.log(`getComment 에러 :  ${error.message}`);
+      });
   };
 
   return (

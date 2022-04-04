@@ -141,7 +141,12 @@ function Sale() {
                     <button>
                       <ShoppingBasket />
                     </button>
-                    <Link to="subpage/Subpage" alt="">
+                    <Link
+                      to={{
+                        pathname: "subpage/Subpagetwo",
+                        state: item.board_idx,
+                      }}
+                    >
                       <button className="icon_buttons">
                         <ZoomInIcon />
                       </button>

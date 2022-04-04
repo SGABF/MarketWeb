@@ -32,19 +32,25 @@ function Auction() {
       });
   };
 
-  const getHome = async () => {
+  const getHome = async (idx) => {
     const token = localStorage.getItem("token");
     await axios
-      .post("http://192.168.0.76:8080/home/auctionBoard", {
-        headers: { Authorization: "Bearer " + token },
-      })
+      .post(
+        "http://192.168.0.76:8080/home/auctionBoard",
+        {
+          headers: { Authorization: "Bearer " + token },
+        },
+        {
+          params: { board_idx: idx },
+        }
+      )
       .then((res) => {
-        // console.log("가져온값 : " + res.data.length);
-        // console.log("가져온값 : " + JSON.stringify(res.data));
+        console.log("가져온값 : " + res.data.length);
+        console.log("가져온값 : " + JSON.stringify(res.data));
         setHome(res.data);
       })
       .catch((error) => {
-        console.log(`getHome 에러 :  ${error.message}`);
+        console.log(`getComment 에러 :  ${error.message}`);
       });
   };
 
@@ -154,7 +160,12 @@ function Auction() {
                             height="250px"
                           /> */}
 
-                            <Link to="subpage/Subpage" alt="">
+                            <Link
+                              to={{
+                                pathname: "subpage/subpagefour",
+                                state: item.board_idx,
+                              }}
+                            >
                               <button className="icon_buttons">
                                 <ZoomInIcon />
                               </button>
