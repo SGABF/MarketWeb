@@ -31,7 +31,9 @@ import PWInquiry from "pages/PWInquiry";
 import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
-import NoticeDetail from "pages/NoticeDetail";
+import MySale from "pages/MySale";
+import MyAuction from "pages/MyAuction";
+import MyComment from "pages/MyComment";
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -93,10 +95,6 @@ function App() {
           <SearchResult />
         </Route>
 
-        <Route path="/noticedetail">
-          <NoticeDetail />
-        </Route>
-
         {/* 유저 관련 */}
         <Route path="/login" component={LoginPage} />
         <Route path="/agreement" component={Agreement} />
@@ -110,7 +108,9 @@ function App() {
         />
         <Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
         <Route path="/deleteok" component={DeleteOk} />
-        {/* <Route path="/">Not Found</Route> */}
+        <Route path="/mysale" component={MySale} />
+        <Route path="/myauction" component={MyAuction} />
+        <Route path="/mycomment" component={MyComment} />
 
         <Route path="/Man" component={Man} />
         <Route path="/Girl" component={Girl} />

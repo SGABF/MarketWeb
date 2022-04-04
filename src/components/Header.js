@@ -21,23 +21,14 @@ import { useHistory } from "react-router-dom";
 function Header() {
   let [loginCheck, setloginCheck] = useState("");
   let [keyword, setKeyword] = useState("");
-  let [value, setValue] = useState("");
   const [{ basket }, dispatch] = useStateValue();
   loginCheck = loginService.isUserLoggedIn();
   const loggedInUser = loginService.getLoggedInUserName();
   let history = useHistory();
 
-  const handleSelect = (e) => {
-    console.log(e);
-    setValue(e)
-  };
-
-  // const showResult = (props) => {
-  //   console.log(value);
-  //   console.log(keyword);
-  //   console.log({ value, keyword });
-    
-  //   history.push('/searchresult');
+  // const handleSelect = (e) => {
+  //   console.log(e);
+  //   setValue(e)
   // };
 
   const logOut = () => {
@@ -56,7 +47,7 @@ function Header() {
       </Link>
 
       <div className="header_search">
-        <>
+        {/* <>
           {[DropdownButton].map((DropdownType, idx) => (
             <DropdownType
             onSelect={handleSelect}
@@ -72,7 +63,7 @@ function Header() {
               <Dropdown.Item eventKey="board_all">전체</Dropdown.Item>
             </DropdownType>
           ))}
-        </>
+        </> */}
         <input className="header_searchInput" type="search" onChange={(e) => setKeyword(e.target.value)}/>
         <Link to={{
             pathname: "/searchresult",
@@ -129,8 +120,15 @@ function Header() {
               <Link to="/checkpw">
                 <MenuItem>회원정보수정</MenuItem>
               </Link>
-              <MenuItem>나의 거래</MenuItem>
-              <MenuItem>나의 문의</MenuItem>
+              <Link to="/mysale">
+                <MenuItem>나의 판매</MenuItem>
+              </Link>
+              <Link to="/myauction">
+                <MenuItem>나의 경매</MenuItem>
+              </Link>
+              <Link to="/mycomment">
+                <MenuItem>나의 댓글</MenuItem>
+              </Link>
               <MenuItem onClick={logOut} >로그아웃</MenuItem>
             </Menu>
           )}
