@@ -17,6 +17,22 @@ import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Checkbox from "@mui/material/Checkbox";
 import axios from "axios";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { UserAddOutlined } from "@ant-design/icons";
+import { loggedInUser } from "../pages/Home";
+
+import FileUploadService from "service/FileUploadService";
+
+import Upload from "material-ui-upload/Upload";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -67,6 +83,12 @@ function ChildModal() {
 }
 
 function Registration(props) {
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = (event) => {
@@ -87,6 +109,60 @@ function Registration(props) {
     pb: 3,
   };
 
+  const [selectedFiles, setSelectedFiles] = useState(undefined);
+  const [message, setMessage] = useState([]);
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(Number);
+  const [content, setContent] = useState("");
+  const [boardData, setBoardData] = useState([]);
+  const selectFiles = (event) => {
+    setSelectedFiles(event.target.files);
+  };
+
+  const uploadFiles = () => {
+    if (selectedFiles != null) {
+      const uploadPromises = upload(selectedFiles);
+    } else {
+      const uploadPromises = FileUploadService.upload_nonFile(boardData);
+    }
+    setMessage([]);
+  };
+
+  const upload = (file) => {
+    return FileUploadService.upload(file, boardData);
+  };
+
+  useEffect(() => {
+    // console.log(title);
+    // console.log(content);
+    // console.log(boardData);
+    // console.log(price);
+    // console.log(selectedFiles);
+    dataSetting(title, content);
+  }, [title, content, price, selectedFiles]);
+
+  const changeTitle = (e) => {
+    let { value } = e.target;
+    setTitle(value);
+  };
+
+  const changeContent = (e) => {
+    let { value } = e.target;
+    setContent(value);
+  };
+
+  const changePrice = (e) => {
+    let { value } = e.target;
+    setPrice(value);
+  };
+
+  const dataSetting = (title, price, content) => {
+    setBoardData({
+      board_name: title,
+      board_price: price,
+      board_content: content,
+    });
+  };
   const [open, setOpen] = React.useState(false);
   const [post, setPost] = useState([]);
   const handleOpen = () => {
@@ -117,43 +193,91 @@ function Registration(props) {
       });
   };
 
+  const sell = 1;
+  const autotion = 1;
+
   return (
     <>
       <div className="Subpage">
         <div className="Subpage-container">
-          <label htmlFor="icon-button-file">
-            <Input accept="image/*" id="icon-button-file" type="file" />
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <PhotoCamera />
-            </IconButton>
-          </label>
-
           <div className="title">
-            <Checkbox {...label} defaultChecked />
-            직거래 물품
-            <Checkbox {...label} /> 택배 물품
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="판매글"
+                />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="구매글"
+                />
+                <FormControlLabel
+                  value="other"
+                  control={<Radio />}
+                  label="경매글"
+                />
+              </RadioGroup>
+            </FormControl>
             <br />
             <br />
+
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="카테고리"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>여성의류</MenuItem>
+                  <MenuItem value={20}>남성의류</MenuItem>
+                  <MenuItem value={30}>전자기기</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
             <h1>
-              상품 이름 : <input type="text" />
+              상품 이름 :{" "}
+              <input type="text" onChange={changeTitle} value={title} />
             </h1>
             <p>
-              상품 상한가 : <input type="text" />
+              상품 가격 :{" "}
+              <input type="text" onChange={changePrice} value={price} />
               <br />
-              상품 현재가 : <input type="text" />
-              <br />
-              상품 최소가격 : <input type="text" />
+              경매 시작가 : <input type="text" />
               <br />
               입찰 잔여시간 : <input type="text" />
-              <br /> 상품 설명 : <input type="text" className="size" />
+              <br /> 상품 설명 :{" "}
+              <input
+                type="text"
+                className="size"
+                onChange={changeContent}
+                value={content}
+              />
             </p>
-            <Button variant="contained" endIcon={<SendIcon />}>
-              Send
-            </Button>
+            <label htmlFor="icon-button-file"></label>
+            <label htmlFor="contained-button-file">
+              <Input
+                accept="image/*"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <input type="file" multiple onChange={selectFiles} />
+              <br />
+              <button className="btn btn-success btn-sm" onClick={uploadFiles}>
+                Send
+              </button>
+            </label>
+
             <br />
           </div>
         </div>
