@@ -77,6 +77,7 @@ function Sale() {
 								alt="First slide"
 							/>
 
+
 							<Carousel.Caption></Carousel.Caption>
 						</Carousel.Item>
 						<Carousel.Item>
@@ -179,6 +180,7 @@ function Sale() {
 			</div>
 		</div>
 	);
+
 }
 
 export default Sale;

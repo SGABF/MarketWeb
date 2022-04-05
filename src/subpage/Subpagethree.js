@@ -73,15 +73,12 @@ function ChildModal() {
 function Subpage(props) {
   const [showPopup, setShowPopup] = useState(false);
   const [comment, setComment] = useState([]);
-  const [realcomment, setRealcomment] = useState([]);
-
   const location = useLocation();
   const id_data = location.state;
 
   useEffect(() => {
     console.log(id_data);
     getComment(id_data);
-    getRealcomment(id_data);
   }, []);
 
   const getComment = async (idx) => {
@@ -93,7 +90,6 @@ function Subpage(props) {
         {
           headers: { Authorization: "Bearer " + token },
         },
-
         {
           params: { board_idx: idx },
         }
@@ -102,30 +98,6 @@ function Subpage(props) {
         console.log("가져온값 : " + res.data.length);
         console.log("가져온값 : " + JSON.stringify(res.data));
         setComment(res.data);
-      })
-      .catch((error) => {
-        console.log(`getComment 에러 :  ${error.message}`);
-      });
-  };
-
-  const getRealcomment = async (idx) => {
-    const token = localStorage.getItem("token");
-    await axios
-      .post(
-        "http://192.168.0.76:8080/reply/insertReply",
-
-        {
-          headers: { Authorization: "Bearer " + token },
-        },
-
-        {
-          params: { board_idx: idx },
-        }
-      )
-      .then((res) => {
-        console.log("가져온값 : " + res.data.length);
-        console.log("가져온값 : " + JSON.stringify(res.data));
-        setRealcomment(res.data);
       })
       .catch((error) => {
         console.log(`getComment 에러 :  ${error.message}`);
@@ -268,7 +240,6 @@ function Subpage(props) {
                   <Button>삭제</Button>
                 </p>
               ))}
-            <br />
             <br />
           </div>
           <comment />
