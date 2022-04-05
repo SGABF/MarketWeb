@@ -9,7 +9,8 @@ import Navbar from "./Navbar";
 import Girl from "../Category/Girl";
 import Man from "../Category/Man";
 import Electronics from "../Category/Electronics";
-import Table from "../pages/Tables";
+import QnaView from "pages/QnaView";
+import QnaList from "pages/QnaList";
 import Write from "../pages/Write";
 import Notice from "../pages/Notice";
 import Subpage from "subpage/Subpage";
@@ -31,102 +32,107 @@ import PWInquiry from "pages/PWInquiry";
 import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
-import NoticeDetail from "pages/NoticeDetail";
+import MySale from "pages/MySale";
+import MyAuction from "pages/MyAuction";
 
 function App() {
-  const [{}, dispatch] = useStateValue();
-  const isLoggedIn = localStorage.getItem("token");
+	const [{}, dispatch] = useStateValue();
+	const isLoggedIn = localStorage.getItem("token");
 
-  return (
-    <Router>
-      <div className="App">
-        <Header></Header>
-        <Route exact path="/">
-          <Home />
-        </Route>
+	return (
+		<Router>
+			<div className="App">
+				<Header></Header>
+				<Route exact path="/">
+					<Home />
+				</Route>
 
-        <Route path="/Notice">
-          <Notice />
-        </Route>
-        <Route path="/Tables">
-          <Table />
-        </Route>
+				<Route path="/Notice">
+					<Notice />
+				</Route>
+				<Route path="/qnalist">
+					<QnaList />
+				</Route>
 
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
+				<Route path="/checkout">
+					<Checkout />
+				</Route>
 
-        <Route path="/Write">
-          <Write />
-        </Route>
+				<Route path="/Write">
+					<Write />
+				</Route>
 
-        <Route path="/Posttwo">
-          <Posttwo />
-        </Route>
+				<Route path="/Posttwo">
+					<Posttwo />
+				</Route>
 
-        <Route path="/Post">
-          <Post />
-        </Route>
+				<Route path="/Post">
+					<Post />
+				</Route>
 
-        {/* 서브페이지 목록 */}
-        <Route path="/Buy">
-          <Buy />
-        </Route>
+				{/* 서브페이지 목록 */}
+				<Route path="/Buy">
+					<Buy />
+				</Route>
 
-        <Route path="/Sale">
-          <Sale />
-        </Route>
+				<Route path="/Sale">
+					<Sale />
+				</Route>
 
-        <Route path="/Auction">
-          <Auction />
-        </Route>
+				<Route path="/Auction">
+					<Auction />
+				</Route>
 
-        <Route path="/Registration">
-          <Registration />
-        </Route>
+				<Route path="/Registration">
+					<Registration />
+				</Route>
 
-        <Route path="/subpage">
-          <Subpage />
-        </Route>
+				<Route path="/subpage">
+					<Subpage />
+				</Route>
 
-        <Route path="/searchresult">
-          <SearchResult />
-        </Route>
+				<Route path="/searchresult">
+					<SearchResult />
+				</Route>
 
-        <Route path="/noticedetail">
-          <NoticeDetail />
-        </Route>
+				<Route path="/qnaview">
+					<QnaView />
+				</Route>
 
-        {/* 유저 관련 */}
-        <Route path="/login" component={LoginPage} />
-        <Route path="/agreement" component={Agreement} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/idinquiry" component={IDInquiry} />
-        <Route path="/pwinquiry" component={PWInquiry} />
-        <Route path="/RegisteredOk" component={RegisteredOk} />
-        <Route
-          path="/editmyinfo"
-          component={isLoggedIn ? EditMyinfo : LoginPage}
-        />
-        <Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
-        <Route path="/deleteok" component={DeleteOk} />
-        {/* <Route path="/">Not Found</Route> */}
+				{/* 유저 관련 */}
+				<Route path="/login" component={LoginPage} />
+				<Route path="/agreement" component={Agreement} />
+				<Route path="/register" component={RegisterPage} />
+				<Route path="/idinquiry" component={IDInquiry} />
+				<Route path="/pwinquiry" component={PWInquiry} />
+				<Route path="/RegisteredOk" component={RegisteredOk} />
+				<Route
+					path="/editmyinfo"
+					component={isLoggedIn ? EditMyinfo : LoginPage}
+				/>
+				<Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
+				<Route path="/deleteok" component={DeleteOk} />
+				<Route path="/mysale" component={isLoggedIn ? MySale : LoginPage} />
+				<Route
+					path="/myauction"
+					component={isLoggedIn ? MyAuction : LoginPage}
+				/>
 
-        <Route path="/Man" component={Man} />
-        <Route path="/Girl" component={Girl} />
-        <Route path="/Electronics" component={Electronics} />
-      </div>
+				<Route path="/Man" component={Man} />
+				<Route path="/Girl" component={Girl} />
+				<Route path="/Electronics" component={Electronics} />
+			</div>
 
-      {/*<Navbar />*/}
-      {/*<Switch>*/}
-      {/*  <Route path="/" exact component={Home} />*/}
-      {/*  <Route path="/Man" component={Man} />*/}
-      {/*  <Route path="/Girl" component={Girl} />*/}
-      {/*  <Route path="/grocery" component={Food} />*/}
-      {/*  <Route path="/Electronics" component={Electronics} />*/}
-      {/*</Switch>*/}
-    </Router>
-  );
+			{/*<Navbar />*/}
+			{/*<Switch>*/}
+			{/*  <Route path="/" exact component={Home} />*/}
+			{/*  <Route path="/Man" component={Man} />*/}
+			{/*  <Route path="/Girl" component={Girl} />*/}
+			{/*  <Route path="/grocery" component={Food} />*/}
+			{/*  <Route path="/Electronics" component={Electronics} />*/}
+			{/*</Switch>*/}
+		</Router>
+	);
 }
 
 export default App;
