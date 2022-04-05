@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Link, withRouter } from "react-router-dom";
-import * as loginService from "../service/AuthenticationService.js";
-import Button from "react-bootstrap/Button";
 import "./LoginRegister.css";
 import axios from "axios";
 
 
 function LoginPage() {
-  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   let history = useHistory();
 
   const {
@@ -42,20 +38,6 @@ function LoginPage() {
         window.alert("서버통신에러 - 잠시 후 다시 시도해주세요.");
       });
   };
-
-  // const onSubmit = (data) => signIn(data);
-
-  // const registerPage = (e) => {
-  //   e.preventDefault();
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((auth) => {
-  //       if (auth) {
-  //         history.push("/");
-  //       }
-  //     })
-  //     .catch((error) => alert(error.message));
-  // };
 
   return (
     <div className="loginRegister">
