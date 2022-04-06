@@ -130,7 +130,7 @@ function Header() {
 								<MenuButton className="button">{loggedInUser}님</MenuButton>
 							}
 						>
-							<Link to="/mysale">
+							<Link to="/mymarket">
 								<MenuItem>My Market</MenuItem>
 							</Link>
 							<Link to="/myauction">

@@ -21,6 +21,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import axios from "axios";
 import { Item } from "semantic-ui-react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+
 import BoardComment from "./BoardComment";
 
 function comment() {}
@@ -79,62 +80,80 @@ function Subpage(props) {
 	const token = localStorage.getItem("token");
 
 	const history = useHistory();
-	// const location = useLocation();
-	// const id_data = location.state;
+	const location = useLocation();
+	const id_data = location.state;
 
-	// useEffect(() => {
-	// 	console.log(id_data);
-	// 	getComment(id_data);
-	// 	getRealcomment(id_data);
-	// }, []);
+	useEffect(() => {
+		console.log(id_data);
+		getComment(id_data);
+		getRealcomment(id_data);
+	}, []);
 
-	// const getComment = async (idx) => {
-	// 	console.log(idx);
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/home/selectByIdxBoard",
+	const getComment = async (idx) => {
+		console.log(idx);
+		await axios
+			.post(
+				"http://192.168.0.76:8080/home/selectByIdxBoard",
 
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
+				{
+					headers: { Authorization: "Bearer " + token },
+				},
 
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setComment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
+				{
+					params: { board_idx: idx },
+				}
+			)
+			.then((res) => {
+				console.log("가져온값 : " + res.data.length);
+				console.log("가져온값 : " + JSON.stringify(res.data));
+				setComment(res.data);
+			})
+			.catch((error) => {
+				console.log(`getComment 에러 :  ${error.message}`);
+			});
+	};
 
-	// const getRealcomment = async (idx) => {
-	// 	const token = localStorage.getItem("token");
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/reply/insertReply",
+	const getRealcomment = async (idx) => {
+		const token = localStorage.getItem("token");
+		await axios
+			.post(
+				"http://192.168.0.76:8080/reply/insertReply",
 
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
+				{
+					headers: { Authorization: "Bearer " + token },
+				},
 
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setRealcomment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
+				{
+					params: { board_idx: idx },
+				}
+			)
+			.then((res) => {
+				console.log("가져온값 : " + res.data.length);
+				console.log("가져온값 : " + JSON.stringify(res.data));
+				setRealcomment(res.data);
+			})
+			.catch((error) => {
+				console.log(`getComment 에러 :  ${error.message}`);
+			});
+	};
+
+	const deleteBoard = () => {
+		console.log(id_data);
+		if (
+			window.confirm(
+				"게시물 삭제시 해당 게시물의 댓글이 모두 삭제됩니다. 그래도 삭제하시겠습니까?"
+			)
+		) {
+			axios({
+				method: "post",
+				url: "http://192.168.0.76:8080/board/deleteBoard",
+				headers: { Authorization: "Bearer " + token, user_id: username },
+				params: { board_idx: id_data },
+			});
+			window.alert("삭제 완료");
+			history.push("/mymarket");
+		}
+	};
 
 	const togglePopup = (event) => {
 		setShowPopup(event.target.value);
@@ -245,6 +264,7 @@ function Subpage(props) {
 						) : null}
 						<br />
 						<br />
+						<Button onClick={deleteBoard}>삭제</Button>
 						<br />
 						<br />
 						<br />
@@ -261,7 +281,7 @@ function Subpage(props) {
 							}}
 							variant="standard"
 						/>
-						<Button onClick={leaveComment}>댓글 남기기</Button>
+						<Button>댓글 남기기</Button>
 						<br />
 						<br />
 						{comment.replyList &&
@@ -271,10 +291,10 @@ function Subpage(props) {
 									<Button>수정</Button>
 									<Button>삭제</Button>
 								</p>
-							))} */}
+							))}
+						<br />
+						<br /> */}
 						<BoardComment></BoardComment>
-						<br />
-						<br />
 					</div>
 					<comment />
 				</div>
