@@ -22,16 +22,18 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import InputLabel from "@mui/material/InputLabel";
+import { Input, Grid, TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { UserAddOutlined } from "@ant-design/icons";
 import { loggedInUser } from "../pages/Home";
 import FileUploadService from "service/FileUploadService";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-const Input = styled("input")({
-	display: "none",
-});
+// const label = { inputProps: { "aria-label": "Checkbox demo" } };
+// const Input = styled("input")({
+// 	display: "none",
+// 	required: "true",
+// });
 
 function ISell(Props) {
 	const [category, setCategory] = React.useState("");
@@ -40,19 +42,19 @@ function ISell(Props) {
 		setCategory(event.target.value);
 	};
 
-	const style = {
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
-		width: 400,
-		bgcolor: "background.paper",
-		border: "2px solid #000",
-		boxShadow: 24,
-		pt: 2,
-		px: 4,
-		pb: 3,
-	};
+	// const style = {
+	// 	position: "absolute",
+	// 	top: "50%",
+	// 	left: "50%",
+	// 	transform: "translate(-50%, -50%)",
+	// 	width: 400,
+	// 	bgcolor: "background.paper",
+	// 	border: "2px solid #000",
+	// 	boxShadow: 24,
+	// 	pt: 2,
+	// 	px: 4,
+	// 	pb: 3,
+	// };
 
 	const [selectedFiles, setSelectedFiles] = useState(undefined);
 	const [message, setMessage] = useState([]);
@@ -114,9 +116,11 @@ function ISell(Props) {
 			<div className="Subpage">
 				<div className="Subpage-container">
 					<div className="title">
-						<Box sx={{ minWidth: 120 }}>
-							<FormControl fullWidth>
-								<InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+						<Box sx={{ minWidth: 120 }} spacing={20}>
+							<FormControl fullWidth spacing={20}>
+								<InputLabel spacing={20} id="demo-simple-select-label">
+									카테고리
+								</InputLabel>
 								<Select
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
@@ -128,23 +132,56 @@ function ISell(Props) {
 									<MenuItem value={2}>남성의류</MenuItem>
 									<MenuItem value={3}>전자기기</MenuItem>
 								</Select>
-							</FormControl>
-						</Box>
-						<h1>
-							상품 이름 :{" "}
-							<input type="text" onChange={changeTitle} value={title} />
-						</h1>
+								{/* 상품 이름
+						<Input required type="text" onChange={changeTitle} value={title} />
 						<p>
-							상품 가격 :{" "}
-							<input type="text" onChange={changePrice} value={price} />
-							<br /> 상품 설명 :{" "}
-							<input
+						상품 가격 : <input type="text" value={price} />
+					<br /> 상품 설명 :{" "} */}
+								{/* * 표시되어있는 항목은 필수 입력입니다. */}
+								<TextField container spacing={20}>
+									<TextField
+										id="outlined-name"
+										label="글 제목"
+										value={title}
+										onChange={changeTitle}
+									/>
+									<TextField
+										id="outlined-name"
+										label="Name"
+										value={title}
+										onChange={handleChange}
+									/>
+								</TextField>
+								{/* <Grid container spacing={20}>
+									<Grid item xs={12} sm={20}>
+										<TextField
+											onChange={changePrice}
+											required
+											fullWidth
+											id="name"
+											name="name"
+											label="글 제목"
+										/>
+									</Grid>
+									<Grid item xs={12}>
+										<TextField
+											onChange={changePrice}
+											required
+											fullWidth
+											id="name"
+											name="name"
+											label="상품 설명"
+										/>
+									</Grid>
+								</Grid> */}
+								{/* <input
 								type="text"
 								className="size"
 								onChange={changeContent}
 								value={content}
-							/>
-						</p>
+							/> */}
+							</FormControl>
+						</Box>
 						<label htmlFor="icon-button-file"></label>
 						<label htmlFor="contained-button-file">
 							<Input
@@ -159,7 +196,6 @@ function ISell(Props) {
 								Send
 							</button>
 						</label>
-
 						<br />
 					</div>
 				</div>
