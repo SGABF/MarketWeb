@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./MySale.css";
+import "./MyMarket.css";
 import { Link } from "react-router-dom";
 import Footer from "components/Footer";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";

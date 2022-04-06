@@ -22,6 +22,7 @@ import Registration from "subpage/Registration";
 import Posttwo from "pages/Posttwo";
 import Post from "pages/Post";
 import SearchResult from "subpage/SearchResult";
+import ISell from "subpage/ISell";
 
 import RegisteredOk from "pages/RegisteredOk";
 import LoginPage from "pages/LoginPage";
@@ -32,8 +33,10 @@ import PWInquiry from "pages/PWInquiry";
 import EditMyinfo from "pages/EditMyInfo";
 import CheckPw from "pages/CheckPw";
 import DeleteOk from "pages/DeleteOk";
-import MySale from "pages/MySale";
-import MyAuction from "pages/MyAuction";
+import MyMarket from "pages/MyMarket";
+import MyGk from "pages/MyGk";
+import SubpageLogin from "subpage/SubpageLogin";
+import BoardComment from "subpage/BoardComment";
 
 function App() {
 	const [{}, dispatch] = useStateValue();
@@ -98,6 +101,9 @@ function App() {
 				<Route path="/qnaview">
 					<QnaView />
 				</Route>
+				<Route path="/isell">
+					<ISell />
+				</Route>
 
 				{/* 유저 관련 */}
 				<Route path="/login" component={LoginPage} />
@@ -112,11 +118,16 @@ function App() {
 				/>
 				<Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
 				<Route path="/deleteok" component={DeleteOk} />
-				<Route path="/mysale" component={isLoggedIn ? MySale : LoginPage} />
+				<Route path="/mymarket" component={isLoggedIn ? MyMarket : LoginPage} />
 				<Route
-					path="/myauction"
-					component={isLoggedIn ? MyAuction : LoginPage}
+					path="/boardcomment"
+					component={isLoggedIn ? BoardComment : LoginPage}
 				/>
+				<Route
+					path="/subpagelogin"
+					component={isLoggedIn ? SubpageLogin : LoginPage}
+				/>
+				<Route path="/mygk" component={isLoggedIn ? MyGk : LoginPage} />
 
 				<Route path="/Man" component={Man} />
 				<Route path="/Girl" component={Girl} />
