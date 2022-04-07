@@ -164,16 +164,23 @@ function Home() {
 								<div className="home-container">
 									<div className="home_row">
 										<div className="product">
-											<img
-												className="image_max"
-												src={
-													"http://192.168.0.76:8080/imagePath/" +
-													item.board_profile
-												}
-												alt=""
-												width="1000px"
-												height="250px"
-											/>
+											<Link
+												to={{
+													pathname: "subpage/Subpage",
+													state: item.board_idx,
+												}}
+											>
+												<img
+													className="image_max"
+													src={
+														"http://192.168.0.76:8080/imagePath/" +
+														item.board_profile
+													}
+													alt=""
+													width="1000px"
+													height="250px"
+												/>
+											</Link>
 											<div className="product_info">{item.board_name}</div>
 											<p className="product_price">
 												가격 : {item.board_price}원

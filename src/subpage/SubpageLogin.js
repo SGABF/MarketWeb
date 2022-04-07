@@ -9,6 +9,8 @@ import SendIcon from "@mui/icons-material/Send";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 import Moment from "react-moment";
 import Button from "@mui/material/Button";
@@ -78,6 +80,8 @@ function Subpage(props) {
 	const [realcomment, setRealcomment] = useState([]);
 	const username = localStorage.getItem("authenticatedUser");
 	const token = localStorage.getItem("token");
+	const [key, setKey] = useState("0");
+	console.log(key);
 
 	const history = useHistory();
 	const location = useLocation();
@@ -86,11 +90,9 @@ function Subpage(props) {
 	useEffect(() => {
 		console.log(id_data);
 		getComment(id_data);
-		getRealcomment(id_data);
 	}, []);
 
 	const getComment = async (idx) => {
-		console.log(idx);
 		await axios
 			.post(
 				"http://192.168.0.76:8080/home/selectByIdxBoard",
@@ -104,8 +106,6 @@ function Subpage(props) {
 				}
 			)
 			.then((res) => {
-				console.log("가져온값 : " + res.data.length);
-				console.log("가져온값 : " + JSON.stringify(res.data));
 				setComment(res.data);
 			})
 			.catch((error) => {
@@ -113,29 +113,7 @@ function Subpage(props) {
 			});
 	};
 
-	const getRealcomment = async (idx) => {
-		const token = localStorage.getItem("token");
-		await axios
-			.post(
-				"http://192.168.0.76:8080/reply/insertReply",
-
-				{
-					headers: { Authorization: "Bearer " + token },
-				},
-
-				{
-					params: { board_idx: idx },
-				}
-			)
-			.then((res) => {
-				console.log("가져온값 : " + res.data.length);
-				console.log("가져온값 : " + JSON.stringify(res.data));
-				setRealcomment(res.data);
-			})
-			.catch((error) => {
-				console.log(`getComment 에러 :  ${error.message}`);
-			});
-	};
+	console.log(comment);
 
 	const deleteBoard = () => {
 		console.log(id_data);
@@ -152,6 +130,19 @@ function Subpage(props) {
 			});
 			window.alert("삭제 완료");
 			history.push("/mymarket");
+		}
+	};
+
+	const updateStatus = () => {
+		console.log(key);
+		if (window.confirm("판매상태를 수정하시겠습니까?")) {
+			axios({
+				method: "post",
+				url: "http://192.168.0.76:8080/board/updateSoldout",
+				headers: { Authorization: "Bearer " + token, user_id: username },
+				data: { board_idx: id_data, board_soldout: key },
+			});
+			window.alert("수정 완료");
 		}
 	};
 
@@ -264,7 +255,19 @@ function Subpage(props) {
 						) : null}
 						<br />
 						<br />
-						<Button onClick={deleteBoard}>삭제</Button>
+						<Tabs
+							id="controlled-tab-example"
+							activeKey={key}
+							onSelect={(k) => setKey(k)}
+							className="mb-3"
+							variant="pills"
+						>
+							<Tab eventKey="0" title="판매중"></Tab>
+							<Tab eventKey="1" title="예약중"></Tab>
+							<Tab eventKey="2" title="판매완료"></Tab>
+						</Tabs>
+						<Button onClick={updateStatus}>판매상태 수정하기</Button>
+						<Button onClick={deleteBoard}>게시글삭제</Button>
 						<br />
 						<br />
 						<br />
@@ -294,7 +297,7 @@ function Subpage(props) {
 							))}
 						<br />
 						<br /> */}
-						<BoardComment></BoardComment>
+						{token ? <BoardComment /> : <br />}
 					</div>
 					<comment />
 				</div>

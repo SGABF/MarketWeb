@@ -118,29 +118,14 @@ function App() {
 				/>
 				<Route path="/checkpw" component={isLoggedIn ? CheckPw : LoginPage} />
 				<Route path="/deleteok" component={DeleteOk} />
-				<Route
-					path="/mymarket"
-					component={
-						// isLoggedIn ?
-						MyMarket
-						// : LoginPage
-					}
-				/>
+				<Route path="/mymarket" component={isLoggedIn ? MyMarket : LoginPage} />
 				<Route
 					path="/boardcomment"
-					component={
-						// isLoggedIn ?
-						BoardComment
-						// : LoginPage
-					}
+					component={isLoggedIn ? BoardComment : LoginPage}
 				/>
 				<Route
 					path="/subpagelogin"
-					component={
-						// isLoggedIn ?
-						SubpageLogin
-						// : LoginPage
-					}
+					component={isLoggedIn ? SubpageLogin : LoginPage}
 				/>
 				<Route path="/mygk" component={isLoggedIn ? MyGk : LoginPage} />
 

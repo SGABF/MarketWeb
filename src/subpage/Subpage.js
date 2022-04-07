@@ -23,8 +23,6 @@ import { Item } from "semantic-ui-react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import BoardComment from "./BoardComment";
 
-function comment() {}
-
 function ChildModal() {
 	const style = {
 		position: "absolute",
@@ -74,67 +72,37 @@ function ChildModal() {
 function Subpage(props) {
 	const [showPopup, setShowPopup] = useState(false);
 	const [comment, setComment] = useState([]);
-	const [realcomment, setRealcomment] = useState([]);
 	const username = localStorage.getItem("authenticatedUser");
 	const token = localStorage.getItem("token");
 
 	const history = useHistory();
-	// const location = useLocation();
-	// const id_data = location.state;
+	const location = useLocation();
+	const id_data = location.state;
 
-	// useEffect(() => {
-	// 	console.log(id_data);
-	// 	getComment(id_data);
-	// 	getRealcomment(id_data);
-	// }, []);
+	useEffect(() => {
+		getComment(id_data);
+	}, []);
 
-	// const getComment = async (idx) => {
-	// 	console.log(idx);
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/home/selectByIdxBoard",
+	const getComment = async (idx) => {
+		await axios
+			.post(
+				"http://192.168.0.76:8080/home/selectByIdxBoard",
 
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
+				{
+					headers: { Authorization: "Bearer " + token },
+				},
 
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setComment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
-
-	// const getRealcomment = async (idx) => {
-	// 	const token = localStorage.getItem("token");
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/reply/insertReply",
-
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
-
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setRealcomment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
+				{
+					params: { board_idx: idx },
+				}
+			)
+			.then((res) => {
+				setComment(res.data);
+			})
+			.catch((error) => {
+				console.log(`getComment 에러 :  ${error.message}`);
+			});
+	};
 
 	const togglePopup = (event) => {
 		setShowPopup(event.target.value);
@@ -272,14 +240,12 @@ function Subpage(props) {
 									<Button>삭제</Button>
 								</p>
 							))} */}
-						<BoardComment></BoardComment>
+						{token ? <BoardComment /> : <br />}
 						<br />
 						<br />
 					</div>
-					<comment />
 				</div>
 			</div>
-			<br /> <br /> <br /> <br /> <br />
 			<Footer />
 		</>
 	);

@@ -116,8 +116,8 @@ function ISell(Props) {
 			<div className="Subpage">
 				<div className="Subpage-container">
 					<div className="title">
-						<Box sx={{ minWidth: 120 }} spacing={20}>
-							<FormControl fullWidth spacing={20}>
+						<Box sx={{ minWidth: 120 }}>
+							<FormControl fullWidth margin="normal">
 								<InputLabel spacing={20} id="demo-simple-select-label">
 									카테고리
 								</InputLabel>
@@ -132,27 +132,35 @@ function ISell(Props) {
 									<MenuItem value={2}>남성의류</MenuItem>
 									<MenuItem value={3}>전자기기</MenuItem>
 								</Select>
-								{/* 상품 이름
+							</FormControl>
+							<Box sx={{ minWidth: 120, maxWidth: "100%" }}>
+								<InputLabel
+									spacing={20}
+									id="demo-simple-select-label"
+								></InputLabel>
+								<TextField fullWidth value={title} label="글 제목" id="title" />
+							</Box>
+							<TextField container margin="normal">
+								<TextField
+									id="outlined-name"
+									label="글 제목"
+									value={title}
+									onChange={changeTitle}
+								/>
+								<TextField
+									id="outlined-name"
+									label="Name"
+									value={title}
+									onChange={handleChange}
+								/>
+							</TextField>
+							{/* 상품 이름
 						<Input required type="text" onChange={changeTitle} value={title} />
 						<p>
 						상품 가격 : <input type="text" value={price} />
 					<br /> 상품 설명 :{" "} */}
-								{/* * 표시되어있는 항목은 필수 입력입니다. */}
-								<TextField container spacing={20}>
-									<TextField
-										id="outlined-name"
-										label="글 제목"
-										value={title}
-										onChange={changeTitle}
-									/>
-									<TextField
-										id="outlined-name"
-										label="Name"
-										value={title}
-										onChange={handleChange}
-									/>
-								</TextField>
-								{/* <Grid container spacing={20}>
+							{/* * 표시되어있는 항목은 필수 입력입니다. */}
+							{/* <Grid container spacing={20}>
 									<Grid item xs={12} sm={20}>
 										<TextField
 											onChange={changePrice}
@@ -174,13 +182,12 @@ function ISell(Props) {
 										/>
 									</Grid>
 								</Grid> */}
-								{/* <input
+							{/* <input
 								type="text"
 								className="size"
 								onChange={changeContent}
 								value={content}
 							/> */}
-							</FormControl>
 						</Box>
 						<label htmlFor="icon-button-file"></label>
 						<label htmlFor="contained-button-file">
@@ -190,7 +197,7 @@ function ISell(Props) {
 								multiple
 								type="file"
 							/>
-							<input type="file" multiple onChange={selectFiles} />
+							{/* <input type="file" multiple onChange={selectFiles} /> */}
 							<br />
 							<button className="btn btn-success btn-sm" onClick={uploadFiles}>
 								Send
