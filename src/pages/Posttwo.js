@@ -8,69 +8,68 @@ import axios from "axios";
 import Footer from "components/Footer";
 
 function Post(props) {
-  const [notice, setNotice] = useState([]);
+	const [notice, setNotice] = useState([]);
 
-  useEffect(() => {
-    getNotice();
-  }, []);
+	useEffect(() => {
+		getNotice();
+	}, []);
 
-  const getNotice = async () => {
-    await axios
-      .get("http://192.168.0.150:8080/MainView/noticeList")
+	const getNotice = async () => {
+		await axios
+			.get("http://192.168.0.150:8080/MainView/noticeList")
 
-      .then((res) => {
-        console.log("가져온값 : " + res.data.length);
-        console.log("가져온값 : " + JSON.stringify(res.data));
-        setNotice(res.data);
-      })
-      .catch((error) => {
-        console.log(`getNotice 에러 :  ${error.message}`);
-      });
-  };
+			.then((res) => {
+				console.log("가져온값 : " + res.data.length);
+				console.log("가져온값 : " + JSON.stringify(res.data));
+				setNotice(res.data);
+			})
+			.catch((error) => {
+				console.log(`getNotice 에러 :  ${error.message}`);
+			});
+	};
 
-  const imageList =
-    notice &&
-    notice.map((item) => (
-      <img
-        className="image"
-        src={
-          "http://192.168.0.150:8080/imagePath/" + item.back_Noticefile_SaveName
-        }
-        alt="First slide"
-      />
-    ));
+	const imageList =
+		notice &&
+		notice.map((item) => (
+			<img
+				className="image"
+				src={
+					"http://192.168.0.150:8080/imagePath/" + item.back_Noticefile_SaveName
+				}
+				alt="First slide"
+			/>
+		));
 
-  return (
-    <>
-      <div className="Post_container">
-        <div className="blue_button">
-          <br />
-          <div>{imageList}</div>
-          <br />
-          <Button variant="contained" size="large">
-            {notice &&
-              notice.map((item) => (
-                <p>
-                  comment : {item.back_Notice_Subject}
-                  <br />
-                  comment : {item.back_Notice_Content}
-                  <br />
-                  comment : {item.back_Notice_RegDate}
-                </p>
-              ))}
-          </Button>
+	return (
+		<>
+			<div className="Post_container">
+				<div className="blue_button">
+					<br />
+					<div>{imageList}</div>
+					<br />
+					<Button variant="contained" size="large">
+						{notice &&
+							notice.map((item) => (
+								<p>
+									comment : {item.back_Notice_Subject}
+									<br />
+									comment : {item.back_Notice_Content}
+									<br />
+									comment : {item.back_Notice_RegDate}
+								</p>
+							))}
+					</Button>
 
-          <br />
+					<br />
 
-          <br />
-          <Button href="Write">수정</Button>
-          <Button href="Notice">목록</Button>
-        </div>
-      </div>
+					<br />
+					<Button href="Notice">목록</Button>
+				</div>
+			</div>
 
-      <br />
-    </>
-  );
+			<br />
+		</>
+	);
 }
 
 export default Post;

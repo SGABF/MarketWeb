@@ -15,6 +15,8 @@ import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import {
 	Category,
+	SettingsInputAntenna,
+	SettingsInputAntennaTwoTone,
 	SettingsOverscanOutlined,
 	SettingsSystemDaydreamSharp,
 } from "@material-ui/icons";
@@ -41,6 +43,15 @@ function Header() {
 		window.alert("로그아웃이 성공적으로 완료되었습니다.");
 		setloginCheck(false);
 		history.push("/login");
+	};
+
+	const onCheckEnter = (e) => {
+		if (e.key === "Enter") {
+			history.push({
+				pathname: "/searchresult",
+				state: keyword,
+			});
+		}
 	};
 
 	return (
@@ -71,6 +82,7 @@ function Header() {
 					className="header_searchInput"
 					type="search"
 					onChange={(e) => setKeyword(e.target.value)}
+					onKeyPress={onCheckEnter}
 				/>
 				<Link
 					to={{
@@ -81,6 +93,7 @@ function Header() {
 					<SearchIcon
 						type="button"
 						fontSize="large"
+						id="searchIcon"
 						className="header_searchIcon"
 					/>
 				</Link>
@@ -133,7 +146,7 @@ function Header() {
 							<Link to="/mymarket">
 								<MenuItem>My Market</MenuItem>
 							</Link>
-							<Link to="/myauction">
+							<Link to="/mygk">
 								<MenuItem>My 개꿀</MenuItem>
 							</Link>
 							<Link to="/checkpw">

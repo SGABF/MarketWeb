@@ -1,33 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
 import "./Registration.css";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import SendIcon from "@mui/icons-material/Send";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import ModalUnstyled from "@mui/base/ModalUnstyled";
-import Moment from "react-moment";
-import Button from "@mui/material/Button";
-import Footer from "components/Footer";
-import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Checkbox from "@mui/material/Checkbox";
-import axios from "axios";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import InputLabel from "@mui/material/InputLabel";
-import { Input, Grid, TextField } from "@mui/material";
+import { Input } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { UserAddOutlined } from "@ant-design/icons";
-import { loggedInUser } from "../pages/Home";
 import FileUploadService from "service/FileUploadService";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 // const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // const Input = styled("input")({
@@ -65,12 +45,17 @@ function ISell(Props) {
 	const selectFiles = (event) => {
 		setSelectedFiles(event.target.files);
 	};
+	const history = useHistory();
 
 	const uploadFiles = () => {
 		if (selectedFiles != null) {
 			const uploadPromises = upload(selectedFiles);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/");
 		} else {
 			const uploadPromises = FileUploadService.upload_nonFile(boardData);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/sale");
 		}
 		setMessage([]);
 	};
@@ -116,11 +101,9 @@ function ISell(Props) {
 			<div className="Subpage">
 				<div className="Subpage-container">
 					<div className="title">
-						<Box sx={{ minWidth: 120 }}>
-							<FormControl fullWidth margin="normal">
-								<InputLabel spacing={20} id="demo-simple-select-label">
-									카테고리
-								</InputLabel>
+						{/* <Box sx={{ minWidth: 120 }}>
+							<FormControl fullWidth>
+								<InputLabel id="demo-simple-select-label">카테고리</InputLabel>
 								<Select
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
@@ -133,62 +116,21 @@ function ISell(Props) {
 									<MenuItem value={3}>전자기기</MenuItem>
 								</Select>
 							</FormControl>
-							<Box sx={{ minWidth: 120, maxWidth: "100%" }}>
-								<InputLabel
-									spacing={20}
-									id="demo-simple-select-label"
-								></InputLabel>
-								<TextField fullWidth value={title} label="글 제목" id="title" />
-							</Box>
-							<TextField container margin="normal">
-								<TextField
-									id="outlined-name"
-									label="글 제목"
-									value={title}
-									onChange={changeTitle}
-								/>
-								<TextField
-									id="outlined-name"
-									label="Name"
-									value={title}
-									onChange={handleChange}
-								/>
-							</TextField>
-							{/* 상품 이름
-						<Input required type="text" onChange={changeTitle} value={title} />
+						</Box> */}
+						<h1>
+							글 제목 :{" "}
+							<input type="text" onChange={changeTitle} value={title} />
+						</h1>
 						<p>
-						상품 가격 : <input type="text" value={price} />
-					<br /> 상품 설명 :{" "} */}
-							{/* * 표시되어있는 항목은 필수 입력입니다. */}
-							{/* <Grid container spacing={20}>
-									<Grid item xs={12} sm={20}>
-										<TextField
-											onChange={changePrice}
-											required
-											fullWidth
-											id="name"
-											name="name"
-											label="글 제목"
-										/>
-									</Grid>
-									<Grid item xs={12}>
-										<TextField
-											onChange={changePrice}
-											required
-											fullWidth
-											id="name"
-											name="name"
-											label="상품 설명"
-										/>
-									</Grid>
-								</Grid> */}
-							{/* <input
+							가격 : <input type="text" onChange={changePrice} value={price} />
+							<br /> 상품 설명 :{" "}
+							<input
 								type="text"
 								className="size"
 								onChange={changeContent}
 								value={content}
-							/> */}
-						</Box>
+							/>
+						</p>
 						<label htmlFor="icon-button-file"></label>
 						<label htmlFor="contained-button-file">
 							<Input
@@ -196,13 +138,15 @@ function ISell(Props) {
 								id="contained-button-file"
 								multiple
 								type="file"
+								onChange={selectFiles}
 							/>
 							{/* <input type="file" multiple onChange={selectFiles} /> */}
 							<br />
 							<button className="btn btn-success btn-sm" onClick={uploadFiles}>
-								Send
+								제품 등록
 							</button>
 						</label>
+
 						<br />
 					</div>
 				</div>

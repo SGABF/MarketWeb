@@ -70,11 +70,8 @@ function ChildModal() {
 }
 
 function Subpage(props) {
-	const [showPopup, setShowPopup] = useState(false);
 	const [comment, setComment] = useState([]);
-	const username = localStorage.getItem("authenticatedUser");
 	const token = localStorage.getItem("token");
-
 	const history = useHistory();
 	const location = useLocation();
 	const id_data = location.state;
@@ -102,10 +99,6 @@ function Subpage(props) {
 			.catch((error) => {
 				console.log(`getComment 에러 :  ${error.message}`);
 			});
-	};
-
-	const togglePopup = (event) => {
-		setShowPopup(event.target.value);
 	};
 
 	const style = {
@@ -153,6 +146,9 @@ function Subpage(props) {
 		<>
 			<div className="Subpage">
 				<div className="Subpage-container">
+					<br />
+					<br />
+					<br />
 					<Carousel variant="dark">{imageList}</Carousel>
 
 					<div className="title">
@@ -162,20 +158,13 @@ function Subpage(props) {
 						<br />
 						<h1>{comment.board_name}</h1>
 						<p>
-							상품 가격 : ₩ {comment.board_price}원
+							<strong>상품 가격 :</strong> ₩{comment.board_price}
 							<br />
 							{comment.board_auctionOnOff === 1 ? (
 								<p>입찰 잔여시간 : {comment.board_regDate}</p>
 							) : null}
+							<strong>판매자 아이디 :</strong> {comment.user_id}
 						</p>
-						{/*<Button variant="contained" endIcon={<SendIcon/>}>*/}
-						{/*    입찰하기*/}
-						{/*</Button>*/}
-						{comment.board_auctionOnOff === 1 ? (
-							<Button onClick={handleOpen}>입찰하기</Button>
-						) : (
-							<Button onClick={handleOpen}>구매하기</Button>
-						)}
 						<Modal
 							open={open}
 							onClose={handleClose}
@@ -194,23 +183,8 @@ function Subpage(props) {
 								<ChildModal />
 							</Box>
 						</Modal>
-						<button className="open" onClick={togglePopup} value="false">
-							상품설명
-						</button>
-						{showPopup ? (
-							<div className="popup">
-								<div className="popup_inner">
-									<h2>
-										{comment.board_content} <br />
-									</h2>
-
-									<br />
-									<button className="close" onClick={togglePopup}>
-										닫기
-									</button>
-								</div>
-							</div>
-						) : null}
+						<strong>상품 설명 :</strong> <br />
+						{comment.board_content} <br />
 						<br />
 						<br />
 						<br />

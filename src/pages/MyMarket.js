@@ -44,7 +44,7 @@ function MySale() {
 						{/* <Link to="/">
               <Button>전체글</Button>
             </Link> */}
-						<Link to="../Sale">
+						{/* <Link to="../Sale">
 							<Button>판매글</Button>
 						</Link>
 						<Link to="../Buy">
@@ -53,11 +53,13 @@ function MySale() {
 
 						<Link to="../Auction">
 							<Button>경매글</Button>
-						</Link>
+						</Link> */}
 					</ButtonGroup>
 					<div></div>
 				</div>
 				<h3>My Market</h3>
+				<span>내가 작성한 게시글</span>
+				<br />
 				{/* {products.map((item) => {
           return item.map((item2) => {
             return (

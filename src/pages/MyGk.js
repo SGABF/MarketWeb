@@ -10,15 +10,15 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import axios from "axios";
 
 function MyAuction() {
-	const [myauction, setMyauction] = useState([]);
+	const [myGk, setMyGk] = useState([]);
 	const token = localStorage.getItem("token");
 	const username = localStorage.getItem("authenticatedUser");
 
 	useEffect(() => {
-		getMyauction();
+		getMyGk();
 	}, []);
 
-	const getMyauction = async () => {
+	const getMyGk = async () => {
 		await axios({
 			method: "post",
 			url: "http://192.168.0.76:8080/myGK",
@@ -26,7 +26,7 @@ function MyAuction() {
 		})
 			.then((res) => {
 				console.log("가져온값 : " + JSON.stringify(res.data));
-				setMyauction(res.data);
+				setMyGk(res.data);
 			})
 			.catch((error) => {
 				console.log(`getMyauction 에러 :  ${error.message}`);
@@ -36,45 +36,76 @@ function MyAuction() {
 	return (
 		<div>
 			<div className="mypage">
-				<h3>My Market</h3> <br />
+				<h3>My 개꿀</h3> <br />
 				<ButtonGroup
 					variant="outlined"
 					aria-label="outlined button group"
 					className="home_buttons"
 				>
-					<Link to="../mysale">
+					{/* <Link to="../mysale">
 						<Button>판매</Button>
 					</Link>
 					<Link to="../myauction">
 						<Button>구매</Button>
-					</Link>
+					</Link> */}
 				</ButtonGroup>
-				<CardGroup>
-					{myauction.map((item) => {
-						<Card>
-							<Card.Img variant="top" src="holder.js/100px160" />
-							<Card.Body>
-								<Card.Title>Card title</Card.Title>
-								<Card.Text></Card.Text>
-							</Card.Body>
-							<Card.Footer>
-								<small className="text-muted"></small>
-								<Link
-									to={{
-										pathname: "subpage/Subpage",
-										state: item.board_idx,
-									}}
-								>
-									<button className="icon_buttons">
-										<ZoomInIcon />
-									</button>
-								</Link>
-							</Card.Footer>
-						</Card>;
+				{myGk &&
+					myGk.map((item) => {
+						return (
+							<div className="home">
+								<div className="home-container">
+									<div className="home_row">
+										<div className="product">
+											<img
+												className="image_max"
+												src={
+													"http://192.168.0.76:8080/imagePath/" +
+													item.board_profile
+												}
+												alt=""
+												width="1000px"
+												height="250px"
+											/>
+											<div className="product_info">{item.board_name}</div>
+											<p className="product_price">
+												가격 : {item.board_price}원
+											</p>
+											<div>
+												{/* <img
+                            src={
+                              "http://192.168.0.76:8080/imagePath/" +
+                              item.boardImageList[0].boardImage_saveName
+                            }
+                            alt="Third slide"
+                            width="1000px"
+                            height="250px"
+                          /> */}
+
+												<Link
+													to={{
+														pathname: "/subpagelogin",
+														state: item.board_idx,
+													}}
+												>
+													<button className="icon_buttons">
+														<ZoomInIcon />
+													</button>
+												</Link>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						);
 					})}
-				</CardGroup>
+				<div
+					style={{
+						clear: "both",
+					}}
+				>
+					<Footer />
+				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

@@ -29,8 +29,8 @@ function Registration(props) {
 
 	return (
 		<>
-			<div className="Subpage">
-				<div className="registration_form">
+			<div>
+				<div>
 					<Tabs
 						id="controlled-tab-example"
 						activeKey={key}
