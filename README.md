@@ -10,10 +10,14 @@
 
 > ### FE
 > 여다혜
-> 이수진
+> 이수진<br/>
+> <a href="https://github.com/SGABF/MarketWeb">사용자 포털 FE repository</a> <br/>
+
 
 > ### BE
 > 박준모
 > 정한결
 > 최동오
-> 최현호
+> 최현호<br/>
+> <a href="https://github.com/SGABF/MarketWebBack">사용자 포털 BE repository</a> <br/>
+> <a href="https://github.com/SGABF/MarketAdminPage">관리자 포털 BE repository</a> <br/>
