@@ -35,7 +35,7 @@ function SaleAndBuy() {
 	const getHome = async () => {
 		const token = localStorage.getItem("token");
 		await axios
-			.post("http://192.168.0.76:8080/home/boardList", {
+			.post("http://192.168.0.151:8080/home/boardList", {
 				headers: { Authorization: "Bearer " + token },
 			})
 			.then((res) => {
@@ -70,19 +70,19 @@ function SaleAndBuy() {
 													<img
 														src="image/noimage.png"
 														alt=""
-														width="200px"
-														height="250px"
+														width="264px"
+														height="229px"
 													/>
 												) : (
 													<img
 														// className="image_max"
 														src={
-															"http://192.168.0.76:8080/imagePath/" +
+															"http://192.168.0.151:8080/imagePath/" +
 															item.board_profile
 														}
 														alt=""
-														width="200px"
-														height="250px"
+														width="264px"
+														height="229px"
 													/>
 												)}
 											</Link>
@@ -90,6 +90,13 @@ function SaleAndBuy() {
 											<p className="product_price">
 												가격 : {item.board_price}원
 											</p>
+											{item.board_soldout === 1 ? (
+												<strong>
+													<p style={{ color: "red" }}>Sold Out</p>
+												</strong>
+											) : (
+												<p></p>
+											)}
 											{item.user_id}
 											<div>
 												<Link

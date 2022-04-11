@@ -57,7 +57,7 @@ function SearchResult(props) {
 	const getSearchResult = async (keyword) => {
 		await axios
 			.get(
-				"http://192.168.0.76:8080/home/searchBoardList",
+				"http://192.168.0.151:8080/home/searchBoardList",
 				// headers: { Authorization: "Bearer " + token },
 				{
 					params: { keyword: keyword },
@@ -152,7 +152,7 @@ function SearchResult(props) {
 											<img
 												className="image_max"
 												src={
-													"http://192.168.0.76:8080/imagePath/" +
+													"http://192.168.0.151:8080/imagePath/" +
 													item.board_profile
 												}
 												alt=""

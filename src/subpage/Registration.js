@@ -28,28 +28,29 @@ function Registration(props) {
 	const [key, setKey] = useState("isell");
 
 	return (
-		<>
-			<div>
-				<div>
-					<Tabs
-						id="controlled-tab-example"
-						activeKey={key}
-						onSelect={(k) => setKey(k)}
-						className="mb-3"
-						variant="pills"
-					>
-						<Tab eventKey="isell" title="판매등록">
-							<ISell />
-						</Tab>
-						<Tab eventKey="ibuy" title="구매희망등록">
-							<IBuy />
-						</Tab>
-					</Tabs>
-				</div>
-			</div>
-			<br /> <br /> <br /> <br /> <br />
-			<Footer />
-		</>
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+				marginLeft: "10%",
+				marginRight: "10%",
+			}}
+		>
+			<br />
+			<br />
+			<Tabs
+				activeKey={key}
+				onSelect={(k) => setKey(k)}
+				className="mb-2"
+				variant="pills"
+			>
+				<Tab eventKey="isell" title="판매등록">
+					<ISell />
+				</Tab>
+				<Tab eventKey="ibuy" title="구매희망등록">
+					<IBuy />
+				</Tab>
+			</Tabs>
+		</div>
 	);
 }
 

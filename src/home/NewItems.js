@@ -3,7 +3,6 @@ import "./Home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
 function NewItems() {
@@ -15,7 +14,7 @@ function NewItems() {
 
 	const getHome = async () => {
 		await axios
-			.post("http://192.168.0.76:8080/home/main")
+			.post("http://192.168.0.151:8080/home/main")
 			.then((res) => {
 				// console.log("가져온값 : " + res.data.length);
 				// console.log("가져온값 : " + JSON.stringify(res.data));
@@ -47,19 +46,19 @@ function NewItems() {
 													<img
 														src="image/noimage.png"
 														alt=""
-														width="200px"
-														height="250px"
+														width="264px"
+														height="229px"
 													/>
 												) : (
 													<img
 														// className="image_max"
 														src={
-															"http://192.168.0.76:8080/imagePath/" +
+															"http://192.168.0.151:8080/imagePath/" +
 															item.board_profile
 														}
 														alt=""
-														width="200px"
-														height="250px"
+														width="264px"
+														height="229px"
 													/>
 												)}
 											</Link>
@@ -67,6 +66,13 @@ function NewItems() {
 											<p className="product_price">
 												가격 : {item.board_price}원
 											</p>
+											{item.board_soldout === 1 ? (
+												<strong>
+													<p style={{ color: "red" }}>Sold Out</p>
+												</strong>
+											) : (
+												<p></p>
+											)}
 											{item.user_id}
 											<div>
 												<Link

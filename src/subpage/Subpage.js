@@ -83,7 +83,7 @@ function Subpage(props) {
 	const getComment = async (idx) => {
 		await axios
 			.post(
-				"http://192.168.0.76:8080/home/selectByIdxBoard",
+				"http://192.168.0.151:8080/home/selectByIdxBoard",
 
 				{
 					headers: { Authorization: "Bearer " + token },
@@ -131,7 +131,9 @@ function Subpage(props) {
 			<Carousel.Item>
 				<img
 					className="d-block w-100"
-					src={"http://192.168.0.76:8080/imagePath/" + item.boardImage_saveName}
+					src={
+						"http://192.168.0.151:8080/imagePath/" + item.boardImage_saveName
+					}
 					alt="First slide"
 					width="250px"
 					height="250px"

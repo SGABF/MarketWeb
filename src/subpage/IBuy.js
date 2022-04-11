@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./Registration.css";
-import Box from "@mui/material/Box";
+import { Input } from "@mui/material";
+import Button from "@mui/material/Button";
+
 import { styled } from "@mui/material/styles";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import TableHead from "@mui/material/TableHead";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+
 import FileUploadService from "service/FileUploadService";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-const Input = styled("input")({
-	display: "none",
-});
+// const label = { inputProps: { "aria-label": "Checkbox demo" } };
+// const Input = styled("input")({
+// 	display: "none",
+// });
 
 function IBuy(Props) {
 	const [category, setCategory] = React.useState("");
@@ -76,61 +82,143 @@ function IBuy(Props) {
 	const sellCategory = 1;
 
 	return (
-		<>
-			<div className="Subpage">
-				<div className="Subpage-container">
-					<div className="title">
-						{/* <Box sx={{ minWidth: 120 }}>
-							<FormControl fullWidth>
-								<InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-								<Select
-									labelId="demo-simple-select-label"
-									id="demo-simple-select"
-									value={category}
-									label="카테고리"
-									onChange={handleChange}
-								>
-									<MenuItem value={1}>여성의류</MenuItem>
-									<MenuItem value={2}>남성의류</MenuItem>
-									<MenuItem value={3}>전자기기</MenuItem>
-								</Select>
-							</FormControl>
-						</Box> */}
-						<h1>
-							희망 상품 이름 :{" "}
-							<input type="text" onChange={changeTitle} value={title} />
-						</h1>
-						<p>
-							희망 구매 가격 :{" "}
-							<input type="text" onChange={changePrice} value={price} />
-							<br /> 상품 설명 :{" "}
-							<input
-								type="text"
-								className="size"
-								onChange={changeContent}
-								value={content}
-							/>
-						</p>
-						<label htmlFor="icon-button-file"></label>
-						<label htmlFor="contained-button-file">
-							<Input
-								accept="image/*"
-								id="contained-button-file"
-								multiple
-								type="file"
-							/>
-							<input type="file" multiple onChange={selectFiles} />
-							<br />
-							<button className="btn btn-success btn-sm" onClick={uploadFiles}>
-								Send
-							</button>
-						</label>
-
-						<br />
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+			}}
+		>
+			<br />
+			<br />
+			<div
+				style={{ backgroundColor: "orange", paddingTop: "10px", width: "100%" }}
+			>
+				<h1 style={{ color: "white" }}>
+					<strong>&nbsp;&nbsp;문의 남기기</strong>
+				</h1>
+				<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+					<Paper sx={{ width: "100%" }}>
+						<TableContainer component={Paper}>
+							<Table
+								sx={{ minWidth: 650 }}
+								size="large"
+								aria-label="a dense table"
+							>
+								<TableHead>
+									<TableRow>
+										<TableCell style={{ fontSize: "15pt" }}>
+											<strong>&nbsp;제목 &nbsp;&nbsp;</strong>
+											<Input
+												type="text"
+												onChange={changeTitle}
+												value={title}
+												style={{
+													width: "800px",
+													height: "50px",
+													border: "1px solid gray",
+												}}
+											/>
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell>
+											<strong>희망 가격 </strong>
+											<Input
+												type="text"
+												onChange={changePrice}
+												value={price}
+												style={{
+													width: "800px",
+													height: "50px",
+													border: "1px solid gray",
+												}}
+											/>
+										</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									<TableRow>
+										<TableCell colSpan={2} component="th" scope="row">
+											<strong>상품 설명 </strong>
+											<Input
+												type="text"
+												style={{
+													width: "800px",
+													height: "500px",
+													border: "1px solid gray",
+												}}
+												onChange={changeContent}
+												value={content}
+											/>
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										&nbsp;
+										<label htmlFor="icon-button-file" />
+										<label htmlFor="contained-button-file" />
+										<Input
+											accept="image/*"
+											id="contained-button-file"
+											multiple
+											type="file"
+											onChange={selectFiles}
+										/>
+										<br />
+									</TableRow>
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Paper>
+					<br />
+					<br />
+					<div style={{ textAlign: "right" }}>
+						<Button onClick={uploadFiles}>등록</Button>
+						<Button href="buy">목록</Button>
 					</div>
 				</div>
 			</div>
-		</>
+			<br />
+			<br />
+		</div>
+		// <>
+		// 	<div className="Subpage">
+		// 		<div className="Subpage-container">
+		// 			<div className="title">
+
+		// 				<h1>
+		// 					희망 상품 이름 :{" "}
+		// 					<input type="text" onChange={changeTitle} value={title} />
+		// 				</h1>
+		// 				<p>
+		// 					희망 구매 가격 :{" "}
+		// 					<input type="text" onChange={changePrice} value={price} />
+		// 					<br /> 상품 설명 :{" "}
+		// 					<input
+		// 						type="text"
+		// 						className="size"
+		// 						onChange={changeContent}
+		// 						value={content}
+		// 					/>
+		// 				</p>
+		// 				<label htmlFor="icon-button-file"></label>
+		// 				<label htmlFor="contained-button-file">
+		// 					<Input
+		// 						accept="image/*"
+		// 						id="contained-button-file"
+		// 						multiple
+		// 						type="file"
+		// 					/>
+		// 					<input type="file" multiple onChange={selectFiles} />
+		// 					<br />
+		// 					<button className="btn btn-success btn-sm" onClick={uploadFiles}>
+		// 						Send
+		// 					</button>
+		// 				</label>
+
+		// 				<br />
+		// 			</div>
+		// 		</div>
+		// 	</div>
+		// </>
 	);
 }
 

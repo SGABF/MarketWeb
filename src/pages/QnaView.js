@@ -1,7 +1,4 @@
-import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import Footer from "../components/Footer";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,12 +9,13 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./Notice.css";
 import {
 	Redirect,
 	useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { PaddingOutlined } from "@mui/icons-material";
+import { padding, width } from "@mui/system";
 
 function QnaView(props) {
 	const [qnaView, setQnaView] = useState([]);
@@ -32,8 +30,8 @@ function QnaView(props) {
 	useEffect(() => {
 		getQnaView(id_data);
 	}, []);
-	console.log(qnaView);
-	console.log(qnaFile.back_Qnafile_SaveName);
+	// console.log(qnaView);
+	// console.log(qnaFile.back_Qnafile_SaveName);
 	// const imageList =
 	// 	qnaView.back_Qnafile_OriName &&
 	// 	qnaView.back_Qnafile_OriName.map((item) => (
@@ -46,24 +44,22 @@ function QnaView(props) {
 
 	const getQnaView = async (idx) => {
 		await axios
-			.post("http://192.168.0.121:8080/MainView/qnaView", null, {
+			.post("http://192.168.0.150:8080/MainView/qnaView", null, {
 				params: { idx: idx },
 			})
 			.then((res) => {
-				console.log("가긴했음");
-				console.log("가져온값 : " + JSON.stringify(res.data));
+				// console.log("가긴했음");
+				// console.log("가져온값 : " + JSON.stringify(res.data));
 				setQnaView(res.data);
 				setQnaFile(res.data.file);
 				setQnaReply(res.data.reply);
-				console.log(JSON.stringify(res.data.file));
-				console.log(res.data.file.back_Qnafile_SaveName);
-				console.log(res.data.reply.back_Qna_Reply_Content);
 			})
 			.catch((error) => {
 				console.log(`getQnaView
 				 에러 :  ${error.message}`);
 			});
 	};
+
 	// const imageList =
 	// 	qnaView.file &&
 	// 	qnaView.file.map((item) => (
@@ -76,27 +72,87 @@ function QnaView(props) {
 	// 		/>
 	// 	));
 
+	function createData(name, calories, fat, carbs, protein) {
+		return { name, calories, fat, carbs, protein };
+	}
+
+	const rows = [createData("Frozen yoghurt", 159, 6.0, 24, 4.0)];
+
 	return (
-		<div>
-			<h1>고객센터 답변</h1>
-			<div className="Post_container">
-				<div className="blue_button">
-					<div>
-						<table>
-							<tr>{qnaView.back_Qna_Content}</tr>
-							<tr>{qnaView.back_Qna_RegDate}</tr>
-							{/* <tr>{qnaView.file.back_Qnafile_SaveName}</tr> */}
-							<tr>{qnaView.back_Qna_Name}</tr>
-							<tr>{qnaFile.back_Qnafile_SaveName}</tr>
-							<tr>{qnaReply.back_Qna_Reply_Content}</tr>
-						</table>
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+				marginLeft: "10%",
+				marginRight: "10%",
+			}}
+		>
+			<br />
+			<br />
+			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+				<h1 style={{ color: "white" }}>
+					<strong>&nbsp;&nbsp;고객센터 답변</strong>
+				</h1>
+				<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+					<Paper sx={{ width: "100%" }}>
+						<TableContainer component={Paper}>
+							<Table
+								sx={{ minWidth: 650 }}
+								size="large"
+								aria-label="a dense table"
+							>
+								<TableHead>
+									<TableRow>
+										<TableCell style={{ fontSize: "15pt" }}>
+											<strong>제목 : {qnaView.back_Qna_Name}</strong>
+										</TableCell>
+										<TableCell align="right">
+											{qnaView.back_Qna_RegDate}
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell colSpan={2}>
+											<strong>작성자 : {qnaView.user_Name}</strong>
+										</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									<TableRow>
+										<TableCell colSpan={2} component="th" scope="row">
+											{qnaFile === null ? (
+												""
+											) : (
+												<img
+													src={
+														"http://192.168.0.150:8080/imagePath/" +
+														qnaFile.back_Qnafile_SaveName
+													}
+												/>
+											)}
+											<br />
+											{qnaView.back_Qna_Content}
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell colSpan={2}>
+											<strong>답변 : </strong>
+											{qnaReply
+												? qnaReply.back_Qna_Reply_Content
+												: "답변 준비중입니다."}
+										</TableCell>
+									</TableRow>
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Paper>
+					<br />
+					<br />
+					<div style={{ textAlign: "right" }}>
+						<Button href="Write">수정</Button>
+						<Button href="QnaList">목록</Button>
 					</div>
-					<br />
-					<br />
-					<Button href="Write">수정</Button>
-					<Button href="Notice">목록</Button>
 				</div>
 			</div>
+			<br />
 			<br />
 		</div>
 	);

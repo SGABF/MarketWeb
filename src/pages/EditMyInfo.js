@@ -30,7 +30,7 @@ function EditMyInfo() {
 	const getUserInfo = async () => {
 		await axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/updateUserPage",
+			url: "http://192.168.0.151:8080/updateUserPage",
 			headers: { Authorization: "Bearer " + token, user_id: username },
 		})
 			.then((res) => {
@@ -48,7 +48,7 @@ function EditMyInfo() {
 		console.log(data);
 		axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/updateUser",
+			url: "http://192.168.0.151:8080/updateUser",
 			headers: { Authorization: "Bearer " + token },
 			data: {
 				user_id: data.username,
@@ -85,7 +85,7 @@ function EditMyInfo() {
 		) {
 			axios({
 				method: "post",
-				url: "http://192.168.0.76:8080/deleteUser",
+				url: "http://192.168.0.151:8080/deleteUser",
 				headers: { Authorization: "Bearer " + token, user_id: username },
 			});
 			localStorage.removeItem("authenticatedUser");

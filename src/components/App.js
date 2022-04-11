@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./App.css";
 import Header from "./Header";
+import Footer from "./Footer";
 import Home from "home/Home";
 import Checkout from "pages/Checkout";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import Girl from "../Category/Girl";
 import Man from "../Category/Man";
@@ -155,7 +156,7 @@ function App() {
 					{/*</Switch>*/}
 				</Switch>
 			</div>
-			{/* <Footer /> */}
+			<Footer />
 		</Router>
 	);
 }

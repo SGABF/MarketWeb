@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./MyMarket.css";
+// import "./MyMarket.css";
 import { Link } from "react-router-dom";
 import Footer from "components/Footer";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
@@ -18,9 +18,11 @@ function MySale() {
 
 	const getMysale = async () => {
 		console.log("가긴가니?");
+		console.log(token);
+		console.log(username);
 		await axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/myMarket",
+			url: "http://192.168.0.151:8080/myMarket",
 			headers: { Authorization: "Bearer " + token, user_id: username },
 		})
 			.then((res) => {
@@ -33,44 +35,16 @@ function MySale() {
 	};
 
 	return (
-		<div className="home">
-			<div className="home-container">
-				<div className="menubar">
-					<ButtonGroup
-						variant="outlined"
-						aria-label="outlined button group"
-						className="home_buttons"
-					>
-						{/* <Link to="/">
-              <Button>전체글</Button>
-            </Link> */}
-						{/* <Link to="../Sale">
-							<Button>판매글</Button>
-						</Link>
-						<Link to="../Buy">
-							<Button>구매글</Button>
-						</Link>
-
-						<Link to="../Auction">
-							<Button>경매글</Button>
-						</Link> */}
-					</ButtonGroup>
-					<div></div>
-				</div>
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+				marginLeft: "10%",
+				marginRight: "10%",
+			}}
+		>
+			<div style={{ backgroundColor: "rgb(243, 243, 239)" }}>
 				<h3>My Market</h3>
-				<span>내가 작성한 게시글</span>
 				<br />
-				{/* {products.map((item) => {
-          return item.map((item2) => {
-            return (
-              <div className="home_row">
-                {item2.id} <br /> {item2.title} <br /> 가격{item2.price} <br />
-                {item2.image} <br />
-                코드{item2.code}
-              </div>
-            );
-          });
-        })} */}
 				{mysale &&
 					mysale.map((item) => {
 						return (
@@ -78,31 +52,37 @@ function MySale() {
 								<div className="home-container">
 									<div className="home_row">
 										<div className="product">
-											<img
-												className="image_max"
-												src={
-													"http://192.168.0.76:8080/imagePath/" +
-													item.board_profile
-												}
-												alt=""
-												width="1000px"
-												height="250px"
-											/>
+											<Link
+												to={{
+													pathname: "/subpagelogin",
+													state: item.board_idx,
+												}}
+											>
+												{item.board_profile === null ? (
+													<img
+														src="image/noimage.png"
+														alt=""
+														width="264px"
+														height="229px"
+													/>
+												) : (
+													<img
+														// className="image_max"
+														src={
+															"http://192.168.0.151:8080/imagePath/" +
+															item.board_profile
+														}
+														alt=""
+														width="264px"
+														height="229px"
+													/>
+												)}
+											</Link>
 											<div className="product_info">{item.board_name}</div>
 											<p className="product_price">
 												가격 : {item.board_price}원
 											</p>
 											<div>
-												{/* <img
-                            src={
-                              "http://192.168.0.76:8080/imagePath/" +
-                              item.boardImageList[0].boardImage_saveName
-                            }
-                            alt="Third slide"
-                            width="1000px"
-                            height="250px"
-                          /> */}
-
 												<Link
 													to={{
 														pathname: "/subpagelogin",
@@ -124,9 +104,9 @@ function MySale() {
 					style={{
 						clear: "both",
 					}}
-				>
-					<Footer />
-				</div>
+				></div>
+				<br />
+				<br />
 			</div>
 		</div>
 	);

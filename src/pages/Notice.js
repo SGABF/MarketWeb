@@ -59,201 +59,109 @@ export default function ColumnGroupingTable() {
 	};
 
 	return (
-		<div>
-			<h1>공지사항</h1>
-
-			<Paper sx={{ width: "100%" }}>
-				<TableContainer sx={{ maxHeight: 440 }}>
-					<Table stickyHeader aria-label="sticky table">
-						<TableHead>
-							<TableRow>
-								<TableCell align="center" colSpan={2}>
-									Notice
-								</TableCell>
-								<TableCell align="center" colSpan={3}>
-									Details
-								</TableCell>
-							</TableRow>
-							<TableRow>
-								{columns.map((column) => (
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+				marginLeft: "10%",
+				marginRight: "10%",
+			}}
+		>
+			<br />
+			<br />
+			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+				<h1 style={{ color: "white" }}>
+					<strong>&nbsp;&nbsp;공지사항</strong>
+				</h1>
+				<Paper sx={{ width: "100%" }}>
+					<TableContainer sx={{ maxHeight: 440 }}>
+						<Table stickyHeader aria-label="sticky table">
+							<TableHead>
+								<TableRow>
 									<TableCell
-										key={column.id}
-										align={column.align}
-										style={{ top: 57, minWidth: column.minWidth }}
+										align="center"
+										width="50%"
+										style={{ fontSize: "15pt" }}
 									>
-										{column.label}
+										<strong>제목</strong>
 									</TableCell>
-								))}
-							</TableRow>
-						</TableHead>
+									<TableCell
+										align="center"
+										width="25%"
+										style={{ fontSize: "15pt" }}
+									>
+										<strong>등록일</strong>
+									</TableCell>
+								</TableRow>
+							</TableHead>
 
-						<TableBody>
-							{notice.map((row) => {
-								return (
-									<TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-										{columns.map((column) => {
-											const value = row[column.id];
-											console.log("너는 누구냐? : " + row.back_Notice_Idx);
-											return (
-												<TableCell key={column.id} align={column.align}>
-													<Link
-														to={{
-															pathname: "/Posttwo",
-															id_value: row.back_Notice_Idx,
-														}}
-														className="TableBody"
-													>
-														{column.format && typeof value === "number"
-															? column.format(value)
-															: value}
-													</Link>
-												</TableCell>
-											);
-										})}
-									</TableRow>
-								);
-							})}
-						</TableBody>
-					</Table>
-				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[10, 25, 100]}
-					component="div"
-					count={notice.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
-				/>
-			</Paper>
+							<TableBody>
+								{notice.map((row) => {
+									return (
+										<TableRow
+											hover
+											role="checkbox"
+											tabIndex={-1}
+											key={row.code}
+										>
+											{columns.map((column) => {
+												const value = row[column.id];
+												return (
+													<TableCell key={column.id} align={column.align}>
+														<Link
+															to={{
+																pathname: "/Posttwo",
+																id_value: row.back_Notice_Idx,
+															}}
+															className="TableBody"
+														>
+															{column.format && typeof value === "number"
+																? column.format(value)
+																: value}
+														</Link>
+													</TableCell>
+												);
+											})}
+										</TableRow>
+									);
+								})}
+							</TableBody>
+						</Table>
+					</TableContainer>
+					<TablePagination
+						rowsPerPageOptions={[10, 25, 100]}
+						component="div"
+						count={notice.length}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						onPageChange={handleChangePage}
+						onRowsPerPageChange={handleChangeRowsPerPage}
+					/>
+				</Paper>
+				<br />
+				<br />
+				<br />
+			</div>
 			<br />
 			<br />
-			<Footer />
 		</div>
 	);
 }
 
 const columns = [
-	{ id: "back_Notice_Idx", label: "Id", minWidth: 170 },
+	// { id: "back_Notice_Idx", label: "", minWidth: 170 },
 
-	{ id: "back_Notice_Subject", label: "Name", minWidth: 170 },
-	{
-		id: "back_Notice_Content",
-		label: "Content",
-		minWidth: 170,
-		align: "right",
-		format: (value) => value.toLocaleString("ko-KR"),
-	},
+	{ id: "back_Notice_Subject", label: "제목" },
+	// {
+	// 	id: "back_Notice_Content",
+	// 	label: "내용",
+	// 	align: "right",
+	// 	format: (value) => value.toLocaleString("ko-KR"),
+	// },
 
 	{
 		id: "back_Notice_RegDate",
-		label: "RegDate",
-		minWidth: 170,
+		label: "등록일",
 		align: "right",
 		format: (value) => value.toLocaleString("ko-KR"),
 	},
 ];
-
-// function createData(name, Subname, Content, RegDate, location) {
-//   return { name, Subname, Content, RegDate, location };
-// }
-
-// createData(
-//   "운영자",
-//   "15일 배송건에 대해서 공지사항 드립니다.",
-
-//   "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//   "2022-03-15"
-// ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   ),
-//   createData(
-//     "운영자",
-//     "15일 배송건에 대해서 공지사항 드립니다.",
-//     "배송이 늦어져서 죄송합니다. 19일까지 배송 완료 될 예정입니다.",
-
-//     "2022-03-15"
-//   );

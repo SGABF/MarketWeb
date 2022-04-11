@@ -1,27 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
-import {
-	DropdownButton,
-	SplitButton,
-	ButtonGroup,
-	Dropdown,
-} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
-import {
-	Category,
-	SettingsInputAntenna,
-	SettingsInputAntennaTwoTone,
-	SettingsOverscanOutlined,
-	SettingsSystemDaydreamSharp,
-} from "@material-ui/icons";
 import * as loginService from "../service/AuthenticationService";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function Header() {
@@ -31,11 +16,6 @@ function Header() {
 	loginCheck = loginService.isUserLoggedIn();
 	const loggedInUser = loginService.getLoggedInUserName();
 	let history = useHistory();
-
-	// const handleSelect = (e) => {
-	//   console.log(e);
-	//   setValue(e)
-	// };
 
 	const logOut = () => {
 		localStorage.removeItem("authenticatedUser");
@@ -156,14 +136,14 @@ function Header() {
 						</Menu>
 					)}
 				</div>
-				<Link to="/checkout">
+				{/* <Link to="/checkout">
 					<div className="header_optionBasket">
 						<ShoppingBasket />
 						<span className="header_optionLineOneheader_basketCount">
 							{basket?.length}
 						</span>
 					</div>
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);

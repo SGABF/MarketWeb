@@ -20,7 +20,7 @@ function LoginPage() {
 		const username = localStorage.getItem("authenticatedUser");
 		axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/checkPassword",
+			url: "http://192.168.0.151:8080/checkPassword",
 			headers: { Authorization: "Bearer " + token, user_id: username },
 			data: { user_password: password },
 		})

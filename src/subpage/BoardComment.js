@@ -31,7 +31,7 @@ function BoardComment() {
 	const getComment = async (idx) => {
 		await axios
 			.post(
-				"http://192.168.0.76:8080/home/selectByIdxBoard",
+				"http://192.168.0.151:8080/home/selectByIdxBoard",
 				{
 					headers: { Authorization: "Bearer " + token },
 				},
@@ -59,7 +59,7 @@ function BoardComment() {
 	const insertReply = () => {
 		axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/reply/insertReply",
+			url: "http://192.168.0.151:8080/reply/insertReply",
 			headers: { Authorization: "Bearer " + token },
 			data: {
 				user_id: username,
@@ -78,7 +78,7 @@ function BoardComment() {
 	const updateComment = () => {
 		axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/reply/updateReply",
+			url: "http://192.168.0.151:8080/reply/updateReply",
 			headers: { Authorization: "Bearer " + token },
 			data: {
 				user_id: username,
@@ -118,7 +118,7 @@ function BoardComment() {
 		console.log(reply_idx);
 		axios({
 			method: "post",
-			url: "http://192.168.0.76:8080/reply/deleteReply",
+			url: "http://192.168.0.151:8080/reply/deleteReply",
 			headers: { Authorization: "Bearer " + token },
 			data: {
 				user_id: username,
