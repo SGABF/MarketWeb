@@ -4,28 +4,28 @@ import axios from "axios";
 
 // send username, password to the SERVER
 export const executeJwtAuthenticationService = (username, password) => {
-  return axios.post("http://192.168.0.76:8080/authenticate/token", {
-    username,
-    password,
-  });
+	return axios.post("http://192.168.0.151:8080/authenticate/token", {
+		username,
+		password,
+	});
 };
 
 export const executeHelloService = () => {
-  console.log("===executeHelloService===");
-  return axios.get("http://localhost:8080/hello");
+	console.log("===executeHelloService===");
+	return axios.get("http://localhost:8080/hello");
 };
 
 export const registerSuccessfulLoginForJwt = (username, token) => {
-  console.log("===registerSuccessfulLoginForJwt===");
-  localStorage.setItem("token", token);
-  localStorage.setItem("authenticatedUser", username);
-  // sessionStorage.setItem('authenticatedUser', username)
-  //this.setupAxiosInterceptors(this.createJWTToken(token))
-  // setupAxiosInterceptors();
+	console.log("===registerSuccessfulLoginForJwt===");
+	localStorage.setItem("token", token);
+	localStorage.setItem("authenticatedUser", username);
+	// sessionStorage.setItem('authenticatedUser', username)
+	//this.setupAxiosInterceptors(this.createJWTToken(token))
+	// setupAxiosInterceptors();
 };
 
 const createJWTToken = (token) => {
-  return "Bearer " + token;
+	return "Bearer " + token;
 };
 
 // export const setupAxiosInterceptors = () => {
@@ -45,29 +45,28 @@ const createJWTToken = (token) => {
 // };
 
 export const logout = () => {
-  //sessionStorage.removeItem('authenticatedUser');
-  localStorage.removeItem("authenticatedUser");
-  localStorage.removeItem("token");
-
+	//sessionStorage.removeItem('authenticatedUser');
+	localStorage.removeItem("authenticatedUser");
+	localStorage.removeItem("token");
 };
 
 export const isUserLoggedIn = () => {
-  //let user = sessionStorage.getItem('authenticatedUser')
-  const token = localStorage.getItem("token");
-  // console.log("===UserloggedInCheck===");
-  // console.log(token);
+	//let user = sessionStorage.getItem('authenticatedUser')
+	const token = localStorage.getItem("token");
+	// console.log("===UserloggedInCheck===");
+	// console.log(token);
 
-  if (token) {
-    return true;
-  }
-  //if(user===null) return false
-  return false;
+	if (token) {
+		return true;
+	}
+	//if(user===null) return false
+	return false;
 };
 export const getLoggedInUserName = () => {
-  //let user = sessionStorage.getItem('authenticatedUser')
-  let user = localStorage.getItem("authenticatedUser");
-  if (user === null) return "";
-  return user;
+	//let user = sessionStorage.getItem('authenticatedUser')
+	let user = localStorage.getItem("authenticatedUser");
+	if (user === null) return "";
+	return user;
 };
 
 console.log();

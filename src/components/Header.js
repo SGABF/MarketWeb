@@ -1,25 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
-import {
-	DropdownButton,
-	SplitButton,
-	ButtonGroup,
-	Dropdown,
-} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
-import {
-	Category,
-	SettingsOverscanOutlined,
-	SettingsSystemDaydreamSharp,
-} from "@material-ui/icons";
 import * as loginService from "../service/AuthenticationService";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function Header() {
@@ -30,17 +17,22 @@ function Header() {
 	const loggedInUser = loginService.getLoggedInUserName();
 	let history = useHistory();
 
-	// const handleSelect = (e) => {
-	//   console.log(e);
-	//   setValue(e)
-	// };
-
 	const logOut = () => {
 		localStorage.removeItem("authenticatedUser");
 		localStorage.removeItem("token");
 		window.alert("로그아웃이 성공적으로 완료되었습니다.");
 		setloginCheck(false);
 		history.push("/login");
+	};
+
+	const onCheckEnter = (e) => {
+		if (e.key === "Enter") {
+			history.push({
+				pathname: "/searchresult",
+				state: keyword,
+			});
+			window.location.reload();
+		}
 	};
 
 	return (
@@ -50,28 +42,13 @@ function Header() {
 			</Link>
 
 			<div className="header_search">
-				{/* <>
-          {[DropdownButton].map((DropdownType, idx) => (
-            <DropdownType
-            onSelect={handleSelect}
-            as={ButtonGroup}
-            key={idx}
-            id={`dropdown-button-drop-${idx}`}
-            size="sm"
-            variant="light"
-            title="전체"
-            >
-              <Dropdown.Item eventKey="board_name" >상품명</Dropdown.Item>
-              <Dropdown.Item eventKey="board_content">내용</Dropdown.Item>
-              <Dropdown.Item eventKey="board_all">전체</Dropdown.Item>
-            </DropdownType>
-          ))}
-        </> */}
 				<input
 					className="header_searchInput"
 					type="search"
 					onChange={(e) => setKeyword(e.target.value)}
+					onKeyPress={onCheckEnter}
 				/>
+				&nbsp;
 				<Link
 					to={{
 						pathname: "/searchresult",
@@ -81,6 +58,7 @@ function Header() {
 					<SearchIcon
 						type="button"
 						fontSize="large"
+						id="searchIcon"
 						className="header_searchIcon"
 					/>
 				</Link>
@@ -94,22 +72,7 @@ function Header() {
 				</div>
 				<div className="header_option">
 					<Link to="/">
-						<span className="header_optionLineOne">
-							{" "}
-							장터게시판
-							{/* <Menu*/}
-							{/*    menuButton={*/}
-							{/*        <MenuButton className="button">장터게시판</MenuButton>*/}
-							{/*    }*/}
-							{/*>*/}
-							{/*  <SubMenu label="경매글">*/}
-							{/*    <MenuItem>입찰하기</MenuItem>*/}
-							{/*    <MenuItem>잔여시간</MenuItem>*/}
-							{/*    <MenuItem>입찰 인원 조회</MenuItem>*/}
-							{/*    <MenuItem>경매 시작가 조회</MenuItem>*/}
-							{/*  </SubMenu>*/}
-							{/*</Menu> */}
-						</span>
+						<span className="header_optionLineOne">장터게시판</span>
 					</Link>
 				</div>
 
@@ -133,7 +96,7 @@ function Header() {
 							<Link to="/mymarket">
 								<MenuItem>My Market</MenuItem>
 							</Link>
-							<Link to="/myauction">
+							<Link to="/mygk">
 								<MenuItem>My 개꿀</MenuItem>
 							</Link>
 							<Link to="/checkpw">
@@ -143,14 +106,6 @@ function Header() {
 						</Menu>
 					)}
 				</div>
-				<Link to="/checkout">
-					<div className="header_optionBasket">
-						<ShoppingBasket />
-						<span className="header_optionLineOneheader_basketCount">
-							{basket?.length}
-						</span>
-					</div>
-				</Link>
 			</div>
 		</div>
 	);

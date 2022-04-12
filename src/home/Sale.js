@@ -1,54 +1,37 @@
 import React, { useEffect, useState } from "react";
-// import "./MyMarket.css";
 import { Link } from "react-router-dom";
-import Footer from "components/Footer";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import CardGroup from "react-bootstrap/CardGroup";
-import Card from "react-bootstrap/Card";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import axios from "axios";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 
-function MyGk() {
-	const [myGk, setMyGk] = useState([]);
-	const token = localStorage.getItem("token");
-	const username = localStorage.getItem("authenticatedUser");
+function Sale() {
+	const [home, setHome] = useState([]);
 
 	useEffect(() => {
-		getMyGk();
+		getHome();
 	}, []);
 
-	const getMyGk = async () => {
-		await axios({
-			method: "post",
-			url: "http://192.168.0.151:8080/myGK",
-			headers: { Authorization: "Bearer " + token, user_id: username },
-		})
+	const getHome = async () => {
+		const token = localStorage.getItem("token");
+		await axios
+			.post("http://192.168.0.151:8080/home/sellBoard", {
+				headers: { Authorization: "Bearer " + token },
+			})
 			.then((res) => {
-				console.log("가져온값 : " + JSON.stringify(res.data));
-				setMyGk(res.data);
+				setHome(res.data);
+				console.log(res.data);
 			})
 			.catch((error) => {
-				console.log(`getMyauction 에러 :  ${error.message}`);
+				console.log(`getHome 에러 :  ${error.message}`);
 			});
 	};
 
 	return (
-		<div
-			style={{
-				backgroundColor: "rgb(243, 243, 239)",
-				marginLeft: "10%",
-				marginRight: "10%",
-			}}
-		>
-			<div style={{ backgroundColor: "rgb(243, 243, 239)" }}>
-				<br />
-				<br />
-				<h3>My 개꿀</h3>
-				<h4>내가 댓글 단 게시글 모아보기</h4>
-				<br />
-				{myGk &&
-					myGk.map((item) => {
+		<div>
+			<h1>&nbsp;&nbsp;&nbsp;판매게시판</h1>
+			<br />
+			<div>
+				{home &&
+					home.map((item) => {
 						return (
 							<div className="home">
 								<div className="home-container">
@@ -56,7 +39,7 @@ function MyGk() {
 										<div className="product">
 											<Link
 												to={{
-													pathname: "/subpagelogin",
+													pathname: "subpage/Subpage",
 													state: item.board_idx,
 												}}
 											>
@@ -69,7 +52,6 @@ function MyGk() {
 													/>
 												) : (
 													<img
-														// className="image_max"
 														src={
 															"http://192.168.0.151:8080/imagePath/" +
 															item.board_profile
@@ -84,10 +66,18 @@ function MyGk() {
 											<p className="product_price">
 												가격 : {item.board_price}원
 											</p>
+											{item.board_soldout === 1 ? (
+												<strong>
+													<p style={{ color: "red" }}>Sold Out</p>
+												</strong>
+											) : (
+												<p></p>
+											)}
+											{item.user_id}
 											<div>
 												<Link
 													to={{
-														pathname: "/subpagelogin",
+														pathname: "subpage/Subpage",
 														state: item.board_idx,
 													}}
 												>
@@ -102,16 +92,8 @@ function MyGk() {
 							</div>
 						);
 					})}
-				<div
-					style={{
-						clear: "both",
-					}}
-				></div>
-				<br />
-				<br />
 			</div>
 		</div>
 	);
 }
-
-export default MyGk;
+export default Sale;

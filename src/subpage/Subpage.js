@@ -23,8 +23,6 @@ import { Item } from "semantic-ui-react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import BoardComment from "./BoardComment";
 
-function comment() {}
-
 function ChildModal() {
 	const style = {
 		position: "absolute",
@@ -72,72 +70,35 @@ function ChildModal() {
 }
 
 function Subpage(props) {
-	const [showPopup, setShowPopup] = useState(false);
 	const [comment, setComment] = useState([]);
-	const [realcomment, setRealcomment] = useState([]);
-	const username = localStorage.getItem("authenticatedUser");
 	const token = localStorage.getItem("token");
-
 	const history = useHistory();
-	// const location = useLocation();
-	// const id_data = location.state;
+	const location = useLocation();
+	const id_data = location.state;
 
-	// useEffect(() => {
-	// 	console.log(id_data);
-	// 	getComment(id_data);
-	// 	getRealcomment(id_data);
-	// }, []);
+	useEffect(() => {
+		getComment(id_data);
+	}, []);
 
-	// const getComment = async (idx) => {
-	// 	console.log(idx);
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/home/selectByIdxBoard",
+	const getComment = async (idx) => {
+		await axios
+			.post(
+				"http://192.168.0.151:8080/home/selectByIdxBoard",
 
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
+				{
+					headers: { Authorization: "Bearer " + token },
+				},
 
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setComment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
-
-	// const getRealcomment = async (idx) => {
-	// 	const token = localStorage.getItem("token");
-	// 	await axios
-	// 		.post(
-	// 			"http://192.168.0.76:8080/reply/insertReply",
-
-	// 			{
-	// 				headers: { Authorization: "Bearer " + token },
-	// 			},
-
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setRealcomment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
-
-	const togglePopup = (event) => {
-		setShowPopup(event.target.value);
+				{
+					params: { board_idx: idx },
+				}
+			)
+			.then((res) => {
+				setComment(res.data);
+			})
+			.catch((error) => {
+				console.log(`getComment 에러 :  ${error.message}`);
+			});
 	};
 
 	const style = {
@@ -170,7 +131,9 @@ function Subpage(props) {
 			<Carousel.Item>
 				<img
 					className="d-block w-100"
-					src={"http://192.168.0.76:8080/imagePath/" + item.boardImage_saveName}
+					src={
+						"http://192.168.0.151:8080/imagePath/" + item.boardImage_saveName
+					}
 					alt="First slide"
 					width="250px"
 					height="250px"
@@ -185,6 +148,10 @@ function Subpage(props) {
 		<>
 			<div className="Subpage">
 				<div className="Subpage-container">
+					<br />
+					<h1 style={{ textAlign: "center" }}>제품 상세페이지</h1>
+					<br />
+					<br />
 					<Carousel variant="dark">{imageList}</Carousel>
 
 					<div className="title">
@@ -194,20 +161,13 @@ function Subpage(props) {
 						<br />
 						<h1>{comment.board_name}</h1>
 						<p>
-							상품 가격 : ₩ {comment.board_price}원
+							<strong>상품 가격 :</strong> ₩{comment.board_price}
 							<br />
 							{comment.board_auctionOnOff === 1 ? (
 								<p>입찰 잔여시간 : {comment.board_regDate}</p>
 							) : null}
+							<strong>판매자 아이디 :</strong> {comment.user_id}
 						</p>
-						{/*<Button variant="contained" endIcon={<SendIcon/>}>*/}
-						{/*    입찰하기*/}
-						{/*</Button>*/}
-						{comment.board_auctionOnOff === 1 ? (
-							<Button onClick={handleOpen}>입찰하기</Button>
-						) : (
-							<Button onClick={handleOpen}>구매하기</Button>
-						)}
 						<Modal
 							open={open}
 							onClose={handleClose}
@@ -226,61 +186,20 @@ function Subpage(props) {
 								<ChildModal />
 							</Box>
 						</Modal>
-						<button className="open" onClick={togglePopup} value="false">
-							상품설명
-						</button>
-						{showPopup ? (
-							<div className="popup">
-								<div className="popup_inner">
-									<h2>
-										{comment.board_content} <br />
-									</h2>
-
-									<br />
-									<button className="close" onClick={togglePopup}>
-										닫기
-									</button>
-								</div>
-							</div>
-						) : null}
+						<strong>상품 설명 :</strong> <br />
+						{comment.board_content} <br />
 						<br />
 						<br />
 						<br />
 						<br />
 						<br />
 						<br />
-						{/* <TextField
-							id="input-with-icon-textfield"
-							label="comment"
-							InputProps={{
-								startAdornment: (
-									<InputAdornment position="start">
-										<AccountCircle />
-									</InputAdornment>
-								),
-							}}
-							variant="standard"
-						/>
-						<Button onClick={leaveComment}>댓글 남기기</Button>
-						<br />
-						<br />
-						{comment.replyList &&
-							comment.replyList.map((item) => (
-								<p>
-									comment : {item.reply_content}
-									<Button>수정</Button>
-									<Button>삭제</Button>
-								</p>
-							))} */}
-						<BoardComment></BoardComment>
+						{token ? <BoardComment /> : <br />}
 						<br />
 						<br />
 					</div>
-					<comment />
 				</div>
 			</div>
-			<br /> <br /> <br /> <br /> <br />
-			<Footer />
 		</>
 	);
 }

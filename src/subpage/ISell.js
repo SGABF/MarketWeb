@@ -1,87 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { Carousel, className, DropdownButton, Dropdown } from "react-bootstrap";
-import "./Registration.css";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import SendIcon from "@mui/icons-material/Send";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import ModalUnstyled from "@mui/base/ModalUnstyled";
-import Moment from "react-moment";
-import Button from "@mui/material/Button";
-import Footer from "components/Footer";
-import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Checkbox from "@mui/material/Checkbox";
-import axios from "axios";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { UserAddOutlined } from "@ant-design/icons";
-import { loggedInUser } from "../pages/Home";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import FileUploadService from "service/FileUploadService";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-const Input = styled("input")({
-	display: "none",
-});
+import { Input } from "@mui/material";
+import Button from "@mui/material/Button";
+import TableHead from "@mui/material/TableHead";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
 
 function ISell(Props) {
-	const [category, setCategory] = React.useState("");
-
-	const handleChange = (event) => {
-		setCategory(event.target.value);
-	};
-
-	const style = {
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
-		width: 400,
-		bgcolor: "background.paper",
-		border: "2px solid #000",
-		boxShadow: 24,
-		pt: 2,
-		px: 4,
-		pb: 3,
-	};
-
 	const [selectedFiles, setSelectedFiles] = useState(undefined);
-	const [message, setMessage] = useState([]);
 	const [title, setTitle] = useState("");
 	const [price, setPrice] = useState(0);
 	const [content, setContent] = useState("");
 	const [boardData, setBoardData] = useState([]);
+	const [message, setMessage] = useState([]);
+	const history = useHistory();
+
+	useEffect(() => {
+		dataSetting(title, price, content);
+	}, [title, content, price, selectedFiles]);
+
+	// 파일 첨부
 	const selectFiles = (event) => {
 		setSelectedFiles(event.target.files);
 	};
 
+	// 파일 첨부/미첨부 업로드
 	const uploadFiles = () => {
 		if (selectedFiles != null) {
 			const uploadPromises = upload(selectedFiles);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/sale");
 		} else {
 			const uploadPromises = FileUploadService.upload_nonFile(boardData);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/sale");
 		}
 		setMessage([]);
 	};
 
+	// 파일첨부 업로드
 	const upload = (file) => {
 		return FileUploadService.upload(file, boardData);
 	};
 
-	useEffect(() => {
-		console.log(sellCategory);
-		dataSetting(title, price, content, category, sellCategory);
-	}, [title, content, price, category, selectedFiles]);
-
+	// input onChange
 	const changeTitle = (e) => {
 		let { value } = e.target;
 		setTitle(value);
@@ -97,74 +65,127 @@ function ISell(Props) {
 		setPrice(value);
 	};
 
-	const dataSetting = (title, price, content, category, sellCategory) => {
+	const dataSetting = (title, price, content) => {
 		setBoardData({
 			board_name: title,
 			board_price: price,
 			board_content: content,
-			board_category: category,
-			board_sell_category: sellCategory,
 		});
 	};
 
-	const sellCategory = 0;
-
 	return (
-		<>
-			<div className="Subpage">
-				<div className="Subpage-container">
-					<div className="title">
-						<Box sx={{ minWidth: 120 }}>
-							<FormControl fullWidth>
-								<InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-								<Select
-									labelId="demo-simple-select-label"
-									id="demo-simple-select"
-									value={category}
-									label="카테고리"
-									onChange={handleChange}
-								>
-									<MenuItem value={1}>여성의류</MenuItem>
-									<MenuItem value={2}>남성의류</MenuItem>
-									<MenuItem value={3}>전자기기</MenuItem>
-								</Select>
-							</FormControl>
-						</Box>
-						<h1>
-							상품 이름 :{" "}
-							<input type="text" onChange={changeTitle} value={title} />
-						</h1>
-						<p>
-							상품 가격 :{" "}
-							<input type="text" onChange={changePrice} value={price} />
-							<br /> 상품 설명 :{" "}
-							<input
-								type="text"
-								className="size"
-								onChange={changeContent}
-								value={content}
-							/>
-						</p>
-						<label htmlFor="icon-button-file"></label>
-						<label htmlFor="contained-button-file">
-							<Input
-								accept="image/*"
-								id="contained-button-file"
-								multiple
-								type="file"
-							/>
-							<input type="file" multiple onChange={selectFiles} />
-							<br />
-							<button className="btn btn-success btn-sm" onClick={uploadFiles}>
-								Send
-							</button>
-						</label>
-
-						<br />
-					</div>
+		<div
+			style={{
+				backgroundColor: "orange",
+				paddingTop: "10px",
+				width: "100%",
+				height: "100%",
+				margin: "0 auto",
+			}}
+		>
+			<h1 style={{ color: "white" }}>
+				<strong>&nbsp;&nbsp;판매 글 등록</strong>
+			</h1>
+			<div
+				style={{
+					paddingLeft: "10px",
+					paddingRight: "10px",
+				}}
+			>
+				<Paper sx={{ width: "100%" }}>
+					<TableContainer component={Paper}>
+						<Table
+							sx={{ minWidth: 650 }}
+							size="large"
+							aria-label="a dense table"
+						>
+							<TableHead>
+								<TableRow>
+									<TableCell>
+										<Input
+											type="text"
+											onChange={changeTitle}
+											value={title}
+											placeholder="제목을 입력해주세요"
+											style={{
+												width: "100%",
+												height: "100%",
+												border: "1px solid gray",
+											}}
+										/>
+									</TableCell>
+								</TableRow>
+								<TableRow>
+									<TableCell>
+										판매 가격
+										<Input
+											type="text"
+											onChange={changePrice}
+											value={price}
+											style={{
+												width: "100%",
+												minHeight: "100%",
+												border: "1px solid gray",
+											}}
+										/>
+									</TableCell>
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								<TableRow>
+									<TableCell colSpan={2} component="th" scope="row">
+										<textarea
+											type="text"
+											onChange={changeContent}
+											value={content}
+											placeholder="내용을 입력해주세요"
+											style={{
+												width: "100%",
+												// maxHeight: "25vh",
+												minHeight: "25vh",
+												border: "1px solid gray",
+											}}
+										/>
+									</TableCell>
+								</TableRow>
+								<TableRow>
+									<label htmlFor="icon-button-file" />
+									<label htmlFor="contained-button-file" />
+									<input
+										accept="image/*"
+										id="contained-button-file"
+										multiple
+										type="file"
+										onChange={selectFiles}
+										style={{ padding: "10px" }}
+									/>
+									<br />
+								</TableRow>
+							</TableBody>
+						</Table>
+					</TableContainer>
+				</Paper>
+				<br />
+				<div style={{ textAlign: "right", paddingRight: "20px" }}>
+					<Button
+						onClick={uploadFiles}
+						variant="outlined"
+						style={{ textDecoration: "none" }}
+					>
+						등록
+					</Button>
+					&nbsp;
+					<Button
+						href="sale"
+						variant="outlined"
+						style={{ textDecoration: "none" }}
+					>
+						목록
+					</Button>
 				</div>
+				<br />
 			</div>
-		</>
+		</div>
 	);
 }
 

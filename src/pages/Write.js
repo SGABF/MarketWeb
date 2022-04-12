@@ -1,86 +1,186 @@
-import React, { useRef } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { styled } from "@mui/material/styles";
+import FileUploadService from "service/FileUploadService";
+
+import Button from "@mui/material/Button";
+import { Input } from "@mui/material";
+import TableHead from "@mui/material/TableHead";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
 
 export default function Write() {
-  const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
-  let history = useHistory();
+	const [selectedFiles, setSelectedFiles] = useState(undefined);
+	const [title, setTitle] = useState("");
+	const [content, setContent] = useState("");
+	const [qnaData, setQnaData] = useState([]);
+	const [message, setMessage] = useState([]);
+	const history = useHistory();
 
-  const Input = styled("input")({
-    display: "none",
-  });
+	useEffect(() => {
+		dataSetting(title, content);
+	}, [title, content, selectedFiles]);
 
-  return (
-    <>
-      <h1>글쓰기</h1>
+	// 파일 첨부
+	const selectFiles = (event) => {
+		setSelectedFiles(event.target.files);
+	};
 
-      <Editor
-        onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue="<p>본문을 남겨주세요.</p>"
-        init={{
-          height: 500,
-          menubar: false,
-          plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste code help wordcount",
-          ],
+	// 파일 첨부/미첨부 업로드
+	const uploadFiles = () => {
+		if (selectedFiles != null) {
+			const uploadPromises = uploadQna(selectedFiles);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/qnalist");
+		} else {
+			const uploadPromises = FileUploadService.uploadQna_nonFile(qnaData);
+			window.alert("게시글 등록이 완료되었습니다.");
+			history.push("/qnalist");
+		}
+		setMessage([]);
+	};
 
-          toolbar:
-            "undo redo | formatselect | " +
-            "bold italic backcolor | alignleft aligncenter " +
-            "alignright alignjustify | bullist numlist outdent indent | " +
-            "removeformat | help",
-          content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-        }}
-      />
-      <br />
-      <TextField
-        id="date"
-        label="오늘날짜"
-        type="date"
-        defaultValue="2022-03-18"
-        sx={{ width: 220 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <label htmlFor="contained-button-file">
-        <Input
-          accept="image/*"
-          id="contained-button-file"
-          multiple
-          type="file"
-        />
-        <Button variant="contained" component="span">
-          Upload
-        </Button>
-      </label>
+	// 파일첨부 업로드
+	const uploadQna = (file) => {
+		return FileUploadService.uploadQna(file, qnaData);
+	};
 
-      <br />
-      <br />
-      <Button variant="outlined" onClick={log}>
-        확인
-      </Button>
-      <Button
-        variant="outlined"
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        뒤로가기
-      </Button>
-    </>
-  );
+	// input onChange
+	const changeTitle = (e) => {
+		let { value } = e.target;
+		setTitle(value);
+	};
+
+	const changeContent = (e) => {
+		let { value } = e.target;
+		setContent(value);
+	};
+
+	const dataSetting = (title, content) => {
+		setQnaData({
+			back_Qna_Name: title,
+			back_Qna_Content: content,
+		});
+	};
+
+	return (
+		<div
+			style={{
+				backgroundColor: "rgb(243, 243, 239)",
+				marginLeft: "10%",
+				marginRight: "10%",
+			}}
+		>
+			<br />
+			<br />
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
+				<h1 style={{ color: "white" }}>
+					<strong>&nbsp;&nbsp;문의 남기기</strong>
+				</h1>
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
+					<Paper sx={{ width: "100%" }}>
+						<TableContainer component={Paper}>
+							<Table
+								sx={{ minWidth: 650 }}
+								size="large"
+								aria-label="a dense table"
+							>
+								<TableHead>
+									<TableRow>
+										<TableCell>
+											<input
+												type="text"
+												onChange={changeTitle}
+												value={title}
+												placeholder="제목을 입력해주세요"
+												style={{
+													width: "100%",
+													height: "30px",
+													border: "1px solid gray",
+												}}
+											/>
+										</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									<TableRow>
+										<TableCell colSpan={2} component="th" scope="row">
+											<textarea
+												type="text"
+												onChange={changeContent}
+												value={content}
+												placeholder="내용을 입력해주세요"
+												style={{
+													width: "100%",
+													// maxHeight: "30vh",
+													minHeight: "25vh",
+													border: "1px solid gray",
+													margin: "0 auto",
+												}}
+											/>
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										<label htmlFor="icon-button-file" />
+										<label htmlFor="contained-button-file" />
+										<input
+											accept="image/*"
+											id="contained-button-file"
+											multiple
+											type="file"
+											onChange={selectFiles}
+											style={{ padding: "10px" }}
+										/>
+										* 파일은 1개만 첨부 가능합니다.
+										<br />
+									</TableRow>
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Paper>
+
+					<br />
+					<div style={{ textAlign: "right", paddingRight: "20px" }}>
+						<Button
+							onClick={uploadFiles}
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							등록
+						</Button>
+						&nbsp;
+						<Button
+							href="qnalist"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							목록
+						</Button>
+					</div>
+					<br />
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
+	);
 }
