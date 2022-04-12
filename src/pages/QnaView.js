@@ -10,12 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import "./Notice.css";
-import {
-	Redirect,
-	useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { PaddingOutlined } from "@mui/icons-material";
-import { padding, width } from "@mui/system";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 function QnaView(props) {
 	const [qnaView, setQnaView] = useState([]);
@@ -84,15 +79,30 @@ function QnaView(props) {
 				backgroundColor: "rgb(243, 243, 239)",
 				marginLeft: "10%",
 				marginRight: "10%",
+				minHeight: "100vh",
 			}}
 		>
 			<br />
 			<br />
-			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
 				<h1 style={{ color: "white" }}>
 					<strong>&nbsp;&nbsp;고객센터 답변</strong>
 				</h1>
-				<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
 					<Paper sx={{ width: "100%" }}>
 						<TableContainer component={Paper}>
 							<Table
@@ -102,7 +112,7 @@ function QnaView(props) {
 							>
 								<TableHead>
 									<TableRow>
-										<TableCell style={{ fontSize: "15pt" }}>
+										<TableCell style={{ fontSize: "13pt" }}>
 											<strong>제목 : {qnaView.back_Qna_Name}</strong>
 										</TableCell>
 										<TableCell align="right">
@@ -145,15 +155,26 @@ function QnaView(props) {
 						</TableContainer>
 					</Paper>
 					<br />
-					<br />
-					<div style={{ textAlign: "right" }}>
-						<Button href="Write">수정</Button>
-						<Button href="QnaList">목록</Button>
+					<div style={{ textAlign: "right", paddingRight: "20px" }}>
+						<Button
+							href="Write"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							수정
+						</Button>
+						&nbsp;
+						<Button
+							href="QnaList"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							목록
+						</Button>
 					</div>
+					<br />
 				</div>
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }

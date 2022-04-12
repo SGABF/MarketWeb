@@ -45,6 +45,7 @@ function MyGk() {
 				<br />
 				<br />
 				<h3>My 개꿀</h3>
+				<h4>내가 댓글 단 게시글 모아보기</h4>
 				<br />
 				{myGk &&
 					myGk.map((item) => {

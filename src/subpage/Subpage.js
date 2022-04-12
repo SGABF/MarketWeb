@@ -149,6 +149,7 @@ function Subpage(props) {
 			<div className="Subpage">
 				<div className="Subpage-container">
 					<br />
+					<h1 style={{ textAlign: "center" }}>제품 상세페이지</h1>
 					<br />
 					<br />
 					<Carousel variant="dark">{imageList}</Carousel>
@@ -193,36 +194,12 @@ function Subpage(props) {
 						<br />
 						<br />
 						<br />
-						{/* <TextField
-							id="input-with-icon-textfield"
-							label="comment"
-							InputProps={{
-								startAdornment: (
-									<InputAdornment position="start">
-										<AccountCircle />
-									</InputAdornment>
-								),
-							}}
-							variant="standard"
-						/>
-						<Button onClick={leaveComment}>댓글 남기기</Button>
-						<br />
-						<br />
-						{comment.replyList &&
-							comment.replyList.map((item) => (
-								<p>
-									comment : {item.reply_content}
-									<Button>수정</Button>
-									<Button>삭제</Button>
-								</p>
-							))} */}
 						{token ? <BoardComment /> : <br />}
 						<br />
 						<br />
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 }

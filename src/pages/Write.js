@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import FileUploadService from "service/FileUploadService";
+
+import Button from "@mui/material/Button";
 import { Input } from "@mui/material";
 import TableHead from "@mui/material/TableHead";
-import FileUploadService from "service/FileUploadService";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,19 +12,24 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
-import { styled } from "@mui/material/styles";
-
 export default function Write() {
 	const [selectedFiles, setSelectedFiles] = useState(undefined);
-	const [message, setMessage] = useState([]);
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 	const [qnaData, setQnaData] = useState([]);
+	const [message, setMessage] = useState([]);
+	const history = useHistory();
+
+	useEffect(() => {
+		dataSetting(title, content);
+	}, [title, content, selectedFiles]);
+
+	// 파일 첨부
 	const selectFiles = (event) => {
 		setSelectedFiles(event.target.files);
 	};
-	const history = useHistory();
 
+	// 파일 첨부/미첨부 업로드
 	const uploadFiles = () => {
 		if (selectedFiles != null) {
 			const uploadPromises = uploadQna(selectedFiles);
@@ -39,14 +43,12 @@ export default function Write() {
 		setMessage([]);
 	};
 
+	// 파일첨부 업로드
 	const uploadQna = (file) => {
 		return FileUploadService.uploadQna(file, qnaData);
 	};
 
-	useEffect(() => {
-		dataSetting(title, content);
-	}, [title, content, selectedFiles]);
-
+	// input onChange
 	const changeTitle = (e) => {
 		let { value } = e.target;
 		setTitle(value);
@@ -63,17 +65,6 @@ export default function Write() {
 			back_Qna_Content: content,
 		});
 	};
-	// const editorRef = useRef(null);
-	// const log = () => {
-	// 	if (editorRef.current) {
-	// 		console.log(editorRef.current.getContent());
-	// 	}
-	// };
-	// let history = useHistory();
-
-	// const Input = styled("input")({
-	// 	display: "none",
-	// });
 
 	return (
 		<div
@@ -85,11 +76,25 @@ export default function Write() {
 		>
 			<br />
 			<br />
-			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
 				<h1 style={{ color: "white" }}>
 					<strong>&nbsp;&nbsp;문의 남기기</strong>
 				</h1>
-				<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
 					<Paper sx={{ width: "100%" }}>
 						<TableContainer component={Paper}>
 							<Table
@@ -99,15 +104,15 @@ export default function Write() {
 							>
 								<TableHead>
 									<TableRow>
-										<TableCell style={{ fontSize: "15pt" }}>
-											<strong>&nbsp;제목 &nbsp;&nbsp;</strong>
+										<TableCell>
 											<input
 												type="text"
 												onChange={changeTitle}
 												value={title}
+												placeholder="제목을 입력해주세요"
 												style={{
-													width: "800px",
-													height: "50px",
+													width: "100%",
+													height: "30px",
 													border: "1px solid gray",
 												}}
 											/>
@@ -117,44 +122,63 @@ export default function Write() {
 								<TableBody>
 									<TableRow>
 										<TableCell colSpan={2} component="th" scope="row">
-											<strong>문의 내용 </strong>
-											<input
+											<textarea
 												type="text"
-												style={{
-													width: "800px",
-													height: "500px",
-													border: "1px solid gray",
-												}}
 												onChange={changeContent}
 												value={content}
+												placeholder="내용을 입력해주세요"
+												style={{
+													width: "100%",
+													// maxHeight: "30vh",
+													minHeight: "25vh",
+													border: "1px solid gray",
+													margin: "0 auto",
+												}}
 											/>
 										</TableCell>
 									</TableRow>
 									<TableRow>
-										&nbsp;
 										<label htmlFor="icon-button-file" />
 										<label htmlFor="contained-button-file" />
-										<Input
+										<input
 											accept="image/*"
 											id="contained-button-file"
 											multiple
 											type="file"
 											onChange={selectFiles}
+											style={{ padding: "10px" }}
 										/>
+										* 파일은 1개만 첨부 가능합니다.
 										<br />
 									</TableRow>
 								</TableBody>
 							</Table>
 						</TableContainer>
 					</Paper>
+
 					<br />
-					<br />
-					<div style={{ textAlign: "right" }}>
-						<Button onClick={uploadFiles}>등록</Button>
-						<Button href="qnalist">목록</Button>
+					<div style={{ textAlign: "right", paddingRight: "20px" }}>
+						<Button
+							onClick={uploadFiles}
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							등록
+						</Button>
+						&nbsp;
+						<Button
+							href="qnalist"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							목록
+						</Button>
 					</div>
+					<br />
 				</div>
 			</div>
+			<br />
+			<br />
 			<br />
 			<br />
 		</div>

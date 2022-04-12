@@ -43,7 +43,10 @@ function MySale() {
 			}}
 		>
 			<div style={{ backgroundColor: "rgb(243, 243, 239)" }}>
+				<br />
+				<br />
 				<h3>My Market</h3>
+				<h4>내가 작성한 게시글 모아보기</h4>
 				<br />
 				{mysale &&
 					mysale.map((item) => {

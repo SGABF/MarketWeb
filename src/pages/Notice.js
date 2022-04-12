@@ -17,7 +17,7 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 
-import "./Notice.css";
+// import "./Notice.css";
 
 import {
 	Redirect,
@@ -64,100 +64,106 @@ export default function ColumnGroupingTable() {
 				backgroundColor: "rgb(243, 243, 239)",
 				marginLeft: "10%",
 				marginRight: "10%",
+				minHeight: "100vh",
 			}}
 		>
 			<br />
 			<br />
-			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
 				<h1 style={{ color: "white" }}>
 					<strong>&nbsp;&nbsp;공지사항</strong>
 				</h1>
-				<Paper sx={{ width: "100%" }}>
-					<TableContainer sx={{ maxHeight: 440 }}>
-						<Table stickyHeader aria-label="sticky table">
-							<TableHead>
-								<TableRow>
-									<TableCell
-										align="center"
-										width="50%"
-										style={{ fontSize: "15pt" }}
-									>
-										<strong>제목</strong>
-									</TableCell>
-									<TableCell
-										align="center"
-										width="25%"
-										style={{ fontSize: "15pt" }}
-									>
-										<strong>등록일</strong>
-									</TableCell>
-								</TableRow>
-							</TableHead>
-
-							<TableBody>
-								{notice.map((row) => {
-									return (
-										<TableRow
-											hover
-											role="checkbox"
-											tabIndex={-1}
-											key={row.code}
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
+					<Paper sx={{ width: "100%" }}>
+						<TableContainer sx={{ minHeight: 500 }}>
+							<Table stickyHeader aria-label="sticky table">
+								<TableHead>
+									<TableRow>
+										<TableCell
+											align="center"
+											width="50%"
+											style={{ fontSize: "15pt" }}
 										>
-											{columns.map((column) => {
-												const value = row[column.id];
-												return (
-													<TableCell key={column.id} align={column.align}>
-														<Link
-															to={{
-																pathname: "/Posttwo",
-																id_value: row.back_Notice_Idx,
-															}}
-															className="TableBody"
-														>
-															{column.format && typeof value === "number"
-																? column.format(value)
-																: value}
-														</Link>
-													</TableCell>
-												);
-											})}
-										</TableRow>
-									);
-								})}
-							</TableBody>
-						</Table>
-					</TableContainer>
-					<TablePagination
-						rowsPerPageOptions={[10, 25, 100]}
-						component="div"
-						count={notice.length}
-						rowsPerPage={rowsPerPage}
-						page={page}
-						onPageChange={handleChangePage}
-						onRowsPerPageChange={handleChangeRowsPerPage}
-					/>
-				</Paper>
+											<strong>제목</strong>
+										</TableCell>
+										<TableCell
+											align="center"
+											width="25%"
+											style={{ fontSize: "15pt" }}
+										>
+											<strong>등록일</strong>
+										</TableCell>
+									</TableRow>
+								</TableHead>
+
+								<TableBody>
+									{notice.map((row) => {
+										return (
+											<TableRow
+												hover
+												role="checkbox"
+												tabIndex={-1}
+												key={row.code}
+											>
+												{columns.map((column) => {
+													const value = row[column.id];
+													return (
+														<TableCell key={column.id} align={column.align}>
+															<Link
+																to={{
+																	pathname: "/Posttwo",
+																	id_value: row.back_Notice_Idx,
+																}}
+																className="TableBody"
+															>
+																{column.format && typeof value === "number"
+																	? column.format(value)
+																	: value}
+															</Link>
+														</TableCell>
+													);
+												})}
+											</TableRow>
+										);
+									})}
+								</TableBody>
+							</Table>
+						</TableContainer>
+						<TablePagination
+							rowsPerPageOptions={[10, 25, 100]}
+							component="div"
+							count={notice.length}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							onPageChange={handleChangePage}
+							onRowsPerPageChange={handleChangeRowsPerPage}
+						/>
+					</Paper>
+				</div>
 				<br />
 				<br />
 				<br />
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }
 
 const columns = [
-	// { id: "back_Notice_Idx", label: "", minWidth: 170 },
-
 	{ id: "back_Notice_Subject", label: "제목" },
-	// {
-	// 	id: "back_Notice_Content",
-	// 	label: "내용",
-	// 	align: "right",
-	// 	format: (value) => value.toLocaleString("ko-KR"),
-	// },
-
 	{
 		id: "back_Notice_RegDate",
 		label: "등록일",

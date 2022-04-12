@@ -31,6 +31,7 @@ function Header() {
 				pathname: "/searchresult",
 				state: keyword,
 			});
+			window.location.reload();
 		}
 	};
 
@@ -41,29 +42,13 @@ function Header() {
 			</Link>
 
 			<div className="header_search">
-				{/* <>
-          {[DropdownButton].map((DropdownType, idx) => (
-            <DropdownType
-            onSelect={handleSelect}
-            as={ButtonGroup}
-            key={idx}
-            id={`dropdown-button-drop-${idx}`}
-            size="sm"
-            variant="light"
-            title="전체"
-            >
-              <Dropdown.Item eventKey="board_name" >상품명</Dropdown.Item>
-              <Dropdown.Item eventKey="board_content">내용</Dropdown.Item>
-              <Dropdown.Item eventKey="board_all">전체</Dropdown.Item>
-            </DropdownType>
-          ))}
-        </> */}
 				<input
 					className="header_searchInput"
 					type="search"
 					onChange={(e) => setKeyword(e.target.value)}
 					onKeyPress={onCheckEnter}
 				/>
+				&nbsp;
 				<Link
 					to={{
 						pathname: "/searchresult",
@@ -87,22 +72,7 @@ function Header() {
 				</div>
 				<div className="header_option">
 					<Link to="/">
-						<span className="header_optionLineOne">
-							{" "}
-							장터게시판
-							{/* <Menu*/}
-							{/*    menuButton={*/}
-							{/*        <MenuButton className="button">장터게시판</MenuButton>*/}
-							{/*    }*/}
-							{/*>*/}
-							{/*  <SubMenu label="경매글">*/}
-							{/*    <MenuItem>입찰하기</MenuItem>*/}
-							{/*    <MenuItem>잔여시간</MenuItem>*/}
-							{/*    <MenuItem>입찰 인원 조회</MenuItem>*/}
-							{/*    <MenuItem>경매 시작가 조회</MenuItem>*/}
-							{/*  </SubMenu>*/}
-							{/*</Menu> */}
-						</span>
+						<span className="header_optionLineOne">장터게시판</span>
 					</Link>
 				</div>
 
@@ -136,14 +106,6 @@ function Header() {
 						</Menu>
 					)}
 				</div>
-				{/* <Link to="/checkout">
-					<div className="header_optionBasket">
-						<ShoppingBasket />
-						<span className="header_optionLineOneheader_basketCount">
-							{basket?.length}
-						</span>
-					</div>
-				</Link> */}
 			</div>
 		</div>
 	);

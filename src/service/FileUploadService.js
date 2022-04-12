@@ -14,6 +14,7 @@ const upload = (file, contentData) => {
 		"BoardVO",
 		new Blob([JSON.stringify(contentData)], { type: "application/json" })
 	);
+	console.log(formData);
 	return axios.post("http://192.168.0.151:8080/board/insertBoard", formData, {
 		headers: {
 			Authorization: "Bearer " + token,
@@ -50,7 +51,7 @@ const upload_nonFile = (contentData) => {
 		"BoardVO",
 		new Blob([JSON.stringify(contentData)], { type: "application/json" })
 	);
-
+	console.log(formData);
 	return axios.post("http://192.168.0.151:8080/board/insertBoard", formData, {
 		headers: {
 			Authorization: "Bearer " + token,

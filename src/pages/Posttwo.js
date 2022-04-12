@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Post.css";
+// import "./Post.css";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -38,37 +37,40 @@ function Posttwo(props) {
 			});
 	};
 
-	// const imageList =
-	// 	notice &&
-	// 	notice.map((item) => (
-	// 		<img
-	// 			className="image"
-	// 			src={
-	// 				"http://192.168.0.150:8080/imagePath/" + item.back_Noticefile_SaveName
-	// 			}
-	// 			alt="First slide"
-	// 		/>
-	// 	));
-
 	return (
 		<div
 			style={{
 				backgroundColor: "rgb(243, 243, 239)",
 				marginLeft: "10%",
 				marginRight: "10%",
+				minHeight: "100vh",
 			}}
 		>
 			<br />
 			<br />
-			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
 				<h1 style={{ color: "white" }}>
 					<strong>&nbsp;&nbsp;고객센터 답변</strong>
 				</h1>
-				<div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
 					<Paper sx={{ width: "100%" }}>
 						<TableContainer component={Paper}>
 							<Table
-								sx={{ minWidth: 650 }}
+								sx={{ minHeight: 500 }}
 								size="large"
 								aria-label="a dense table"
 							>
@@ -100,15 +102,18 @@ function Posttwo(props) {
 							</Table>
 						</TableContainer>
 					</Paper>
-					<br />
-					<br />
-					<div style={{ textAlign: "right" }}>
-						<Button href="Notice">목록</Button>
+					<div style={{ textAlign: "right", padding: "20px" }}>
+						<Button
+							href="Notice"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							목록
+						</Button>
+						<br />
 					</div>
 				</div>
 			</div>
-			<br />
-			<br />
 		</div>
 	);
 }

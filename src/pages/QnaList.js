@@ -31,28 +31,7 @@ export default function ColumnGroupingTable() {
 
 	useEffect(() => {
 		getQnaList();
-		// getComment(id_data);
 	}, []);
-
-	// const getComment = async (idx) => {
-	// 	const token = localStorage.getItem("token");
-	// 	await axios
-	// 		.get(
-	// 			"http://192.168.0.121:8080/MainView/qnaList",
-
-	// 			{
-	// 				params: { board_idx: idx },
-	// 			}
-	// 		)
-	// 		.then((res) => {
-	// 			console.log("가져온값 : " + res.data.length);
-	// 			console.log("가져온값 : " + JSON.stringify(res.data));
-	// 			setComment(res.data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(`getComment 에러 :  ${error.message}`);
-	// 		});
-	// };
 
 	const getQnaList = async () => {
 		await axios
@@ -87,86 +66,106 @@ export default function ColumnGroupingTable() {
 			<br />
 			<br />
 
-			<div style={{ backgroundColor: "orange", paddingTop: "10px" }}>
+			<div
+				style={{
+					backgroundColor: "orange",
+					paddingTop: "10px",
+					width: "700px",
+					height: "100%",
+					margin: "0 auto",
+				}}
+			>
 				<h1 style={{ color: "white" }}>
 					<strong>&nbsp;&nbsp;고객센터</strong>
 				</h1>
-				<Paper sx={{ width: "100%" }}>
-					<TableContainer sx={{ maxHeight: 440 }}>
-						<Table stickyHeader aria-label="sticky table">
-							<TableHead>
-								<TableRow>
-									<TableCell
-										align="center"
-										width="50%"
-										style={{ fontSize: "15pt" }}
-									>
-										<strong>제목</strong>
-									</TableCell>
-									<TableCell
-										align="right"
-										width="25%"
-										style={{ fontSize: "15pt" }}
-									>
-										<strong>작성자</strong>
-									</TableCell>
-									<TableCell
-										align="center"
-										width="25%"
-										style={{ fontSize: "15pt" }}
-									>
-										<strong>등록일</strong>
-									</TableCell>
-								</TableRow>
-							</TableHead>
-
-							<TableBody>
-								{qnaList.map((row) => {
-									return (
-										<TableRow
-											hover
-											role="checkbox"
-											tabIndex={-1}
-											key={row.code}
+				<div
+					style={{
+						paddingLeft: "10px",
+						paddingRight: "10px",
+						width: "100%",
+					}}
+				>
+					<Paper sx={{ width: "100%" }}>
+						<TableContainer sx={{ maxHeight: 440 }}>
+							<Table stickyHeader aria-label="sticky table">
+								<TableHead>
+									<TableRow>
+										<TableCell
+											align="center"
+											width="50%"
+											style={{ fontSize: "15pt" }}
 										>
-											{columns.map((column) => {
-												const value = row[column.id];
-												return (
-													<TableCell key={column.id} align={column.align}>
-														<Link
-															to={{
-																pathname: "/qnaview",
-																state: row.back_Qna_Idx,
-															}}
-															className="TableBody"
-														>
-															{column.format && typeof value === "number"
-																? column.format(value)
-																: value}
-														</Link>
-													</TableCell>
-												);
-											})}
-										</TableRow>
-									);
-								})}
-							</TableBody>
-						</Table>
-					</TableContainer>
-					<TablePagination
-						rowsPerPageOptions={[10, 25, 100]}
-						component="div"
-						count={qnaList.length}
-						rowsPerPage={rowsPerPage}
-						page={page}
-						onPageChange={handleChangePage}
-						onRowsPerPageChange={handleChangeRowsPerPage}
-					/>
-				</Paper>
-				<br />
-				<br />
-				<div style={{ textAlign: "right" }}>
-					<Button href="Write">문의남기기</Button>
+											<strong>제목</strong>
+										</TableCell>
+										<TableCell
+											align="right"
+											width="25%"
+											style={{ fontSize: "15pt" }}
+										>
+											<strong>작성자</strong>
+										</TableCell>
+										<TableCell
+											align="center"
+											width="25%"
+											style={{ fontSize: "15pt" }}
+										>
+											<strong>등록일</strong>
+										</TableCell>
+									</TableRow>
+								</TableHead>
+
+								<TableBody>
+									{qnaList.map((row) => {
+										return (
+											<TableRow
+												hover
+												role="checkbox"
+												tabIndex={-1}
+												key={row.code}
+											>
+												{columns.map((column) => {
+													const value = row[column.id];
+													return (
+														<TableCell key={column.id} align={column.align}>
+															<Link
+																to={{
+																	pathname: "/qnaview",
+																	state: row.back_Qna_Idx,
+																}}
+																className="TableBody"
+															>
+																{column.format && typeof value === "number"
+																	? column.format(value)
+																	: value}
+															</Link>
+														</TableCell>
+													);
+												})}
+											</TableRow>
+										);
+									})}
+								</TableBody>
+							</Table>
+						</TableContainer>
+						<TablePagination
+							rowsPerPageOptions={[10, 25, 100]}
+							component="div"
+							count={qnaList.length}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							onPageChange={handleChangePage}
+							onRowsPerPageChange={handleChangeRowsPerPage}
+						/>
+					</Paper>
+					<div style={{ textAlign: "right", padding: "20px" }}>
+						<Button
+							href="Write"
+							variant="outlined"
+							style={{ textDecoration: "none" }}
+						>
+							문의남기기
+						</Button>
+					</div>
 				</div>
 			</div>
 			<br />

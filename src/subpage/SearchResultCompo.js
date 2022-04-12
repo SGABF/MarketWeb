@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function Sale() {
-	const [home, setHome] = useState([]);
+function SearchResultCompo(props) {
+	const [searchResult, setSearchResult] = useState([]);
+	const location = useLocation();
+	const keyword_data = location.state;
 
 	useEffect(() => {
-		getHome();
+		getSearchResult(keyword_data);
 	}, []);
 
-	const getHome = async () => {
-		const token = localStorage.getItem("token");
+	const getSearchResult = async (keyword) => {
 		await axios
-			.post("http://192.168.0.151:8080/home/sellBoard", {
-				headers: { Authorization: "Bearer " + token },
+			.get("http://192.168.0.151:8080/home/searchBoardList", {
+				params: { keyword: keyword },
 			})
 			.then((res) => {
-				setHome(res.data);
-				console.log(res.data);
+				console.log("가져온값 : " + JSON.stringify(res.data));
+				setSearchResult(res.data);
 			})
 			.catch((error) => {
-				console.log(`getHome 에러 :  ${error.message}`);
+				console.log(`getSearchResult 에러 :  ${error.message}`);
 			});
 	};
 
 	return (
 		<div>
-			<h1>&nbsp;&nbsp;&nbsp;판매게시판</h1>
-			<br />
+			<h4>
+				&nbsp;&nbsp;&nbsp;"{keyword_data}"으로 검색한 결과 총{" "}
+				{searchResult.length}건
+			</h4>
 			<div>
-				{home &&
-					home.map((item) => {
+				{searchResult &&
+					searchResult.map((item) => {
 						return (
 							<div className="home">
 								<div className="home-container">
@@ -62,10 +67,6 @@ function Sale() {
 													/>
 												)}
 											</Link>
-											<div className="product_info">{item.board_name}</div>
-											<p className="product_price">
-												가격 : {item.board_price}원
-											</p>
 											{item.board_soldout === 1 ? (
 												<strong>
 													<p style={{ color: "red" }}>Sold Out</p>
@@ -96,4 +97,5 @@ function Sale() {
 		</div>
 	);
 }
-export default Sale;
+
+export default SearchResultCompo;
