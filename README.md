@@ -16,8 +16,9 @@
 > [사용자 포털 BE repository](https://github.com/SGABF/MarketWebBack)<br>
 > [관리자 포털 BE repository](https://github.com/SGABF/MarketAdminPage)<br>
 
->> ### [GKMarket_Docs.zip](https://drive.google.com/file/d/1L0bsoXFUX7QffoRNMC9JGOz3bu0QCOuK/view?usp=sharing)
-> 상기 링크는 아래의 Docs탭 내 모든 문서가 담긴 파일 다운로드 링크입니다.<br>
+>> ### Docs.zip
+> [GKMarket_Docs.zip](https://drive.google.com/file/d/1L0bsoXFUX7QffoRNMC9JGOz3bu0QCOuK/view?usp=sharing)<br>
+> 아래의 Docs탭 내 모든 문서가 담긴 파일 다운로드 링크입니다.<br>
 > 또한, 아래의 Docs 탭에서 한 파일씩 세부 정보를 보실 수 있습니다.<br>
 >> ### Docs
 > [프로젝트_개요.pptx](https://docs.google.com/presentation/d/1bZw3M0usmPobekUW9K-OE9X1WU5fUwUHmmVaZoPLjk8/edit?usp=sharing)<br>
