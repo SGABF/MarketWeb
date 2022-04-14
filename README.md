@@ -23,5 +23,10 @@
 >> ### Docs
 > [프로젝트_개요.pptx](https://docs.google.com/presentation/d/1bZw3M0usmPobekUW9K-OE9X1WU5fUwUHmmVaZoPLjk8/edit?usp=sharing)<br>
 > [프로젝트_시연시나리오.pptx](https://docs.google.com/presentation/d/1FjwQx8RLdNaYY-dBowIFMTnudKo-D8hEeHT4BNPYblQ/edit?usp=sharing)<br>
-> [테이블_정의서.docx](https://docs.google.com/spreadsheets/d/1XGsPA9Yz0wX_RpwEfxsZ1RGeJFD92zrnqbWN8_N3F3o/edit?usp=sharing)<br>
+> [요구사항분석서.xlsx](https://docs.google.com/spreadsheets/d/1XGsPA9Yz0wX_RpwEfxsZ1RGeJFD92zrnqbWN8_N3F3o/edit?usp=sharing)<br>
+> [테이블_정의서.docx](https://docs.google.com/document/d/11kVmVBSg6lxYSvyghmUdrE1iDI6dfH-SA_vnAvrire4/edit?usp=sharing)<br>
 > [디렉토리_구조도.docx](https://docs.google.com/document/d/1d_8QzZrIKS6OVQmQORIOx4tr6qsH8J9Bd1GmHdyuB8Q/edit?usp=sharing)<br>
+> [사용자포털_화면정의서.pptx](https://docs.google.com/presentation/d/1i1fIsCDREKt9np7dcIYdRlvu2daUA115pk_0eaUFZ64/edit?usp=sharing)<br>
+> [관리자포털_화면정의서.pptx](https://docs.google.com/presentation/d/1rpkbyBfq0bNedkN0kZch6AdiFrIRwKzKTmbEUSxpd5I/edit?usp=sharing)<br>
+> [시퀀스_다이어그램.pptx](https://docs.google.com/presentation/d/1A1I9wfD9Fzd91zhKxDs3qWHnjetbozBeuXZmtCM9-hI/edit?usp=sharing)<br>
+> [완료_보고서.doc](https://docs.google.com/document/d/1cTNBG7uimfw3KKHxKnduCL0LzvWLZ27eWPxSMsGhu14/edit?usp=sharing)<br>
