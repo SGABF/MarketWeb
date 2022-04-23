@@ -1,7 +1,7 @@
 <div align=center><h2>사용자포털 / 관리자포털</h2></div>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/94984063/164894574-6b445021-41f9-4c85-b25f-ed4456c9d040.png">
+<img src="https://user-images.githubusercontent.com/94984063/164894628-ca998885-863e-42b1-b534-edd341207f36.png">
 </p> <br>
 
 >> ### FE
